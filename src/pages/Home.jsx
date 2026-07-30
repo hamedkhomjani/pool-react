@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
 import Hero from '../components/Hero'
 import Categories from '../components/Categories'
 import Products from '../components/Products'
@@ -7,16 +6,16 @@ import Calculator from '../components/Calculator'
 import Banner from '../components/Banner'
 
 function Home() {
-  const location = useLocation()
-
   useEffect(() => {
-    if (location.hash) {
-      const id = location.hash.replace('#', '')
-      setTimeout(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-      }, 100)
+    window.scrollTo(0, 0)
+    const target = sessionStorage.getItem('scrollTo')
+    if (target) {
+      sessionStorage.removeItem('scrollTo')
+      requestAnimationFrame(() => {
+        document.getElementById(target)?.scrollIntoView({ behavior: 'smooth' })
+      })
     }
-  }, [location.hash])
+  }, [])
 
   return (
     <>
