@@ -30,8 +30,6 @@ function calcVolume(shape, dims) {
 }
 
 function recommend(volume) {
-  const flowNeeded = Math.round(volume / 5)
-
   let pump
   if (volume <= 30) pump = { power: '0.5 HP', flow: '8 m³/h', model: 'HW-0500' }
   else if (volume <= 50) pump = { power: '0.75 HP', flow: '12 m³/h', model: 'HW-0750' }
@@ -58,7 +56,15 @@ function recommend(volume) {
   else if (volume <= 150) uv = { power: '150 W', flow: '18 m³/h', model: 'UV-150P' }
   else uv = { power: '250 W', flow: '30 m³/h', model: 'UV-250P' }
 
-  return { flowNeeded, pump, filter, heater, uv }
+  return { pump, filter, heater, uv }
+}
+
+function formatVolume(volume) {
+  try {
+    return new Intl.NumberFormat('fa').format(volume)
+  } catch {
+    return volume.toLocaleString()
+  }
 }
 
 function Calculator() {
@@ -147,7 +153,7 @@ function Calculator() {
           {result && (
             <div className="calc-result">
               <div className="calc-result-header">
-                <span className="calc-volume">حجم استخر: <strong>{result.volume.toLocaleString('fa')} متر مکعب</strong></span>
+                <span className="calc-volume">حجم استخر: <strong>{formatVolume(result.volume)} متر مکعب</strong></span>
               </div>
               <div className="calc-rec-grid">
                 <div className="calc-rec-card">

@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import products from '../data/products'
 
 function Products() {
@@ -66,7 +65,7 @@ function Products() {
                 ))}
               </div>
             </div>
-            <a href="#" className="btn btn-primary modal-cta">افزودن به سبد خرید</a>
+            <button className="btn btn-primary modal-cta">افزودن به سبد خرید</button>
           </div>
         </div>
       )}

@@ -29,7 +29,7 @@ function Header() {
             </>
           )}
         </ul>
-        <a href="#" className="btn btn-primary">مشاوره و سفارش</a>
+        <button className="btn btn-primary">مشاوره و سفارش</button>
       </div>
     </header>
   );

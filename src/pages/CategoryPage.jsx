@@ -91,7 +91,7 @@ function CategoryPage() {
                 ))}
               </div>
             </div>
-            <a href="#" className="btn btn-primary modal-cta">افزودن به سبد خرید</a>
+            <button className="btn btn-primary modal-cta">افزودن به سبد خرید</button>
           </div>
         </div>
       )}
