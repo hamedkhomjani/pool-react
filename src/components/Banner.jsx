@@ -7,7 +7,7 @@ function Banner() {
           <p>نمی‌دانید چه پمپ و فیلتری مناسب استخر شماست؟ ما تمامی تجهیزات را متناسب با ابعاد استخر شما پکیج کرده‌ایم.</p>
           <a href="#" className="btn banner-btn">استعلام قیمت پکیج سفارشی</a>
         </div>
-        <div style={{ fontSize: '100px' }}>🏊‍♂️</div>
+        <div className="banner-icon">🏊‍♂️</div>
       </div>
     </section>
   );

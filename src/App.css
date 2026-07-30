@@ -300,8 +300,8 @@ header {
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
 }
 
 .product-card {
@@ -401,6 +401,12 @@ header {
   align-items: center;
   justify-content: space-between;
   gap: 40px;
+}
+
+.banner-icon {
+  font-size: 100px;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
 .banner-text h3 {
@@ -1151,6 +1157,186 @@ footer {
   font-size: 16px;
 }
 
+@media (max-width: 480px) {
+  .hero {
+    padding: 100px 0 70px;
+  }
+
+  .hero h1 {
+    font-size: 26px;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .hero-badge {
+    font-size: 12px;
+    padding: 6px 16px;
+  }
+
+  .section-header {
+    margin-bottom: 36px;
+  }
+
+  .section-header h2 {
+    font-size: 22px;
+  }
+
+  .section-header p {
+    font-size: 14px;
+  }
+
+  .cat-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .cat-card {
+    padding: 16px 10px;
+  }
+
+  .cat-icon {
+    font-size: 28px;
+  }
+
+  .cat-card h4 {
+    font-size: 14px;
+  }
+
+  .product-grid {
+    gap: 16px;
+  }
+
+  .product-card {
+    padding: 16px;
+  }
+
+  .product-title {
+    font-size: 18px;
+  }
+
+  .product-image {
+    height: 140px;
+    font-size: 36px;
+  }
+
+  .product-desc {
+    font-size: 14px;
+  }
+
+  .product-price {
+    font-size: 18px;
+  }
+
+  .product-specs {
+    font-size: 12px;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .highlight-banner {
+    padding: 24px 16px;
+  }
+
+  .highlight-banner h3 {
+    font-size: 20px;
+  }
+
+  .highlight-banner p {
+    font-size: 15px;
+  }
+
+  .banner-icon {
+    font-size: 48px;
+  }
+
+  .banner-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .calc-shape-btn {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .calc-shape-icon {
+    font-size: 22px;
+  }
+
+  .calculator-card {
+    padding: 16px;
+  }
+
+  .calc-field input {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
+  .modal-content {
+    padding: 16px;
+    margin: 8px;
+  }
+
+  .modal-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 28px;
+  }
+
+  .modal-title {
+    font-size: 18px;
+  }
+
+  .modal-price {
+    font-size: 18px;
+  }
+
+  .modal-desc {
+    font-size: 14px;
+  }
+
+  .feature-item {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  .spec-row {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .contact-item-value {
+    font-size: 14px;
+  }
+
+  .stat-number {
+    font-size: 28px;
+  }
+
+  .value-card {
+    padding: 24px 16px;
+  }
+
+  .footer-grid {
+    gap: 28px;
+  }
+
+  .cat-page-icon {
+    font-size: 40px;
+  }
+
+  .cat-page-header h2 {
+    font-size: 24px;
+  }
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -1205,7 +1391,67 @@ footer {
   }
 
   .hero h1 {
-    font-size: 36px;
+    font-size: 32px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .hero-btns {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-btns .btn {
+    text-align: center;
+  }
+
+  .section-header h2 {
+    font-size: 28px;
+  }
+
+  .section-header p {
+    font-size: 16px;
+  }
+
+  .categories,
+  .products-section {
+    padding: 40px 0 50px;
+  }
+
+  .cat-grid {
+    gap: 14px;
+  }
+
+  .product-card {
+    padding: 24px;
+  }
+
+  .product-image {
+    height: 170px;
+  }
+
+  .highlight-banner {
+    padding: 32px 20px;
+  }
+
+  .highlight-banner h3 {
+    font-size: 24px;
+  }
+
+  .banner-icon {
+    font-size: 64px;
+  }
+
+  .about-section,
+  .contact-section,
+  .calculator-section {
+    padding: 40px 0 60px;
+  }
+
+  .cat-page {
+    padding: 24px 0 60px;
   }
 
   .footer-grid {
@@ -1255,8 +1501,26 @@ footer {
     align-items: stretch;
   }
 
+  .calc-shape-btn {
+    padding: 12px 20px;
+    flex-direction: row;
+    justify-content: center;
+  }
+
   .modal-content {
-    padding: 24px;
+    padding: 20px;
+    margin: 12px;
+    max-height: 85vh;
+  }
+
+  .modal-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 36px;
+  }
+
+  .modal-header {
+    gap: 12px;
   }
 
   .features-grid {
