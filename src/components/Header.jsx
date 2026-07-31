@@ -1,14 +1,22 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import ThemeToggle from './ThemeToggle'
 
-function scrollTo(id) {
+const NAV_ITEMS = [
+  { type: 'section', label: 'دسته‌بندی‌ها', id: 'categories' },
+  { type: 'section', label: 'تجهیزات اصلی', id: 'products' },
+  { type: 'section', label: 'پکیج‌های آماده', id: 'packages' },
+  { type: 'link', label: 'درباره ما', to: '/about' },
+  { type: 'link', label: 'تماس با ما', to: '/contact' },
+]
+
+function scrollToId(id) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 }
 
-function Header() {
+function Header({ theme, onToggleTheme }) {
   const location = useLocation()
   const navigate = useNavigate()
-  const isHome = location.pathname === '/'
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
@@ -24,82 +32,95 @@ function Header() {
     setMenuOpen(false)
   }
 
-  function handleHashClick(e, id) {
+  function handleSectionClick(e, id) {
     e.preventDefault()
     closeMenu()
-    scrollTo(id)
-  }
-
-  function handlePackagesNav() {
-    closeMenu()
-    if (isHome) {
-      scrollTo('packages')
+    if (location.pathname === '/') {
+      scrollToId(id)
     } else {
-      sessionStorage.setItem('scrollTo', 'packages')
+      sessionStorage.setItem('scrollTo', id)
       navigate('/')
     }
+  }
+
+  function isActive(item) {
+    return item.type === 'link' && location.pathname === item.to
   }
 
   return (
     <header>
       <div className="container nav-bar">
-        <Link to="/" className="logo" style={{ textDecoration: 'none' }}>
+        <Link to="/" className="logo" style={{ textDecoration: 'none' }} onClick={closeMenu}>
           <div className="logo-icon">💧</div>
           <span>آکوا پرو</span>
         </Link>
+
         <ul className="nav-links">
-          {isHome ? (
-            <>
-              <li><a href="#categories" onClick={e => handleHashClick(e, 'categories')}>دسته‌بندی‌ها</a></li>
-              <li><a href="#products" onClick={e => handleHashClick(e, 'products')}>تجهیزات اصلی</a></li>
-              <li><a href="#packages" onClick={e => handleHashClick(e, 'packages')}>پکیج‌های آماده</a></li>
-              <li><Link to="/about" onClick={closeMenu}>درباره ما</Link></li>
-              <li><Link to="/contact" onClick={closeMenu}>تماس با ما</Link></li>
-            </>
-          ) : (
-            <>
-              <li><Link to="/" onClick={closeMenu}>صفحه اصلی</Link></li>
-              <li><a href="#packages" onClick={e => { e.preventDefault(); handlePackagesNav() }}>پکیج‌های آماده</a></li>
-              <li><Link to="/about" onClick={closeMenu}>درباره ما</Link></li>
-              <li><Link to="/contact" onClick={closeMenu}>تماس با ما</Link></li>
-            </>
+          {NAV_ITEMS.map(item =>
+            item.type === 'section' ? (
+              <li key={item.id}>
+                <a href={`#${item.id}`} onClick={e => handleSectionClick(e, item.id)}>
+                  {item.label}
+                </a>
+              </li>
+            ) : (
+              <li key={item.to}>
+                <Link
+                  to={item.to}
+                  onClick={closeMenu}
+                  className={isActive(item) ? 'active' : ''}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            )
           )}
         </ul>
-        <button className="btn btn-primary desktop-cta">مشاوره و سفارش</button>
-        <button
-          className={`hamburger ${menuOpen ? 'open' : ''}`}
-          onClick={() => setMenuOpen(p => !p)}
-          aria-label="منو"
-        >
-          <span /><span /><span />
-        </button>
+
+        <div className="nav-actions">
+          <button className="btn btn-primary desktop-cta">مشاوره و سفارش</button>
+          <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+          <button
+            className={`hamburger ${menuOpen ? 'open' : ''}`}
+            onClick={() => setMenuOpen(p => !p)}
+            aria-label="منو"
+          >
+            <span /><span /><span />
+          </button>
+        </div>
       </div>
 
       <div className={`mobile-overlay ${menuOpen ? 'open' : ''}`} onClick={closeMenu} />
       <nav className={`mobile-nav ${menuOpen ? 'open' : ''}`}>
-        <button className="mobile-nav-close" onClick={closeMenu}>✕</button>
+        <div className="mobile-nav-top">
+          <button className="mobile-nav-close" onClick={closeMenu}>✕</button>
+          <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+        </div>
         <ul className="mobile-nav-links">
-          {isHome ? (
-            <>
-              <li><a href="#categories" onClick={e => handleHashClick(e, 'categories')}>دسته‌بندی‌ها</a></li>
-              <li><a href="#products" onClick={e => handleHashClick(e, 'products')}>تجهیزات اصلی</a></li>
-              <li><a href="#packages" onClick={e => handleHashClick(e, 'packages')}>پکیج‌های آماده</a></li>
-              <li><Link to="/about" onClick={closeMenu}>درباره ما</Link></li>
-              <li><Link to="/contact" onClick={closeMenu}>تماس با ما</Link></li>
-            </>
-          ) : (
-            <>
-              <li><Link to="/" onClick={closeMenu}>صفحه اصلی</Link></li>
-              <li><a href="#packages" onClick={e => { e.preventDefault(); handlePackagesNav() }}>پکیج‌های آماده</a></li>
-              <li><Link to="/about" onClick={closeMenu}>درباره ما</Link></li>
-              <li><Link to="/contact" onClick={closeMenu}>تماس با ما</Link></li>
-            </>
+          {NAV_ITEMS.map(item =>
+            item.type === 'section' ? (
+              <li key={item.id}>
+                <a href={`#${item.id}`} onClick={e => handleSectionClick(e, item.id)}>
+                  {item.label}
+                </a>
+              </li>
+            ) : (
+              <li key={item.to}>
+                <Link
+                  to={item.to}
+                  onClick={closeMenu}
+                  className={isActive(item) ? 'active' : ''}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            )
           )}
         </ul>
         <button className="btn btn-primary mobile-cta">مشاوره و سفارش</button>
       </nav>
     </header>
-  );
+  )
 }
 
-export default Header;
+export default Header

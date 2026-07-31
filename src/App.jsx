@@ -3,6 +3,7 @@ import './App.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
+import useTheme from './hooks/useTheme'
 import Home from './pages/Home'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
@@ -10,9 +11,11 @@ import CategoryPage from './pages/CategoryPage'
 import PoolPumpGuide from './pages/PoolPumpGuide'
 
 function App() {
+  const { theme, toggleTheme } = useTheme()
+
   return (
     <>
-      <Header />
+      <Header theme={theme} onToggleTheme={toggleTheme} />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />

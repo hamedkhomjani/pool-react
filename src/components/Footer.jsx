@@ -9,7 +9,7 @@ function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div className="footer-about">
-            <div className="logo" style={{ color: 'var(--white)' }}>
+            <div className="logo" style={{ color: '#F1F5F9' }}>
               <div className="logo-icon">💧</div>
               <span>آکوا پرو</span>
             </div>
