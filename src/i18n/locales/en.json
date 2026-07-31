@@ -299,7 +299,22 @@
     "flowDetail": "Flow: {{value}}",
     "diameterDetail": "Diameter: {{value}}",
     "note": "The recommendation above is based on general industry standards. Contact our experts for professional consultation.",
-    "ctaCall": "📞 Call Sales Experts"
+    "ctaCall": "📞 Call Sales Experts",
+    "chemTitle": "Recommended Chemical Dosages",
+    "chemSubtitle": "Based on your pool volume, here are the recommended chemical quantities for water treatment",
+    "chlorineShock": "Initial Chlorine Shock",
+    "chlorineShockDesc": "For first-time startup or after heavy use",
+    "chlorineDaily": "Daily Maintenance Chlorine",
+    "chlorineDailyDesc": "To keep free chlorine at 1–3 ppm",
+    "algaecideStart": "Initial Algaecide Dose",
+    "algaecideStartDesc": "For first-time algae prevention",
+    "algaecideWeekly": "Weekly Maintenance Algaecide",
+    "algaecideWeeklyDesc": "Weekly routine prevention dose",
+    "acidDosage": "pH Reducer (Dry Acid)",
+    "acidDosageDesc": "For each 0.2 decrease in pH level",
+    "grams": "g",
+    "milliliters": "ml",
+    "chemNote": "Chemical dosages are approximate and based on standard pool chemistry guidelines. Always test your water before adding chemicals."
   },
   "banner": {
     "title": "Complete Pool Equipment Package, Turnkey",

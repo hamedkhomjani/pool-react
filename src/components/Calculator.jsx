@@ -60,6 +60,16 @@ function recommend(volume) {
   return { pump, filter, heater, uv }
 }
 
+function recommendChemicals(volume) {
+  return {
+    chlorineShock: Math.round(volume * 15),
+    chlorineDaily: Math.round(volume * 3),
+    algaecideStart: Math.round(volume * 10),
+    algaecideWeekly: Math.round(volume * 4),
+    acidDosage: Math.round(volume * 10),
+  }
+}
+
 function formatVolume(volume, lang) {
   try {
     return new Intl.NumberFormat(lang === 'en' ? 'en-US' : 'fa').format(volume)
@@ -85,7 +95,8 @@ function Calculator() {
     const volume = calcVolume(shape, dims)
     if (volume <= 0) return
     const recs = recommend(volume)
-    setResult({ volume: Math.round(volume * 10) / 10, ...recs })
+    const chems = recommendChemicals(volume)
+    setResult({ volume: Math.round(volume * 10) / 10, ...recs, chemicals: chems })
   }
 
   function handleReset() {
@@ -192,6 +203,48 @@ function Calculator() {
                 </div>
               </div>
               <p className="calc-note">{t('calculator.note')}</p>
+
+              {/* --- Chemical Dosage Section --- */}
+              <div className="calc-chem-section">
+                <div className="calc-chem-header">
+                  <h3>🧪 {t('calculator.chemTitle')}</h3>
+                  <p>{t('calculator.chemSubtitle')}</p>
+                </div>
+                <div className="calc-chem-grid">
+                  <div className="calc-chem-card">
+                    <div className="chem-icon">💧</div>
+                    <h4>{t('calculator.chlorineShock')}</h4>
+                    <div className="chem-value">{formatVolume(result.chemicals.chlorineShock, i18n.language)} <span>{t('calculator.grams')}</span></div>
+                    <p className="chem-desc">{t('calculator.chlorineShockDesc')}</p>
+                  </div>
+                  <div className="calc-chem-card">
+                    <div className="chem-icon">🩵</div>
+                    <h4>{t('calculator.chlorineDaily')}</h4>
+                    <div className="chem-value">{formatVolume(result.chemicals.chlorineDaily, i18n.language)} <span>{t('calculator.grams')}</span></div>
+                    <p className="chem-desc">{t('calculator.chlorineDailyDesc')}</p>
+                  </div>
+                  <div className="calc-chem-card">
+                    <div className="chem-icon">🌿</div>
+                    <h4>{t('calculator.algaecideStart')}</h4>
+                    <div className="chem-value">{formatVolume(result.chemicals.algaecideStart, i18n.language)} <span>{t('calculator.milliliters')}</span></div>
+                    <p className="chem-desc">{t('calculator.algaecideStartDesc')}</p>
+                  </div>
+                  <div className="calc-chem-card">
+                    <div className="chem-icon">🍃</div>
+                    <h4>{t('calculator.algaecideWeekly')}</h4>
+                    <div className="chem-value">{formatVolume(result.chemicals.algaecideWeekly, i18n.language)} <span>{t('calculator.milliliters')}</span></div>
+                    <p className="chem-desc">{t('calculator.algaecideWeeklyDesc')}</p>
+                  </div>
+                  <div className="calc-chem-card calc-chem-card-wide">
+                    <div className="chem-icon">⚗️</div>
+                    <h4>{t('calculator.acidDosage')}</h4>
+                    <div className="chem-value">{formatVolume(result.chemicals.acidDosage, i18n.language)} <span>{t('calculator.grams')}</span></div>
+                    <p className="chem-desc">{t('calculator.acidDosageDesc')}</p>
+                  </div>
+                </div>
+                <p className="calc-note">{t('calculator.chemNote')}</p>
+              </div>
+
               <div style={{ textAlign: 'center', marginTop: '24px' }}>
                 <a href="tel:+982188888888" className="btn btn-primary" style={{ fontSize: '16px', padding: '14px 36px' }}>
                   {t('calculator.ctaCall')}
