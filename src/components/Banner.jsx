@@ -1,6 +1,9 @@
+import Reveal from './Reveal'
+
 function Banner() {
   return (
     <section className="container" id="packages">
+      <Reveal>
       <div className="highlight-banner">
         <div className="banner-text">
           <h3>پکیج کامل صفر تا صد تجهیزات استخر</h3>
@@ -9,6 +12,7 @@ function Banner() {
         </div>
         <div className="banner-icon">🏊‍♂️</div>
       </div>
+      </Reveal>
     </section>
   );
 }

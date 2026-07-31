@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Reveal from '../components/Reveal'
 
 const contactInfo = [
   { icon: '📞', label: 'تلفن تماس', value: '۰۲۱-۸۸۸۸۸۸۸۸', href: 'tel:+982188888888' },
@@ -24,13 +25,16 @@ function ContactPage() {
   return (
     <section className="contact-section">
       <div className="container">
-        <div className="section-header">
-          <h2>تماس با ما</h2>
-          <p>کارشناسان ما آماده پاسخگویی به سوالات شما هستند</p>
-        </div>
+        <Reveal>
+          <div className="section-header">
+            <h2>تماس با ما</h2>
+            <p>کارشناسان ما آماده پاسخگویی به سوالات شما هستند</p>
+          </div>
+        </Reveal>
 
         <div className="contact-grid">
-          <div className="contact-form-card">
+          <Reveal direction="right">
+            <div className="contact-form-card">
             <h3>فرم تماس</h3>
             {sent ? (
               <div className="contact-success">
@@ -68,9 +72,11 @@ function ContactPage() {
                 <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '14px', fontSize: '16px' }}>ارسال پیام</button>
               </form>
             )}
-          </div>
+            </div>
+          </Reveal>
 
-          <div className="contact-info-card">
+          <Reveal direction="left">
+            <div className="contact-info-card">
             <h3>اطلاعات تماس</h3>
             <div className="contact-list">
               {contactInfo.map((item, i) => (
@@ -87,10 +93,12 @@ function ContactPage() {
                 </div>
               ))}
             </div>
-          </div>
+            </div>
+          </Reveal>
         </div>
 
-        <div className="contact-map">
+        <Reveal>
+          <div className="contact-map">
           <iframe
             title="موقعیت آکوا پرو"
             src="https://www.google.com/maps?q=تهران+نیاوران+کامرانیه+جنوبی&output=embed"
@@ -99,6 +107,7 @@ function ContactPage() {
             referrerPolicy="no-referrer-when-downgrade"
           />
         </div>
+        </Reveal>
 
       </div>
     </section>

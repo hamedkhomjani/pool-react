@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import products from '../data/products'
+import Reveal from './Reveal'
 
 function Products() {
   const [selected, setSelected] = useState(null)
@@ -8,27 +9,31 @@ function Products() {
     <>
       <section className="products-section" id="products">
         <div className="container">
-          <div className="section-header">
-            <h2>محبوب‌ترین تجهیزات تصفیه و گرمایش</h2>
-            <p>انتخاب شده از برترین برندهای بین‌المللی با بالاترین بازدهی انرژی</p>
-          </div>
+          <Reveal>
+            <div className="section-header">
+              <h2>محبوب‌ترین تجهیزات تصفیه و گرمایش</h2>
+              <p>انتخاب شده از برترین برندهای بین‌المللی با بالاترین بازدهی انرژی</p>
+            </div>
+          </Reveal>
           <div className="product-grid">
             {products.map((product, index) => (
-              <div className="product-card" key={index} onClick={() => setSelected(product)}>
-                {product.badge && <span className="badge-top">{product.badge}</span>}
-                <div className="product-image">{product.icon}</div>
-                <h3 className="product-title">{product.title}</h3>
-                <p className="product-desc">{product.desc}</p>
-                <div className="product-specs">
-                  {Object.entries(product.specs).map(([key, value]) => (
-                    <span key={key}><strong>{key}:</strong> {value}</span>
-                  ))}
+              <Reveal key={index} delay={index * 80}>
+                <div className="product-card" onClick={() => setSelected(product)}>
+                  {product.badge && <span className="badge-top">{product.badge}</span>}
+                  <div className="product-image">{product.icon}</div>
+                  <h3 className="product-title">{product.title}</h3>
+                  <p className="product-desc">{product.desc}</p>
+                  <div className="product-specs">
+                    {Object.entries(product.specs).map(([key, value]) => (
+                      <span key={key}><strong>{key}:</strong> {value}</span>
+                    ))}
+                  </div>
+                  <div className="product-footer">
+                    <div className="product-price">{product.price} <span>تومان</span></div>
+                    <span className="btn btn-primary">جزئیات بیشتر</span>
+                  </div>
                 </div>
-                <div className="product-footer">
-                  <div className="product-price">{product.price} <span>تومان</span></div>
-                  <span className="btn btn-primary">جزئیات بیشتر</span>
-                </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

@@ -67,6 +67,8 @@ function formatVolume(volume) {
   }
 }
 
+import Reveal from './Reveal'
+
 function Calculator() {
   const [shape, setShape] = useState('rect')
   const [dims, setDims] = useState({ length: '', width: '', diameter: '', depth: '', volume: '' })
@@ -92,10 +94,13 @@ function Calculator() {
   return (
     <section className="calculator-section" id="calculator">
       <div className="container">
-        <div className="section-header">
-          <h2>محاسبه تجهیزات استخر من</h2>
-          <p>ابعاد استخر خود را وارد کنید تا بهترین تجهیزات متناسب با حجم آب به شما پیشنهاد شود</p>
-        </div>
+        <Reveal>
+          <div className="section-header">
+            <h2>محاسبه تجهیزات استخر من</h2>
+            <p>ابعاد استخر خود را وارد کنید تا بهترین تجهیزات متناسب با حجم آب به شما پیشنهاد شود</p>
+          </div>
+        </Reveal>
+        <Reveal>
         <div className="calculator-card">
           <div className="calc-shapes">
             {shapes.map(s => (
@@ -193,6 +198,7 @@ function Calculator() {
             </div>
           )}
         </div>
+        </Reveal>
       </div>
     </section>
   )
