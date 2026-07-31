@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 function Footer() {
   const shareUrl = 'https://aquapro.ir'
   const shareText = 'آکوا پرو - مرجع تخصصی تجهیزات استخر'
@@ -24,7 +26,8 @@ function Footer() {
           <div className="footer-col">
             <h4>خدمات</h4>
             <ul>
-              <li><a href="#">محاسبه آنلاین حجم استخر</a></li>
+              <li><Link to="/pool-pump-guide">راهنمای خرید پمپ استخر</Link></li>
+              <li><Link to="/">محاسبه آنلاین حجم استخر</Link></li>
               <li><a href="#">مشاوره و نصب در محل</a></li>
               <li><a href="#">پشتیبانی و گارانتی</a></li>
             </ul>
