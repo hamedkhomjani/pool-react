@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
 import CategoryPage from './pages/CategoryPage'
+import PoolPumpGuide from './pages/PoolPumpGuide'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/category/:slug" element={<CategoryPage />} />
+        <Route path="/pool-pump-guide" element={<PoolPumpGuide />} />
       </Routes>
       <Footer />
     </>
