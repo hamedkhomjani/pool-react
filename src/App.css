@@ -572,6 +572,37 @@ header {
   margin-bottom: 24px;
 }
 
+.contact-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: inherit;
+  text-decoration: underline;
+  padding: 8px 12px;
+}
+
+.btn-link:hover {
+  color: var(--primary);
+}
+
+.contact-note {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
 .contact-list {
   display: flex;
   flex-direction: column;
