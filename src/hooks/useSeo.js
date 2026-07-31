@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
 
+const HREFLANG_CODES = ['fa', 'en']
+
 function upsertHead(selector, create) {
   const existing = document.head.querySelector(selector)
   if (existing) return existing
@@ -7,6 +9,22 @@ function upsertHead(selector, create) {
   el.setAttribute('data-seo', 'true')
   document.head.appendChild(el)
   return el
+}
+
+function setHreflang(canonical) {
+  document.head
+    .querySelectorAll('link[data-seo][rel="alternate"][hreflang]')
+    .forEach(el => el.remove())
+  if (!canonical) return
+  const codes = [...HREFLANG_CODES, 'x-default']
+  codes.forEach(code => {
+    const el = document.createElement('link')
+    el.setAttribute('rel', 'alternate')
+    el.setAttribute('hreflang', code)
+    el.setAttribute('href', canonical)
+    el.setAttribute('data-seo', 'true')
+    document.head.appendChild(el)
+  })
 }
 
 function useSeo({ title, description, canonical, jsonLd } = {}) {
@@ -38,6 +56,11 @@ function useSeo({ title, description, canonical, jsonLd } = {}) {
       )
       el.setAttribute('href', canonical)
       injected.push(el)
+      setHreflang(canonical)
+    } else {
+      document.head
+        .querySelectorAll('link[data-seo][rel="alternate"][hreflang]')
+        .forEach(el => el.remove())
     }
 
     let script

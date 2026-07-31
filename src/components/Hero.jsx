@@ -1,13 +1,16 @@
+import { useTranslation } from 'react-i18next'
+
 function Hero() {
+  const { t } = useTranslation()
   return (
     <section className="hero">
       <div className="container">
-        <span className="hero-badge">نسل جدید تجهیزات استخر</span>
-        <h1>شفافیت و کیفیتی که لیاقتش را دارید</h1>
-        <p>ارائه مدرن‌ترین پمپ‌ها، سیستم‌های تصفیه، گرمایش و تجهیزات ضدعفونی استخر با گارانتی اصالت کالا.</p>
+        <span className="hero-badge">{t('hero.badge')}</span>
+        <h1>{t('hero.title')}</h1>
+        <p>{t('hero.subtitle')}</p>
         <div className="hero-btns">
-          <a href="#products" className="btn btn-primary">مشاهده تجهیزات</a>
-          <a href="#calculator" className="btn btn-outline">محاسبه تجهیزات استخر من</a>
+          <a href="#products" className="btn btn-primary">{t('hero.ctaProducts')}</a>
+          <a href="#calculator" className="btn btn-outline">{t('hero.ctaCalculator')}</a>
         </div>
       </div>
     </section>

@@ -98,6 +98,10 @@ html {
   font-family: 'Vazirmatn', sans-serif;
 }
 
+html[dir='ltr'] * {
+  font-family: 'Inter', 'Vazirmatn', sans-serif;
+}
+
 body {
   background-color: var(--bg-page);
   color: var(--text-main);

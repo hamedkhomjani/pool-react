@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useTranslation, Trans } from 'react-i18next'
 import Reveal from '../components/Reveal'
 import useSeo from '../hooks/useSeo'
 import GuideSizer from '../components/GuideSizer'
@@ -9,155 +10,17 @@ import products from '../data/products'
 
 const siteUrl = 'https://aquapro.ir'
 
-const articleSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'TechArticle',
-  headline: 'راهنمای خرید پمپ استخر در ۱۴۰۵؛ جدول انتخاب اسب بر اساس حجم استخر',
-  description:
-    'راهنمای کامل خرید پمپ استخر در سال ۱۴۰۵: جدول اسب بر اساس حجم، مصرف برق و مقایسه برندها. مشاوره رایگان: ۰۲۱-۸۸۸۸۸۸۸۸',
-  image: `${siteUrl}/image.png`,
-  datePublished: '2026-03-21T08:00:00+03:30',
-  dateModified: '2026-07-31T08:00:00+03:30',
-  inLanguage: 'fa-IR',
-  author: {
-    '@type': 'Organization',
-    name: 'آکوا پرو',
-    url: siteUrl,
-    telephone: '+982188888888',
-    sameAs: [
-      'https://www.instagram.com/aquapro.ir',
-      'https://t.me/aquapro.ir',
-      'https://www.linkedin.com/company/aquapro.ir',
-    ],
-  },
-  publisher: {
-    '@type': 'Organization',
-    name: 'آکوا پرو',
-    url: siteUrl,
-    logo: {
-      '@type': 'ImageObject',
-      url: `${siteUrl}/favicon.svg`,
-    },
-  },
-  mainEntityOfPage: {
-    '@type': 'WebPage',
-    '@id': `${siteUrl}/pool-pump-guide/`,
-  },
-}
-
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'پمپ استخر برای استخر ۵۰ متر مکعبی چند اسب است؟',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'برای استخر ۵۰ متر مکعبی، پمپ 0.75 تا 1 اسب با دبی ۱۲ تا ۱۶ متر مکعب بر ساعت کافی است تا آب در کمتر از ۶ ساعت یک دور کامل تصفیه شود.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'هزینه‌ی برق پمپ استخر در ماه چقدر است؟',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'بستگی به توان پمپ و ساعات کار دارد. یک پمپ ۱.۵ اسب که روزانه ۸ ساعت کار کند، حدود ۲۶۰ تا ۲۷۰ کیلووات‌ساعت در ماه مصرف می‌کند که با پمپ دور متغیر تا ۷۰٪ قابل کاهش است.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'فرق پمپ دو سرعته و دور متغیر چیست؟',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'پمپ دو سرعته فقط دو حالت دارد، اما پمپ دور متغیر بین نه مقدار دور را به‌صورت هوشمند انتخاب می‌کند. دور متغیر برای استخرهای پرمصرف تا ۷۰٪ صرفه‌جویی برق دارد ولی قیمت اولیه‌ی بالاتری دارد.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'عمر مفید پمپ استخر چقدر است؟',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'با نگهداری صحیح (شست‌وشوی فیلتر، جلوگیری از خشک‌کارکردن و تخلیه در زمستان)، پمپ‌های باکیفیت بین ۸ تا ۱۲ سال عمر می‌کنند.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'آیا برای استخر آب شور حتماً پمپ ضد اسید لازم است؟',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'بله. در استخرهای دارای کلرزن نمکی، پمپ با بدنه‌ی استیل ۳۰۴ و سیل ضد اسید ضروری است؛ در غیر این صورت قطعات فلزی در کمتر از دو سال دچار خوردگی می‌شوند.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'هر چند وقت یک‌بار باید پمپ استخر تعویض شود؟',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'اگر پمپ شما صدای غیرعادی می‌دهد، دبی آن افت کرده یا در کیسینگ ترک ایجاد شده، زمان تعویض فرا رسیده است. بازرسی سالانه توسط کارشناس قبل از شروع فصل شنا توصیه می‌شود.',
-      },
-    },
-  ],
-}
-
-const combinedSchema = {
-  '@context': 'https://schema.org',
-  '@graph': [articleSchema, faqSchema],
-}
-
-const sizingRows = [
-  { volume: 'تا ۳۰', hp: '0.5 HP', flow: '8 m³/h', model: 'HW-0500' },
-  { volume: '۳۰ تا ۵۰', hp: '0.75 HP', flow: '12 m³/h', model: 'HW-0750' },
-  { volume: '۵۰ تا ۸۰', hp: '1 HP', flow: '16 m³/h', model: 'HW-1000' },
-  { volume: '۸۰ تا ۱۲۰', hp: '1.5 HP', flow: '21 m³/h', model: 'HW-1500' },
-  { volume: '۱۲۰ تا ۲۰۰', hp: '2 HP', flow: '28 m³/h', model: 'HW-2000' },
-  { volume: 'بیش از ۲۰۰', hp: '3 HP', flow: '35 m³/h', model: 'HW-3000' },
+const staticSizingRows = [
+  { hp: '0.5 HP', flow: '8 m³/h', model: 'HW-0500' },
+  { hp: '0.75 HP', flow: '12 m³/h', model: 'HW-0750' },
+  { hp: '1 HP', flow: '16 m³/h', model: 'HW-1000' },
+  { hp: '1.5 HP', flow: '21 m³/h', model: 'HW-1500' },
+  { hp: '2 HP', flow: '28 m³/h', model: 'HW-2000' },
+  { hp: '3 HP', flow: '35 m³/h', model: 'HW-3000' },
 ]
 
-const pumpTypes = [
-  {
-    icon: '⚡',
-    title: 'پمپ تک‌سرعته',
-    desc: 'ساده‌ترین و اقتصادی‌ترین نوع برای خرید اولیه. همیشه با دور و توان کامل کار می‌کند؛ گزینه‌ای منطقی برای استخرهای کوچک خانگی.',
-  },
-  {
-    icon: '🔁',
-    title: 'پمپ دو سرعته',
-    desc: 'دو حالت عادی و کم‌مصرف دارد. گردش روزانه را در دور پایین انجام می‌دهید (تا ۵۰٪ صرفه‌جویی برق) و برای پمپاژ کف یا شست‌وشوی فیلتر دور بالا می‌روید.',
-  },
-  {
-    icon: '🎛️',
-    title: 'پمپ دور متغیر',
-    desc: 'گران‌ترین و به‌صرفه‌ترین گزینه در بلندمدت. دور موتور هوشمند تنظیم می‌شود و در کارکرد بالای ۸ ساعت روزانه، مصرف برق را تا ۷۰٪ کاهش می‌دهد.',
-  },
-]
-
-const faqItems = [
-  {
-    q: 'پمپ استخر برای استخر ۵۰ متر مکعبی چند اسب است؟',
-    a: 'برای استخر ۵۰ متر مکعبی، پمپ 0.75 تا 1 اسب با دبی ۱۲ تا ۱۶ متر مکعب بر ساعت کافی است تا آب در کمتر از ۶ ساعت یک دور کامل تصفیه شود.',
-  },
-  {
-    q: 'هزینه‌ی برق پمپ استخر در ماه چقدر است؟',
-    a: 'بستگی به توان پمپ و ساعات کار دارد. یک پمپ ۱.۵ اسب که روزانه ۸ ساعت کار کند، حدود ۲۶۰ تا ۲۷۰ کیلووات‌ساعت در ماه مصرف می‌کند که با پمپ دور متغیر تا ۷۰٪ قابل کاهش است.',
-  },
-  {
-    q: 'فرق پمپ دو سرعته و دور متغیر چیست؟',
-    a: 'پمپ دو سرعته فقط دو حالت دارد، اما پمپ دور متغیر بین نه مقدار دور را به‌صورت هوشمند انتخاب می‌کند. دور متغیر برای استخرهای پرمصرف تا ۷۰٪ صرفه‌جویی برق دارد ولی قیمت اولیه‌ی بالاتری دارد.',
-  },
-  {
-    q: 'عمر مفید پمپ استخر چقدر است؟',
-    a: 'با نگهداری صحیح (شست‌وشوی فیلتر، جلوگیری از خشک‌کارکردن و تخلیه در زمستان)، پمپ‌های باکیفیت بین ۸ تا ۱۲ سال عمر می‌کنند.',
-  },
-  {
-    q: 'آیا برای استخر آب شور حتماً پمپ ضد اسید لازم است؟',
-    a: 'بله. در استخرهای دارای کلرزن نمکی، پمپ با بدنه‌ی استیل ۳۰۴ و سیل ضد اسید ضروری است؛ در غیر این صورت قطعات فلزی در کمتر از دو سال دچار خوردگی می‌شوند.',
-  },
-  {
-    q: 'هر چند وقت یک‌بار باید پمپ استخر تعویض شود؟',
-    a: 'اگر پمپ شما صدای غیرعادی می‌دهد، دبی آن افت کرده یا در کیسینگ ترک ایجاد شده، زمان تعویض فرا رسیده است. بازرسی سالانه توسط کارشناس قبل از شروع فصل شنا توصیه می‌شود.',
-  },
-]
+const clusterSlugs = ['pump', 'filter', 'heater']
+const clusterIcons = ['⚙️', '🌪️', '🔥']
 
 const featuredPump = products.find(p => p.category === 'pump')
 const featuredFilter = products.find(p => p.category === 'filter')
@@ -195,37 +58,117 @@ function FAQItem({ q, a, open, onToggle }) {
 }
 
 function PoolPumpGuide() {
+  const { t, i18n } = useTranslation()
   const [openFaq, setOpenFaq] = useState(null)
 
+  const sizingRows = useMemo(() => {
+    const volumes = t('guide.sections.sizingRows', { returnObjects: true }) || []
+    return volumes.map((v, i) => ({ ...staticSizingRows[i], volume: v.volume }))
+  }, [t])
+
+  const pumpTypes = useMemo(
+    () => t('guide.sections.pumpTypes', { returnObjects: true }) || [],
+    [t],
+  )
+
+  const faqs = useMemo(
+    () => t('guide.sections.faqs', { returnObjects: true }) || [],
+    [t],
+  )
+
+  const cluster = useMemo(
+    () => t('guide.sections.cluster', { returnObjects: true }) || [],
+    [t],
+  )
+
+  const specCards = useMemo(
+    () => t('guide.sections.specCards', { returnObjects: true }) || [],
+    [t],
+  )
+
+  const brands = useMemo(
+    () => t('guide.sections.brands', { returnObjects: true }) || [],
+    [t],
+  )
+
+  const hiddenCosts = useMemo(
+    () => t('guide.sections.hiddenCosts', { returnObjects: true }) || [],
+    [t],
+  )
+
+  const combinedSchema = useMemo(() => {
+    const faqMainEntity = faqs.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    }))
+    return {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'TechArticle',
+          headline: t('guide.title'),
+          description: t('meta.guideDescription'),
+          image: `${siteUrl}/image.png`,
+          datePublished: '2026-03-21T08:00:00+03:30',
+          dateModified: '2026-07-31T08:00:00+03:30',
+          inLanguage: i18n.language === 'en' ? 'en-US' : 'fa-IR',
+          author: {
+            '@type': 'Organization',
+            name: t('brand'),
+            url: siteUrl,
+            telephone: '+982188888888',
+            sameAs: [
+              'https://www.instagram.com/aquapro.ir',
+              'https://t.me/aquapro.ir',
+              'https://www.linkedin.com/company/aquapro.ir',
+            ],
+          },
+          publisher: {
+            '@type': 'Organization',
+            name: t('brand'),
+            url: siteUrl,
+            logo: {
+              '@type': 'ImageObject',
+              url: `${siteUrl}/favicon.svg`,
+            },
+          },
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': `${siteUrl}/pool-pump-guide/`,
+          },
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: faqMainEntity,
+        },
+      ],
+    }
+  }, [t, i18n.language, faqs])
+
   useSeo({
-    title: 'راهنمای خرید پمپ استخر [۱۴۰۵]؛ جدول انتخاب اسب بر اساس حجم',
-    description:
-      'راهنمای کامل خرید پمپ استخر در سال ۱۴۰۵: جدول اسب بر اساس حجم، مصرف برق و مقایسه برندها. مشاوره رایگان: ۰۲۱-۸۸۸۸۸۸۸۸',
+    title: t('meta.guideTitle'),
+    description: t('meta.guideDescription'),
     canonical: `${window.location.origin}/pool-pump-guide/`,
     jsonLd: combinedSchema,
   })
+
+  const sections = t('guide.sections', { returnObjects: true })
 
   return (
     <section className="guide-page">
       <div className="container">
         <Reveal>
           <header className="guide-header">
-            <span className="guide-badge">راهنمای خرید تخصصی</span>
-            <h1>راهنمای خرید پمپ استخر در ۱۴۰۵؛ جدول انتخاب اسب بر اساس حجم استخر</h1>
-            <p className="guide-meta">
-              تیم فنی آکوا پرو · به‌روزرسانی: سال ۱۴۰۵ · مطالعه در ۸ دقیقه
-            </p>
+            <span className="guide-badge">{t('guide.badge')}</span>
+            <h1>{t('guide.title')}</h1>
+            <p className="guide-meta">{t('guide.meta')}</p>
           </header>
         </Reveal>
 
         <Reveal>
-          <p className="guide-lead">
-            انتخاب پمپ استخر اشتباه یعنی حداقل ۳۰٪ بیشتر قبض برق، صدای مزاحم در حیاط و آبی که با هر بار
-            وزش باد، سطحش را با برگ درختان می‌پوشاند؛ در حالی که با انتخاب درست، همه‌چیز بی‌صدا و خودکار
-            کار می‌کند. ما در آکوا پرو در ۱۵ سال گذشته بیش از ۱,۲۰۰ پروژه‌ی استخر خانگی و ویلایی را اجرا
-            کرده‌ایم و در این راهنما، به زبان ساده و فقط با اعداد واقعی به شما می‌گوییم پمپی که دقیقاً
-            برای حجم استخر شما ساخته شده چه مشخصاتی دارد — بدون اصطلاحات پیچیده‌ی بازاریابی.
-          </p>
+          <p className="guide-lead">{t('guide.lead')}</p>
         </Reveal>
 
         <Reveal>
@@ -234,16 +177,12 @@ function PoolPumpGuide() {
             <div className="guide-author-body">
               <div className="guide-author-verify">
                 <span className="guide-author-verify-icon">✓</span>
-                بررسی تخصصی و تایید شده توسط تیم فنی آکوا پرو
+                {t('guide.authorVerify')}
               </div>
-              <p className="guide-author-text">
-                این مقاله بر اساس بیش از ۱۵ سال تجربه‌ی اجرایی و داده‌های بیش از ۱,۲۰۰ پروژه‌ی استخر خانگی و
-                ویلایی تهیه شده است. تیم فنی ما پیش از انتشار، تمام جدول‌ها و توصیه‌ها را با استانداردهای
-                روز صنعت تطبیق داده است.
-              </p>
+              <p className="guide-author-text">{t('guide.authorText')}</p>
               <div className="guide-author-meta">
-                <span>به‌روزرسانی: مرداد ۱۴۰۵</span>
-                <span>زمان مطالعه: ۸ دقیقه</span>
+                <span>{t('guide.updated')}</span>
+                <span>{t('guide.readTime')}</span>
               </div>
             </div>
           </aside>
@@ -251,68 +190,53 @@ function PoolPumpGuide() {
 
         <Reveal>
           <section className="guide-section">
-            <h2>چرا انتخاب درست پمپ استخر مهم است؟</h2>
-            <p className="guide-p">
-              پمپ قلب مدار گردش آب استخر است. آب از طریق اسکیمر به پمپ می‌رسد، از فیلتر شنی عبور می‌کند و
-              دوباره به استخر برمی‌گردد. اگر پمپ ضعیف باشد، آب زلال نمی‌شود و باکتری و جلبک فرصت رشد پیدا
-              می‌کنند. اگر پمپ بیش‌ازحد قوی باشد، نه‌تنها هزینه‌ی برق شما چند برابر می‌شود، بلکه به
-              لوله‌کشی و فیلتر هم فشار می‌آورد.
-            </p>
-            <h3>هزینه‌های پنهان انتخاب اشتباه</h3>
+            <h2>{sections.whyTitle}</h2>
+            <p className="guide-p">{sections.whyP1}</p>
+            <h3>{sections.whyH3}</h3>
             <ul className="guide-list">
-              <li><strong>قبض برق:</strong> پمپ ۲ اسب در مقایسه با پمپ ۱ اسب برای همان استخر، سالانه حدود ۴ تا ۶ میلیون تومان بیشتر هزینه‌ی برق دارد.</li>
-              <li><strong>استهلاک زودرس:</strong> پمپ بزرگ‌تر از نیاز، مدام روشن‌وخاموش می‌شود و سیل‌های آن زودتر فرسوده می‌شوند.</li>
-              <li><strong>شیرآلات و لوله‌ها:</strong> فشار زیاد به مرور اتصالات را شل و نشت می‌کند.</li>
+              {hiddenCosts.map((item, i) => (
+                <li key={i}><Trans i18nKey={`guide.sections.hiddenCosts.${i}`} /></li>
+              ))}
             </ul>
           </section>
         </Reveal>
 
         <Reveal>
           <section className="guide-section">
-            <h2>آشنایی با انواع پمپ استخر</h2>
-            <p className="guide-p">پمپ‌ها بر اساس نوع موتور به سه دسته تقسیم می‌شوند:</p>
+            <h2>{sections.typesTitle}</h2>
+            <p className="guide-p">{sections.typesP}</p>
             <div className="guide-grid guide-grid-3">
-              {pumpTypes.map((t, i) => (
+              {pumpTypes.map((tItem, i) => (
                 <div className="guide-card" key={i}>
-                  <div className="guide-card-icon">{t.icon}</div>
-                  <h3>{t.title}</h3>
-                  <p>{t.desc}</p>
+                  <div className="guide-card-icon">{['⚡', '🔁', '🎛️'][i]}</div>
+                  <h3>{tItem.title}</h3>
+                  <p>{tItem.desc}</p>
                 </div>
               ))}
             </div>
-            <div className="guide-tip">
-              <strong>نکته‌ی تخصصی:</strong> اگر استخر شما با سیستم کلرزن نمکی کار می‌کند، حتماً پمپی با برس
-              و سیل ضد اسید و بدنه‌ی استیل ۳۰۴ انتخاب کنید تا در برابر خوردگی آب شور مقاوم باشد.
-            </div>
+            <div className="guide-tip"><Trans i18nKey="guide.sections.tip" /></div>
             <div className="guide-protip">
               <span className="guide-protip-icon">🛠️</span>
-              <div>
-                <strong>نکته از میدان (تجربه ۱۵ ساله):</strong> در بیش از ۳۰٪ پروژه‌هایی که به‌خاطر
-                «آب‌روی جلبک‌دار» به ما مراجعه شد، مشکل پمپ نبود؛ لوله‌کشیِ طولانی‌تر از ۱۵ متر و چند زانویی
-                ۹۰ درجه، دبی را عملاً ۴۰٪ پایین آورده بود. اگر استخر شما این ویژگی را دارد، یک پله بالاتر از
-                جدول زیر را انتخاب کنید.
-              </div>
+              <div><Trans i18nKey="guide.sections.protip1" /></div>
             </div>
           </section>
         </Reveal>
 
         <Reveal>
           <section className="guide-section">
-            <h2>پمپ استخر چند اسب نیاز دارم؟</h2>
+            <h2>{sections.sizingTitle}</h2>
             <p className="guide-p">
-              ابتدا حجم استخر را محاسبه کنید. برای استخر مستطیلی: <strong>طول × عرض × عمق متوسط</strong>{' '}
-              به متر مکعب. برای استخر دایره‌ای: <strong>۳.۱۴ × (شعاع × شعاع) × عمق</strong>. اگر مطمئن
-              نیستید، از <CalculatorLink>محاسبه‌گر تجهیزات استخر</CalculatorLink> ما استفاده کنید.
+              <Trans i18nKey="guide.sections.sizingP1" components={{ calculatorLink: <CalculatorLink /> }} />
             </p>
 
             <div className="guide-table-wrap">
               <table className="guide-table">
                 <thead>
                   <tr>
-                    <th>حجم استخر (متر مکعب)</th>
-                    <th>اسب بخار پیشنهادی</th>
-                    <th>دبی پیشنهادی</th>
-                    <th>نمونه مدل</th>
+                    <th>{sections.tableVolume}</th>
+                    <th>{sections.tableHp}</th>
+                    <th>{sections.tableFlow}</th>
+                    <th>{sections.tableModel}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -332,7 +256,7 @@ function PoolPumpGuide() {
 
             {featuredPump && featuredFilter && (
               <div className="guide-products">
-                <h3>پیشنهاد تیم فنی برای استخرهای ۸۰ تا ۱۲۰ متر مکعب</h3>
+                <h3>{sections.featuredTitle}</h3>
                 <div className="guide-product-grid">
                   <GuideProductCard product={featuredPump} />
                   <GuideProductCard product={featuredFilter} />
@@ -340,86 +264,49 @@ function PoolPumpGuide() {
               </div>
             )}
 
-            <h3>تأثیر لوله‌کشی و فاصله بر انتخاب شما</h3>
-            <p className="guide-p">
-              هر ۱۰ متر طول لوله‌کشی و هر زانویی ۹۰ درجه، عملاً ۱ تا ۱.۵ متر از ارتفاع مکش پمپ را می‌گیرد.
-              اگر اتاق تکنیکال شما بیشتر از ۱۵ متر با استخر فاصله دارد یا مسیر لوله‌کشی پر از انشعاب است،
-              یک پله بالاتر از جدول انتخاب کنید.
-            </p>
+            <h3>{sections.pipingTitle}</h3>
+            <p className="guide-p">{sections.pipingP}</p>
           </section>
         </Reveal>
 
         <Reveal>
           <section className="guide-section">
-            <h2>مشخصات فنی که قبل از خرید باید بدانید</h2>
+            <h2>{sections.specsTitle}</h2>
             <div className="guide-grid guide-grid-2">
-              <div className="guide-card">
-                <h3>دبی و هد پمپ</h3>
-                <p>
-                  دبی یعنی حجم آبی که پمپ در ساعت جابه‌جا می‌کند (m³/h) و هد یعنی ارتفاعی که می‌تواند آب را
-                  بالا ببرد (متر). قانون طلایی: کل حجم استخر باید در حدود ۶ ساعت یک‌بار به‌طور کامل از فیلتر
-                  عبور کند.
-                </p>
-              </div>
-              <div className="guide-card">
-                <h3>مصرف برق و هزینه‌ی سالانه</h3>
-                <p>
-                  برای محاسبه‌ی تقریبی: <strong>توان به وات × ساعات کار روزانه × ۳۰ ÷ ۱۰۰۰</strong>. مثلاً
-                  پمپ ۱.۵ اسب (حدود ۱۱۰۰ وات) با ۸ ساعت کار روزانه، ماهانه حدود ۲۶۴ کیلووات‌ساعت مصرف
-                  می‌کند.
-                </p>
-              </div>
-              <div className="guide-card">
-                <h3>جنس بدنه</h3>
-                <p>
-                  <strong>استیل ۳۰۴</strong> ضد زنگ و مقاوم در برابر مواد شیمیایی و آب شور است؛ پیشنهاد ما
-                  برای هر نوع استخری. پلاستیک و پلی‌اتیلن ارزان‌تر و بی‌صداترند اما در برابر UV و مواد
-                  شیمیایی عمر کمتری دارند.
-                </p>
-              </div>
-              <div className="guide-card">
-                <h3>سطح صدا و گارانتی</h3>
-                <p>
-                  پمپ‌های باکیفیت زیر ۴۵ دسی‌بل کار می‌کنند. حتماً گارانتی واقعی و مکتوب (ترجیحاً بالای ۱۸
-                  ماه) و شبکه‌ی خدمات پس از فروش معتبر را چک کنید.
-                </p>
-              </div>
+              {specCards.map((card, i) => (
+                <div className="guide-card" key={i}>
+                  <h3>{card.title}</h3>
+                  <p><Trans i18nKey={`guide.sections.specCards.${i}.desc`} /></p>
+                </div>
+              ))}
             </div>
             <div className="guide-protip">
               <span className="guide-protip-icon">❄️</span>
-              <div>
-                <strong>نکته‌ی اجرایی زمستان:</strong> پمپ‌های خشک‌کارکرده بعد از هر زمستان، عامل اصلی
-                تعویض سیل و درین ژولت در مراجعات سالانه‌ی ما هستند. پیش از اولین یخبندان، آب داخل کیسینگ و
-                ورودی پمپ را کامل تخلیه کنید و درب اسکیمر را ببندید.
-              </div>
+              <div><Trans i18nKey="guide.sections.protip2" /></div>
             </div>
           </section>
         </Reveal>
 
         <Reveal>
           <section className="guide-section">
-            <h2>بهترین برندهای پمپ استخر در بازار ایران</h2>
+            <h2>{sections.brandsTitle}</h2>
             <div className="guide-brands">
-              <div className="guide-brand">
-                <span className="guide-brand-name">هایواتر</span>
-                <p>محبوب‌ترین برند بازار برای استخرهای خانگی و ویلایی؛ بدنه‌ی استیل ۳۰۴، پشتیبانی گسترده و بیشترین تنوع از 0.5 تا 3 اسب.</p>
-              </div>
-              <div className="guide-brand">
-                <span className="guide-brand-name">ایمکس</span>
-                <p>گزینه‌ی مطمئن برای استخرهای بزرگ‌تر و پروژه‌های عمومی؛ با فیلترهای شنی هم‌خانواده‌ی خودش بهترین هماهنگی را دارد.</p>
-              </div>
-              <div className="guide-brand">
-                <span className="guide-brand-name">برندهای اروپایی</span>
-                <p>کیفیت و قیمت بالاتر؛ مناسب ویلاهای لوکس و پروژه‌هایی که بودجه‌ی بالاتری دارند.</p>
-              </div>
+              {brands.map((b, i) => (
+                <div className="guide-brand" key={i}>
+                  <span className="guide-brand-name">{b.name}</span>
+                  <p>{b.desc}</p>
+                </div>
+              ))}
             </div>
             <p className="guide-p">
-              برای مقایسه‌ی قیمت روز هر برند در سال ۱۴۰۵، به{' '}
-              <Link to="/category/pump" className="guide-inline-link">صفحه‌ی پمپ استخر</Link> مراجعه کنید.
+              <Trans
+                i18nKey="guide.sections.brandsLink"
+                components={{ link: <Link to="/category/pump" className="guide-inline-link" /> }}
+              />
             </p>
             {featuredDisinfection && (
               <div className="guide-products">
-                <h3>تکمیل مدار با پکیج ضدعفونی</h3>
+                <h3>{sections.disinfectionTitle}</h3>
                 <div className="guide-product-grid">
                   <GuideProductCard product={featuredDisinfection} />
                 </div>
@@ -430,46 +317,28 @@ function PoolPumpGuide() {
 
         <Reveal>
           <section className="guide-section">
-            <h2>تفاوت پمپ، فیلتر و مبدل حرارتی</h2>
-            <p className="guide-p">
-              پمپ وظیفه‌ی <strong>گردش</strong> آب را دارد، فیلتر شنی وظیفه‌ی <strong>تصفیه</strong> (گرفتن
-              ذرات معلق) و مبدل حرارتی وظیفه‌ی <strong>گرمایش</strong> آب. انتخاب پمپ قوی‌تر هیچ‌کدام از این
-              دو را جبران نمی‌کند. پیشنهاد تیم فنی ما: پمپ و فیلتر را همیشه یک‌جا و هم‌اندازه بخرید.
-            </p>
+            <h2>{sections.diffTitle}</h2>
+            <p className="guide-p"><Trans i18nKey="guide.sections.diffP" /></p>
             <div className="guide-cluster">
-              <Link to="/category/pump" className="guide-cluster-link">
-                <span className="guide-cluster-icon">⚙️</span>
-                <div>
-                  <h3>پمپ تصفیه استخر</h3>
-                  <p>مشاهده مدل‌های پرفروش و قیمت روز</p>
-                </div>
-                <span className="guide-cluster-arrow">←</span>
-              </Link>
-              <Link to="/category/filter" className="guide-cluster-link">
-                <span className="guide-cluster-icon">🌪️</span>
-                <div>
-                  <h3>فیلتر شنی مناسب پمپ شما</h3>
-                  <p>مشاهده فیلترهای هم‌اندازه با پمپ</p>
-                </div>
-                <span className="guide-cluster-arrow">←</span>
-              </Link>
-              <Link to="/category/heater" className="guide-cluster-link">
-                <span className="guide-cluster-icon">🔥</span>
-                <div>
-                  <h3>مبدل حرارتی تیتانیومی</h3>
-                  <p>مشاهده گرمایش استخرهای خانگی و ویلایی</p>
-                </div>
-                <span className="guide-cluster-arrow">←</span>
-              </Link>
+              {cluster.map((c, i) => (
+                <Link to={`/category/${clusterSlugs[i]}`} className="guide-cluster-link" key={i}>
+                  <span className="guide-cluster-icon">{clusterIcons[i]}</span>
+                  <div>
+                    <h3>{c.title}</h3>
+                    <p>{c.desc}</p>
+                  </div>
+                  <span className="guide-cluster-arrow">←</span>
+                </Link>
+              ))}
             </div>
           </section>
         </Reveal>
 
         <Reveal>
           <section className="guide-section">
-            <h2>سوالات متداول درباره پمپ استخر</h2>
+            <h2>{sections.faqTitle}</h2>
             <div className="guide-faq">
-              {faqItems.map((item, i) => (
+              {faqs.map((item, i) => (
                 <FAQItem
                   key={i}
                   q={item.q}
@@ -484,20 +353,15 @@ function PoolPumpGuide() {
 
         <Reveal>
           <section className="guide-cta">
-            <h2>جمع‌بندی و راهنمای انتخاب نهایی</h2>
-            <p>
-              با سه عدد، انتخاب پمپ تمام می‌شود: <strong>حجم استخر را محاسبه کنید، اسب بخار را از جدول
-              بردارید و به‌جای برند، بدنه‌ی استیل ۳۰۴ و گارانتی مکتوب را چک کنید.</strong> اگر هنوز مطمئن
-              نیستید یا ابعاد استخر شما غیرمعمول است، کارشناسان آکوا پرو به‌صورت رایگان با شما مشورت
-              می‌کنند تا بهترین پمپ را برای همان هزینه‌ای که قصد پرداخت داشتید، بخرید.
-            </p>
+            <h2>{sections.ctaTitle}</h2>
+            <p><Trans i18nKey="guide.sections.ctaP" /></p>
             <div className="guide-cta-btns">
-              <Link to="/category/pump" className="btn btn-primary">مشاهده پمپ‌های استخر</Link>
-              <Link to="/" className="btn btn-outline">محاسبه تجهیزات استخر من</Link>
+              <Link to="/category/pump" className="btn btn-primary">{sections.ctaProducts}</Link>
+              <Link to="/" className="btn btn-outline">{sections.ctaCalculator}</Link>
             </div>
             <div className="guide-cta-contact">
-              <span>📞 مشاوره رایگان و قیمت روز: ۰۲۱-۸۸۸۸۸۸۸۸</span>
-              <span>📱 موبایل و واتس‌اپ: ۰۹۱۲-۳۴۵-۶۷۸۹</span>
+              <span>{sections.ctaPhone}</span>
+              <span>{sections.ctaMobile}</span>
             </div>
           </section>
         </Reveal>

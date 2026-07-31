@@ -1,9 +1,14 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import products from '../data/products'
+import { translateProduct, translateChipLabel, translateSpecLabel } from '../i18n/product'
 import Reveal from './Reveal'
 
 function Products() {
+  const { t } = useTranslation()
   const [selected, setSelected] = useState(null)
+
+  const items = products.map(p => translateProduct(t, p))
 
   return (
     <>
@@ -11,12 +16,12 @@ function Products() {
         <div className="container">
           <Reveal>
             <div className="section-header">
-              <h2>محبوب‌ترین تجهیزات تصفیه و گرمایش</h2>
-              <p>انتخاب شده از برترین برندهای بین‌المللی با بالاترین بازدهی انرژی</p>
+              <h2>{t('productsSection.title')}</h2>
+              <p>{t('productsSection.subtitle')}</p>
             </div>
           </Reveal>
           <div className="product-grid">
-            {products.map((product, index) => (
+            {items.map((product, index) => (
               <Reveal key={index} delay={index * 80}>
                 <div className="product-card" onClick={() => setSelected(product)}>
                   {product.badge && <span className="badge-top">{product.badge}</span>}
@@ -25,12 +30,12 @@ function Products() {
                   <p className="product-desc">{product.desc}</p>
                   <div className="product-specs">
                     {Object.entries(product.specs).map(([key, value]) => (
-                      <span key={key}><strong>{key}:</strong> {value}</span>
+                      <span key={key}><strong>{translateChipLabel(t, key)}:</strong> {value}</span>
                     ))}
                   </div>
                   <div className="product-footer">
-                    <div className="product-price">{product.price} <span>تومان</span></div>
-                    <span className="btn btn-primary">جزئیات بیشتر</span>
+                    <div className="product-price">{product.price} <span>{t('product.toman')}</span></div>
+                    <span className="btn btn-primary">{t('product.details')}</span>
                   </div>
                 </div>
               </Reveal>
@@ -47,12 +52,12 @@ function Products() {
               <div className="modal-icon">{selected.icon}</div>
               <div>
                 <h3 className="modal-title">{selected.title}</h3>
-                <span className="modal-price">{selected.price} <span>تومان</span></span>
+                <span className="modal-price">{selected.price} <span>{t('product.toman')}</span></span>
               </div>
             </div>
             <p className="modal-desc">{selected.longDesc}</p>
             <div className="modal-features">
-              <h4>ویژگی‌های کلیدی</h4>
+              <h4>{t('product.modalFeatures')}</h4>
               <div className="features-grid">
                 {selected.features.map((feat, i) => (
                   <div className="feature-item" key={i}>✓ {feat}</div>
@@ -60,17 +65,17 @@ function Products() {
               </div>
             </div>
             <div className="modal-specs">
-              <h4>مشخصات فنی</h4>
+              <h4>{t('product.modalSpecs')}</h4>
               <div className="specs-table">
-                {selected.detailSpecs.map((spec, i) => (
-                  <div className="spec-row" key={i}>
-                    <span className="spec-label">{spec.label}</span>
-                    <span className="spec-value">{spec.value}</span>
+                {Object.entries(selected.detailSpecs).map(([key, value]) => (
+                  <div className="spec-row" key={key}>
+                    <span className="spec-label">{translateSpecLabel(t, key)}</span>
+                    <span className="spec-value">{value}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <button className="btn btn-primary modal-cta">افزودن به سبد خرید</button>
+            <button className="btn btn-primary modal-cta">{t('product.addToCart')}</button>
           </div>
         </div>
       )}

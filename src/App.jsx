@@ -1,4 +1,6 @@
+import { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import './App.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -12,6 +14,13 @@ import PoolPumpGuide from './pages/PoolPumpGuide'
 
 function App() {
   const { theme, toggleTheme } = useTheme()
+  const { i18n } = useTranslation()
+
+  useEffect(() => {
+    const lang = i18n.language === 'en' ? 'en' : 'fa'
+    document.documentElement.setAttribute('lang', lang)
+    document.documentElement.setAttribute('dir', lang === 'fa' ? 'rtl' : 'ltr')
+  }, [i18n.language])
 
   return (
     <>

@@ -1,0 +1,589 @@
+{
+  "brand": "AquaPro",
+  "meta": {
+    "defaultTitle": "AquaPro | Specialized Pool Equipment Store",
+    "defaultDescription": "Buy pool equipment with authenticity guarantee: pumps, sand filters, heat exchangers, UV disinfection systems and LED pool lights at the best market price.",
+    "homeTitle": "AquaPro | Specialized Pool Equipment Store",
+    "homeDescription": "Buy pool equipment with authenticity guarantee: pumps, sand filters, heat exchangers, UV disinfection systems and LED pool lights at the best market price.",
+    "aboutTitle": "About Us | AquaPro",
+    "aboutDescription": "AquaPro has been a leading supplier of modern pool and spa equipment since 2011 with authenticity guarantee and after-sales service.",
+    "contactTitle": "Contact Us | AquaPro",
+    "contactDescription": "AquaPro experts are ready to answer your questions about pool equipment. Call: +98-21-88888888",
+    "guideTitle": "Pool Pump Buying Guide [1405]; HP Selection Chart by Pool Volume",
+    "guideDescription": "Complete pool pump buying guide: HP chart by volume, power consumption and brand comparison. Free consultation: +98-21-88888888",
+    "categoryTitle": "{{name}} | AquaPro",
+    "categoryDescription": "A complete collection of {{name}} with the best brands and prices at the AquaPro store. Product authenticity guarantee and valid warranty."
+  },
+  "nav": {
+    "home": "Home",
+    "categories": "Categories",
+    "products": "Main Equipment",
+    "packages": "Ready Packages",
+    "about": "About Us",
+    "contact": "Contact Us",
+    "cta": "Consultation & Order",
+    "menu": "Toggle menu"
+  },
+  "langSwitcher": {
+    "label": "Language",
+    "switchTo": "Switch language"
+  },
+  "themeToggle": {
+    "light": "Light mode",
+    "dark": "Dark mode",
+    "enableLight": "Enable light mode",
+    "enableDark": "Enable dark mode"
+  },
+  "hero": {
+    "badge": "New generation of pool equipment",
+    "title": "The clarity and quality you deserve",
+    "subtitle": "Offering the most modern pumps, filtration, heating and disinfection systems for your pool, all with an authenticity guarantee.",
+    "ctaProducts": "View Equipment",
+    "ctaCalculator": "Calculate My Pool Equipment"
+  },
+  "categories": {
+    "pump": "Pool Pumps",
+    "filter": "Sand Filters",
+    "heater": "Heat Exchangers",
+    "lighting": "Lights & Lighting",
+    "disinfection": "Disinfection & UV",
+    "accessories": "Ladders & Accessories"
+  },
+  "productsSection": {
+    "title": "Most Popular Filtration & Heating Equipment",
+    "subtitle": "Selected from top international brands with the highest energy efficiency"
+  },
+  "product": {
+    "toman": "Toman",
+    "details": "More Details",
+    "modalFeatures": "Key Features",
+    "modalSpecs": "Technical Specifications",
+    "addToCart": "Add to Cart",
+    "specLabels": {
+      "power": "Power",
+      "flow": "Flow Rate",
+      "diameter": "Diameter",
+      "capacity": "Capacity",
+      "flowRate": "Flow Rate",
+      "lampLife": "Lamp Life",
+      "light": "Light Output",
+      "efficiency": "Efficiency"
+    },
+    "detailLabels": {
+      "model": "Model",
+      "power": "Power",
+      "flow": "Flow Rate",
+      "maxHead": "Max Head",
+      "bodyMaterial": "Body Material",
+      "inletOutlet": "Inlet/Outlet",
+      "weight": "Weight",
+      "warranty": "Warranty",
+      "diameter": "Diameter",
+      "workingPressure": "Working Pressure",
+      "valveType": "Valve Type",
+      "lampLife": "Lamp Life",
+      "maxTemp": "Max Temperature",
+      "capacity": "Output Capacity",
+      "suitableUpTo": "Suitable For Pools Up To",
+      "cellMaterial": "Cell Material",
+      "inputVoltage": "Input Voltage",
+      "colorCount": "Color Count",
+      "protection": "Protection Rating",
+      "voltageRange": "Voltage Range",
+      "efficiency": "Efficiency"
+    },
+    "items": {
+      "hw1500": {
+        "badge": "Best Seller",
+        "title": "Hayward 1.5 HP Pool Pump",
+        "desc": "Powerful and quiet pump ideal for water circulation in residential and commercial pools up to 60 m³.",
+        "price": "12,500,000",
+        "longDesc": "The Hayward pool pump with a 1.5 HP motor and a full stainless steel body is one of the best-selling pumps on the market. Its advanced hydraulic design reduces energy consumption by up to 30% compared to similar models.",
+        "features": [
+          "1.5 HP high-efficiency motor",
+          "Full 304 stainless steel body",
+          "Quiet operation (under 45 dB)",
+          "Low power consumption",
+          "Suitable for pools up to 60 m³",
+          "2-inch inlet and outlet"
+        ],
+        "specs": {
+          "power": "1.5 HP",
+          "flow": "21 m³/h"
+        },
+        "detailSpecs": {
+          "model": "HW-1500",
+          "power": "1.5 HP (1100W)",
+          "flow": "21 m³/h",
+          "maxHead": "12 m",
+          "bodyMaterial": "304 Stainless Steel",
+          "inletOutlet": "2 inch",
+          "weight": "18 kg",
+          "warranty": "18 months"
+        }
+      },
+      "mega650": {
+        "badge": "Special Offer",
+        "title": "Emaux MEGA Sand Filter",
+        "desc": "Fiberglass body resistant to rust and chemicals with an automatic 6-way valve.",
+        "price": "18,200,000",
+        "longDesc": "The Emaux MEGA sand filter with a durable fiberglass body and automatic 6-way valve is an ideal solution for filtering large pools. With minimal pressure loss, it delivers the highest filtration quality.",
+        "features": [
+          "Fiberglass body resistant to UV",
+          "Automatic 6-way valve",
+          "Uniform water distribution system",
+          "Drain jet for easy emptying",
+          "2.5 bar working pressure",
+          "Suitable for pools up to 80 m³"
+        ],
+        "specs": {
+          "diameter": "65 cm",
+          "flow": "15 m³/h"
+        },
+        "detailSpecs": {
+          "model": "MEGA-650",
+          "diameter": "65 cm",
+          "flow": "15 m³/h",
+          "workingPressure": "2.5 bar",
+          "bodyMaterial": "Fiberglass",
+          "valveType": "Automatic 6-way",
+          "weight": "25 kg",
+          "warranty": "24 months"
+        }
+      },
+      "uv85": {
+        "badge": "",
+        "title": "UV Disinfection System",
+        "desc": "Reduces chlorine usage by up to 80% and completely eliminates algae and bacteria in the water.",
+        "price": "9,800,000",
+        "longDesc": "The advanced UV-C disinfection system with an 85W ultraviolet lamp eliminates 99.9% of water microorganisms without chemicals. This system dramatically reduces chlorine consumption and improves water quality.",
+        "features": [
+          "85W UV-C lamp",
+          "9,000 hours useful life",
+          "Stainless steel body",
+          "Automatic start",
+          "Reduces chlorine use by 80%",
+          "Smart control panel"
+        ],
+        "specs": {
+          "power": "85W",
+          "lampLife": "9000h"
+        },
+        "detailSpecs": {
+          "model": "UV-85P",
+          "power": "85 W",
+          "lampLife": "9,000 hours",
+          "flow": "10 m³/h",
+          "bodyMaterial": "304 Stainless Steel",
+          "inletOutlet": "1.5 inch",
+          "weight": "4.5 kg",
+          "warranty": "12 months"
+        }
+      },
+      "ht36": {
+        "badge": "Best Seller",
+        "title": "Hayward Titanium Heat Exchanger",
+        "desc": "Fast and even pool water heating with a titanium exchanger resistant to corrosion and chemicals.",
+        "price": "28,500,000",
+        "longDesc": "The Hayward titanium heat exchanger with 36 kW power is the best choice for heating residential and commercial pools. The titanium plate resists corrosion and chemicals while guaranteeing 98% thermal efficiency.",
+        "features": [
+          "Pure titanium plate",
+          "98% thermal efficiency",
+          "Digital thermostat",
+          "Stainless steel body",
+          "Horizontal and vertical installation",
+          "Suitable for pools up to 80 m²"
+        ],
+        "specs": {
+          "power": "36 kW",
+          "efficiency": "98%"
+        },
+        "detailSpecs": {
+          "model": "HT-36",
+          "power": "36 kW",
+          "efficiency": "98%",
+          "bodyMaterial": "Pure Titanium",
+          "maxTemp": "40°C",
+          "inletOutlet": "1.5 inch",
+          "weight": "12 kg",
+          "warranty": "36 months"
+        }
+      },
+      "swg40": {
+        "badge": "",
+        "title": "Salt Chlorinator System (Salt Cell)",
+        "desc": "Automatic chlorine production from salt, eliminating the need to buy and store chemicals.",
+        "price": "15,800,000",
+        "longDesc": "The AquaPro salt chlorinator produces 40 grams of chlorine per hour, fully automating your pool's disinfection process. Add salt to the water and the system naturally produces chlorine through electrolysis — no need to buy or store chemicals.",
+        "features": [
+          "Automatic chlorine production from salt",
+          "Titanium plate with ruthenium coating",
+          "100% fewer chemical purchases",
+          "Digital chlorine level display",
+          "Automatic adjustment based on temperature",
+          "5-year cell life"
+        ],
+        "specs": {
+          "power": "250W",
+          "capacity": "40 g/h"
+        },
+        "detailSpecs": {
+          "model": "SWG-40",
+          "power": "250 W",
+          "capacity": "40 g/h",
+          "suitableUpTo": "80 m³",
+          "cellMaterial": "Titanium + Ruthenium",
+          "inputVoltage": "220 V",
+          "weight": "6.5 kg",
+          "warranty": "24 months"
+        }
+      },
+      "led18": {
+        "badge": "New",
+        "title": "RGB LED Pool Light",
+        "desc": "Professional pool lighting with 16 adjustable colors and remote control.",
+        "price": "4,800,000",
+        "longDesc": "The AquaPro LED pool light with 18W power and 1600 lumens gives your pool a striking, colorful atmosphere. With 16 adjustable colors and remote control, you can create exactly the ambiance you want.",
+        "features": [
+          "16 adjustable colors",
+          "Remote control",
+          "Very low power consumption",
+          "Waterproof IP68",
+          "Easy wall installation",
+          "Stainless steel body"
+        ],
+        "specs": {
+          "power": "18W",
+          "light": "1600 lm"
+        },
+        "detailSpecs": {
+          "model": "LED-18RGB",
+          "power": "18 W",
+          "light": "1600 lumens",
+          "colorCount": "16 colors + white",
+          "protection": "IP68",
+          "voltageRange": "12-24 V AC/DC",
+          "weight": "0.8 kg",
+          "warranty": "18 months"
+        }
+      }
+    }
+  },
+  "calculator": {
+    "title": "Calculate My Pool Equipment",
+    "subtitle": "Enter your pool dimensions and get the best equipment matched to your water volume",
+    "shapes": {
+      "rect": "Rectangular",
+      "circ": "Circular",
+      "oval": "Oval",
+      "custom": "Custom"
+    },
+    "volumeLabel": "Pool Volume (m³)",
+    "lengthLabel": "Length (m)",
+    "widthLabel": "Width (m)",
+    "diameterLabel": "Diameter (m)",
+    "depthLabel": "Average Depth (m)",
+    "volumePlaceholder": "e.g. 50",
+    "lengthPlaceholder": "e.g. 10",
+    "widthPlaceholder": "e.g. 5",
+    "diameterPlaceholder": "e.g. 6",
+    "depthPlaceholder": "e.g. 1.5",
+    "calcBtn": "Calculate Equipment",
+    "recalcBtn": "Recalculate",
+    "resultVolume": "Pool volume: <strong>{{volume}} m³</strong>",
+    "pumpCard": "Filtration Pump",
+    "filterCard": "Sand Filter",
+    "heaterCard": "Heat Exchanger",
+    "uvCard": "UV System",
+    "powerDetail": "Power: {{value}}",
+    "flowDetail": "Flow: {{value}}",
+    "diameterDetail": "Diameter: {{value}}",
+    "note": "The recommendation above is based on general industry standards. Contact our experts for professional consultation.",
+    "ctaCall": "📞 Call Sales Experts"
+  },
+  "banner": {
+    "title": "Complete Pool Equipment Package, Turnkey",
+    "subtitle": "Not sure which pump and filter suit your pool? We have packaged all equipment to match your pool dimensions.",
+    "cta": "Get a Custom Package Quote"
+  },
+  "about": {
+    "title": "About AquaPro",
+    "subtitle": "Leading supplier of modern pool and spa equipment in Iran",
+    "text1": "AquaPro has been supplying and supporting pool and spa equipment since 2011. Leveraging the latest technical knowledge and partnering with top international brands, we deliver comprehensive solutions for filtration, heating, disinfection and pool maintenance.",
+    "text2": "Our goal is to bring transparency to the pool equipment market. Every product carries precise technical specifications, a valid warranty and a realistic price, so you can make the best informed choice.",
+    "stats": {
+      "projects": "Successful Projects",
+      "years": "Years of Experience",
+      "cities": "Cities Covered",
+      "satisfaction": "Customer Satisfaction"
+    },
+    "statsValues": {
+      "projects": "1,200+",
+      "years": "15+",
+      "cities": "80+",
+      "satisfaction": "98%"
+    },
+    "values": {
+      "authenticityTitle": "Product Authenticity",
+      "authenticityDesc": "All equipment is sourced directly from reputable global brands with an authenticity guarantee.",
+      "installTitle": "Professional Installation",
+      "installDesc": "Our experienced technical team installs and commissions equipment nationwide.",
+      "supportTitle": "Ongoing Support",
+      "supportDesc": "We stay with you after the sale — consultation, warranty and after-sales service.",
+      "priceTitle": "Price Guarantee",
+      "priceDesc": "The best market price with a money-back guarantee if you are not satisfied."
+    }
+  },
+  "footer": {
+    "aboutText": "Provider of smart solutions and modern equipment for pool and spa filtration, heating and maintenance.",
+    "equipmentTitle": "Equipment",
+    "equipment": {
+      "pumps": "Filtration Pumps",
+      "filters": "Sand Filters",
+      "heaters": "Heat Exchangers"
+    },
+    "servicesTitle": "Services",
+    "services": {
+      "guide": "Pool Pump Buying Guide",
+      "calculator": "Online Pool Volume Calculator",
+      "consulting": "Consultation & On-Site Installation",
+      "warranty": "Support & Warranty"
+    },
+    "contactTitle": "Contact Us",
+    "contactPhone": "+98-21-88888888",
+    "contactAddress": "Tehran, Niavaran Street",
+    "shareTitle": "Share",
+    "shareText": "AquaPro - Pool Equipment Specialists",
+    "copyright": "All rights reserved for AquaPro. Design inspired by the modern Blueriiot style © 2026"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Our experts are ready to answer your questions",
+    "formTitle": "Contact Form",
+    "successTitle": "Your message is ready to send",
+    "successText": "Your WhatsApp chat has opened with your message; just press send. If WhatsApp did not open, use the options below.",
+    "copyBtn": "Copy Message Text",
+    "copiedBtn": "✓ Message text copied",
+    "emailBtn": "Send via Email",
+    "newMessage": "Send New Message",
+    "nameLabel": "Full Name",
+    "phoneLabel": "Phone Number",
+    "emailLabel": "Email (optional)",
+    "subjectLabel": "Subject",
+    "messageLabel": "Message",
+    "namePlaceholder": "e.g. John Smith",
+    "phonePlaceholder": "e.g. +989123456789",
+    "emailPlaceholder": "e.g. info@example.com",
+    "subjectPlaceholder": "e.g. Pump purchase consultation",
+    "messagePlaceholder": "Write your message...",
+    "submitBtn": "Send Message via WhatsApp",
+    "note": "Submitting the form opens a WhatsApp chat with your message.",
+    "infoTitle": "Contact Information",
+    "info": {
+      "phone": "Phone",
+      "mobile": "Mobile",
+      "email": "Email",
+      "address": "Address",
+      "hours": "Working Hours"
+    },
+    "infoValues": {
+      "phone": "+98-21-88888888",
+      "mobile": "+98-912-345-6789",
+      "email": "info@aquapro.ir",
+      "address": "Tehran, Niavaran, Kamranieh South St., No. 38",
+      "hours": "Saturday to Wednesday 9-18 / Thursday 9-14"
+    },
+    "mapTitle": "AquaPro Location",
+    "messageTemplate": "Hello, I am messaging from the AquaPro website contact form:\n\n👤 Name: {{name}}\n📱 Phone: {{phone}}\n{{email}}📌 Subject: {{subject}}\n\n💬 Message: {{message}}",
+    "messageEmail": "📧 Email: {{email}}"
+  },
+  "categoryPage": {
+    "notFound": "Category Not Found",
+    "backHome": "Back to Home",
+    "back": "Back",
+    "subtitle": "A complete collection of {{name}} with the best brands and prices",
+    "empty": "No products available in this category yet.",
+    "seeAll": "View Other Products"
+  },
+  "guide": {
+    "badge": "Expert Buying Guide",
+    "title": "Pool Pump Buying Guide in 1405; HP Selection Chart by Pool Volume",
+    "meta": "AquaPro Technical Team · Updated: Year 1405 · 8-minute read",
+    "lead": "Choosing the wrong pool pump means at least 30% higher electricity bills, annoying noise in your yard, and water that keeps getting covered with leaves every time the wind blows. With the right choice, everything works quietly and automatically. Over the past 15 years, AquaPro has completed more than 1,200 residential and villa pool projects. In this guide we explain in plain language — with real numbers only — what the pump built exactly for your pool volume looks like. No complicated marketing jargon.",
+    "authorVerify": "Professionally reviewed and approved by the AquaPro technical team",
+    "authorText": "This article is based on over 15 years of hands-on experience and data from more than 1,200 residential and villa pool projects. Before publishing, our technical team aligned all charts and recommendations with current industry standards.",
+    "updated": "Updated: August 1405",
+    "readTime": "Read time: 8 minutes",
+    "sections": {
+      "whyTitle": "Why Choosing the Right Pool Pump Matters",
+      "whyP1": "The pump is the heart of your pool's water circulation loop. Water flows from the skimmer to the pump, passes through the sand filter, and returns to the pool. If the pump is too weak, the water never turns clear and bacteria and algae get a chance to grow. If the pump is too strong, your electricity bill multiplies and your plumbing and filter take extra stress.",
+      "whyH3": "The Hidden Costs of a Wrong Choice",
+      "hiddenCosts": [
+        "<strong>Electricity bill:</strong> A 2 HP pump compared to a 1 HP pump for the same pool costs roughly 4 to 6 million Toman more per year.",
+        "<strong>Premature wear:</strong> An oversized pump constantly cycles on and off, wearing out its seals sooner.",
+        "<strong>Fittings and pipes:</strong> Excessive pressure gradually loosens connections and causes leaks."
+      ],
+      "typesTitle": "Understanding Pool Pump Types",
+      "typesP": "Pumps fall into three categories based on motor type:",
+      "pumpTypes": [
+        {
+          "title": "Single-Speed Pump",
+          "desc": "The simplest and most economical choice upfront. It always runs at full speed and power; a sensible option for small residential pools."
+        },
+        {
+          "title": "Two-Speed Pump",
+          "desc": "Has normal and low-consumption modes. Run daily circulation on low speed (up to 50% electricity savings) and switch to high speed only for bottom skimming or filter backwashing."
+        },
+        {
+          "title": "Variable-Speed Pump",
+          "desc": "The most expensive but most economical option long-term. The motor speed adjusts intelligently and, with more than 8 hours of daily operation, reduces electricity use by up to 70%."
+        }
+      ],
+      "tip": "<strong>Pro tip:</strong> If your pool runs on a salt chlorinator, choose a pump with an acid-resistant seal and brush and a 304 stainless steel body so it withstands salt-water corrosion.",
+      "protip1": "<strong>Tip from the field (15 years of experience):</strong> In over 30% of the projects that came to us for “algae-covered water”, the problem was not the pump — plumbing longer than 15 meters with several 90-degree elbows effectively cut flow by 40%. If your pool has this setup, go one step up from the chart below.",
+      "sizingTitle": "What HP Pool Pump Do I Need?",
+      "sizingP1": "First, calculate your pool volume. For a rectangular pool: <strong>length × width × average depth</strong> in cubic meters. For a circular pool: <strong>3.14 × (radius × radius) × depth</strong>. Not sure? Use our <calculatorLink>pool equipment calculator</calculatorLink>.",
+      "tableVolume": "Pool Volume (m³)",
+      "tableHp": "Recommended HP",
+      "tableFlow": "Recommended Flow",
+      "tableModel": "Sample Model",
+      "sizingRows": [
+        { "volume": "Up to 30" },
+        { "volume": "30 to 50" },
+        { "volume": "50 to 80" },
+        { "volume": "80 to 120" },
+        { "volume": "120 to 200" },
+        { "volume": "Over 200" }
+      ],
+      "featuredTitle": "Technical Team's Pick for 80–120 m³ Pools",
+      "pipingTitle": "How Plumbing and Distance Affect Your Choice",
+      "pipingP": "Every 10 meters of plumbing and each 90-degree elbow effectively steals 1 to 1.5 meters of the pump's suction head. If your equipment room is more than 15 meters from the pool or the plumbing route is full of branches, choose one step higher in the chart.",
+      "specsTitle": "Technical Specifications to Know Before Buying",
+      "specCards": [
+        {
+          "title": "Flow Rate and Pump Head",
+          "desc": "Flow rate is the volume of water the pump moves per hour (m³/h), and head is the height it can lift water (meters). The golden rule: your entire pool volume should pass through the filter about once every 6 hours."
+        },
+        {
+          "title": "Power Consumption & Annual Cost",
+          "desc": "Rough estimate: <strong>power in watts × daily working hours × 30 ÷ 1000</strong>. For example, a 1.5 HP pump (~1100W) running 8 hours daily consumes about 264 kWh per month."
+        },
+        {
+          "title": "Body Material",
+          "desc": "<strong>304 stainless steel</strong> is rust-proof and resistant to chemicals and salt water — our recommendation for any pool. Plastic and polyethylene are cheaper and quieter but last less against UV and chemicals."
+        },
+        {
+          "title": "Noise Level & Warranty",
+          "desc": "Quality pumps operate below 45 dB. Always check for a genuine written warranty (preferably over 18 months) and a reliable after-sales service network."
+        }
+      ],
+      "protip2": "<strong>Winter implementation tip:</strong> Pumps that run dry after each winter are the leading cause of seal and drain-jet replacements in our annual service visits. Before the first frost, fully drain the water inside the pump casing and inlet, and close the skimmer lid.",
+      "brandsTitle": "Best Pool Pump Brands in the Iranian Market",
+      "brands": [
+        {
+          "name": "Hayward",
+          "desc": "The most popular brand for residential and villa pools; 304 stainless steel bodies, broad support and the widest range from 0.5 to 3 HP."
+        },
+        {
+          "name": "Emaux",
+          "desc": "A reliable choice for larger pools and commercial projects; pairs perfectly with its own family of sand filters."
+        },
+        {
+          "name": "European Brands",
+          "desc": "Higher quality and price; suitable for luxury villas and projects with bigger budgets."
+        }
+      ],
+      "brandsLink": "To compare current prices of each brand in 1405, visit the <link>pool pump page</link>.",
+      "disinfectionTitle": "Complete the Loop with a Disinfection Package",
+      "diffTitle": "Pump vs. Filter vs. Heat Exchanger",
+      "diffP": "The pump handles water <strong>circulation</strong>, the sand filter handles <strong>filtration</strong> (catching suspended particles), and the heat exchanger handles water <strong>heating</strong>. A stronger pump cannot compensate for the other two. Our technical team's advice: always buy the pump and filter together and equally sized.",
+      "cluster": [
+        {
+          "title": "Pool Filtration Pump",
+          "desc": "View best sellers and current prices"
+        },
+        {
+          "title": "Sand Filter to Match Your Pump",
+          "desc": "View filters matched to your pump"
+        },
+        {
+          "title": "Titanium Heat Exchanger",
+          "desc": "View heating for residential and villa pools"
+        }
+      ],
+      "faqTitle": "Frequently Asked Questions About Pool Pumps",
+      "faqs": [
+        {
+          "q": "What HP pump do I need for a 50 m³ pool?",
+          "a": "For a 50 m³ pool, a 0.75 to 1 HP pump with a flow of 12 to 16 m³/h is enough to fully filter the water in less than 6 hours."
+        },
+        {
+          "q": "How much is the monthly electricity cost of a pool pump?",
+          "a": "It depends on pump power and running hours. A 1.5 HP pump running 8 hours daily uses about 260–270 kWh per month, which a variable-speed pump can reduce by up to 70%."
+        },
+        {
+          "q": "What is the difference between two-speed and variable-speed pumps?",
+          "a": "A two-speed pump has only two modes, while a variable-speed pump intelligently selects between nine speed levels. Variable speed saves up to 70% electricity in high-usage pools but costs more upfront."
+        },
+        {
+          "q": "How long does a pool pump last?",
+          "a": "With proper maintenance (filter backwashing, preventing dry running, and winter draining), quality pumps last between 8 and 12 years."
+        },
+        {
+          "q": "Do I really need an acid-resistant pump for a salt-water pool?",
+          "a": "Yes. In pools with salt chlorinators, a pump with a 304 stainless steel body and acid-resistant seal is essential; otherwise metal parts corrode within less than two years."
+        },
+        {
+          "q": "How often should I replace my pool pump?",
+          "a": "If your pump makes unusual noise, its flow has dropped, or the casing has cracked, it is time to replace it. An annual inspection by an expert before the swim season is recommended."
+        }
+      ],
+      "ctaTitle": "Summary & Final Selection Guide",
+      "ctaP": "Three numbers settle the pump choice: <strong>calculate your pool volume, pick the HP from the chart, and instead of focusing on the brand, check for a 304 stainless steel body and a written warranty.</strong> If you are still unsure or your pool has unusual dimensions, AquaPro experts will consult with you for free so you buy the best pump for the budget you intended to spend.",
+      "ctaProducts": "View Pool Pumps",
+      "ctaCalculator": "Calculate My Pool Equipment",
+      "ctaPhone": "📞 Free consultation & current price: +98-21-88888888",
+      "ctaMobile": "📱 Mobile & WhatsApp: +98-912-345-6789"
+    }
+  },
+  "guideSizer": {
+    "title": "Instant Pool Pump Size Calculator",
+    "subtitle": "Enter your pool dimensions; the pump recommendation updates live.",
+    "shapes": {
+      "rect": "Rectangular",
+      "circ": "Circular",
+      "volume": "Direct Volume"
+    },
+    "lengthLabel": "Length (m)",
+    "widthLabel": "Width (m)",
+    "diameterLabel": "Diameter (m)",
+    "depthLabel": "Average Depth (m)",
+    "volumeLabel": "Pool Volume (m³)",
+    "lengthPlaceholder": "e.g. 10",
+    "widthPlaceholder": "e.g. 5",
+    "diameterPlaceholder": "e.g. 6",
+    "depthPlaceholder": "e.g. 1.5",
+    "volumePlaceholder": "e.g. 50",
+    "yourVolume": "Your pool volume: <strong>{{volume}} m³</strong>",
+    "recommendedLabel": "Recommended Pump",
+    "flowDetail": "Flow: <strong>{{flow}}</strong>",
+    "notes": {
+      "small": "Small plastic pools",
+      "villaSmall": "Small villa pools",
+      "homeStandard": "Standard residential pools",
+      "villaLarge": "Large villa pools",
+      "publicSmall": "Small commercial pools",
+      "publicLarge": "Large commercial pools"
+    },
+    "cta": "View Pumps in This Range",
+    "empty": "Enter your pool dimensions to see a recommendation."
+  },
+  "guideProductCard": {
+    "toman": "Toman",
+    "cta": "View Current Price & Buy"
+  },
+  "mobileCta": {
+    "call": "Phone Consultation",
+    "calc": "Online Pump Size Calculator"
+  }
+}

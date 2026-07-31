@@ -1,17 +1,21 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { translateProduct } from '../i18n/product'
 
 function GuideProductCard({ product }) {
+  const { t } = useTranslation()
+  const p = translateProduct(t, product)
   return (
     <div className="guide-product-card">
-      {product.badge && <span className="guide-product-badge">{product.badge}</span>}
-      <div className="guide-product-image">{product.icon}</div>
-      <h4 className="guide-product-title">{product.title}</h4>
-      <p className="guide-product-desc">{product.desc}</p>
+      {p.badge && <span className="guide-product-badge">{p.badge}</span>}
+      <div className="guide-product-image">{p.icon}</div>
+      <h4 className="guide-product-title">{p.title}</h4>
+      <p className="guide-product-desc">{p.desc}</p>
       <div className="guide-product-price">
-        {product.price} <span>تومان</span>
+        {p.price} <span>{t('guideProductCard.toman')}</span>
       </div>
-      <Link to={`/category/${product.category}`} className="btn btn-primary guide-product-cta">
-        مشاهده قیمت روز و خرید
+      <Link to={`/category/${p.category}`} className="btn btn-primary guide-product-cta">
+        {t('guideProductCard.cta')}
       </Link>
     </div>
   )

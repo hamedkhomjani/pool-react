@@ -1,19 +1,20 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const shapes = [
-  { value: 'rect', label: 'مستطیلی', icon: '▬' },
-  { value: 'circ', label: 'دایره‌ای', icon: '●' },
-  { value: 'volume', label: 'حجم مستقیم', icon: '📐' },
+  { value: 'rect', icon: '▬' },
+  { value: 'circ', icon: '●' },
+  { value: 'volume', icon: '📐' },
 ]
 
 const recommendations = [
-  { max: 30, hp: '0.5', hpLabel: '۰.۵ اسب', flow: '8 m³/h', model: 'HW-0500', note: 'استخرهای کوچک و پلاستیکی' },
-  { max: 50, hp: '0.75', hpLabel: '۰.۷۵ اسب', flow: '12 m³/h', model: 'HW-0750', note: 'استخرهای ویلایی کوچک' },
-  { max: 80, hp: '1', hpLabel: '۱ اسب', flow: '16 m³/h', model: 'HW-1000', note: 'استخرهای خانگی استاندارد' },
-  { max: 120, hp: '1.5', hpLabel: '۱.۵ اسب', flow: '21 m³/h', model: 'HW-1500', note: 'استخرهای بزرگ ویلایی' },
-  { max: 200, hp: '2', hpLabel: '۲ اسب', flow: '28 m³/h', model: 'HW-2000', note: 'استخرهای عمومی کوچک' },
-  { max: Infinity, hp: '3', hpLabel: '۳ اسب', flow: '35 m³/h', model: 'HW-3000', note: 'استخرهای عمومی بزرگ' },
+  { max: 30, hp: '0.5', hpLabel: '0.5 HP', flow: '8 m³/h', model: 'HW-0500', note: 'small' },
+  { max: 50, hp: '0.75', hpLabel: '0.75 HP', flow: '12 m³/h', model: 'HW-0750', note: 'villaSmall' },
+  { max: 80, hp: '1', hpLabel: '1 HP', flow: '16 m³/h', model: 'HW-1000', note: 'homeStandard' },
+  { max: 120, hp: '1.5', hpLabel: '1.5 HP', flow: '21 m³/h', model: 'HW-1500', note: 'villaLarge' },
+  { max: 200, hp: '2', hpLabel: '2 HP', flow: '28 m³/h', model: 'HW-2000', note: 'publicSmall' },
+  { max: Infinity, hp: '3', hpLabel: '3 HP', flow: '35 m³/h', model: 'HW-3000', note: 'publicLarge' },
 ]
 
 function calcVolume(shape, dims) {
@@ -28,15 +29,16 @@ function calcVolume(shape, dims) {
   return Number(dims.volume)
 }
 
-function formatNumber(n) {
+function formatNumber(n, lang) {
   try {
-    return new Intl.NumberFormat('fa').format(n)
+    return new Intl.NumberFormat(lang === 'en' ? 'en-US' : 'fa').format(n)
   } catch {
     return n.toLocaleString()
   }
 }
 
 function GuideSizer() {
+  const { t, i18n } = useTranslation()
   const [shape, setShape] = useState('rect')
   const [dims, setDims] = useState({ length: '', width: '', diameter: '', depth: '', volume: '' })
 
@@ -56,8 +58,8 @@ function GuideSizer() {
       <div className="guide-sizer-header">
         <span className="guide-sizer-icon">🧮</span>
         <div>
-          <h3>محاسبه‌گر فوری توان پمپ استخر</h3>
-          <p>ابعاد استخر را وارد کنید؛ پیشنهاد پمپ به‌صورت زنده نمایش داده می‌شود.</p>
+          <h3>{t('guideSizer.title')}</h3>
+          <p>{t('guideSizer.subtitle')}</p>
         </div>
       </div>
 
@@ -70,7 +72,7 @@ function GuideSizer() {
             type="button"
           >
             <span className="guide-sizer-shape-icon">{s.icon}</span>
-            <span>{s.label}</span>
+            <span>{t(`guideSizer.shapes.${s.value}`)}</span>
           </button>
         ))}
       </div>
@@ -81,31 +83,31 @@ function GuideSizer() {
             {shape === 'rect' && (
               <>
                 <label className="guide-sizer-field">
-                  <span>طول (متر)</span>
-                  <input type="number" name="length" step="0.1" min="1" value={dims.length} onChange={handleChange} placeholder="مثلاً ۱۰" />
+                  <span>{t('guideSizer.lengthLabel')}</span>
+                  <input type="number" name="length" step="0.1" min="1" value={dims.length} onChange={handleChange} placeholder={t('guideSizer.lengthPlaceholder')} />
                 </label>
                 <label className="guide-sizer-field">
-                  <span>عرض (متر)</span>
-                  <input type="number" name="width" step="0.1" min="1" value={dims.width} onChange={handleChange} placeholder="مثلاً ۵" />
+                  <span>{t('guideSizer.widthLabel')}</span>
+                  <input type="number" name="width" step="0.1" min="1" value={dims.width} onChange={handleChange} placeholder={t('guideSizer.widthPlaceholder')} />
                 </label>
               </>
             )}
             {shape === 'circ' && (
               <label className="guide-sizer-field">
-                <span>قطر (متر)</span>
-                <input type="number" name="diameter" step="0.1" min="1" value={dims.diameter} onChange={handleChange} placeholder="مثلاً ۶" />
+                <span>{t('guideSizer.diameterLabel')}</span>
+                <input type="number" name="diameter" step="0.1" min="1" value={dims.diameter} onChange={handleChange} placeholder={t('guideSizer.diameterPlaceholder')} />
               </label>
             )}
             <label className="guide-sizer-field">
-              <span>عمق متوسط (متر)</span>
-              <input type="number" name="depth" step="0.1" min="0.5" value={dims.depth} onChange={handleChange} placeholder="مثلاً ۱.۵" />
+              <span>{t('guideSizer.depthLabel')}</span>
+              <input type="number" name="depth" step="0.1" min="0.5" value={dims.depth} onChange={handleChange} placeholder={t('guideSizer.depthPlaceholder')} />
             </label>
           </>
         )}
         {shape === 'volume' && (
           <label className="guide-sizer-field guide-sizer-field-full">
-            <span>حجم استخر (متر مکعب)</span>
-            <input type="number" name="volume" step="0.1" min="1" value={dims.volume} onChange={handleChange} placeholder="مثلاً ۵۰" />
+            <span>{t('guideSizer.volumeLabel')}</span>
+            <input type="number" name="volume" step="0.1" min="1" value={dims.volume} onChange={handleChange} placeholder={t('guideSizer.volumePlaceholder')} />
           </label>
         )}
       </div>
@@ -113,26 +115,26 @@ function GuideSizer() {
       {result ? (
         <div className="guide-sizer-result">
           <div className="guide-sizer-volume">
-            حجم استخر شما: <strong>{formatNumber(result.volume)} متر مکعب</strong>
+            <span dangerouslySetInnerHTML={{ __html: t('guideSizer.yourVolume', { volume: formatNumber(result.volume, i18n.language) }) }} />
           </div>
           <div className="guide-sizer-rec">
             <div className="guide-sizer-rec-main">
-              <span className="guide-sizer-rec-label">پمپ پیشنهادی</span>
+              <span className="guide-sizer-rec-label">{t('guideSizer.recommendedLabel')}</span>
               <span className="guide-sizer-rec-hp">{result.hpLabel}</span>
               <span className="guide-sizer-rec-model">{result.model}</span>
             </div>
             <div className="guide-sizer-rec-meta">
-              <span>دبی: <strong>{result.flow}</strong></span>
-              <span>{result.note}</span>
+              <span dangerouslySetInnerHTML={{ __html: t('guideSizer.flowDetail', { flow: result.flow }) }} />
+              <span>{t(`guideSizer.notes.${result.note}`)}</span>
             </div>
           </div>
           <Link to="/category/pump" className="btn btn-primary guide-sizer-cta">
-            مشاهده پمپ‌های موجود در این رنج
+            {t('guideSizer.cta')}
           </Link>
         </div>
       ) : (
         <div className="guide-sizer-empty">
-          برای مشاهده‌ی پیشنهاد، ابعاد استخر را وارد کنید.
+          {t('guideSizer.empty')}
         </div>
       )}
     </div>

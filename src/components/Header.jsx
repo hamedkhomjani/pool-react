@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import ThemeToggle from './ThemeToggle'
+import LanguageSwitcher from './LanguageSwitcher'
 
-const NAV_ITEMS = [
-  { type: 'page', label: 'صفحه اصلی', to: '/' },
-  { type: 'section', label: 'دسته‌بندی‌ها', id: 'categories' },
-  { type: 'section', label: 'تجهیزات اصلی', id: 'products' },
-  { type: 'section', label: 'پکیج‌های آماده', id: 'packages' },
-  { type: 'page', label: 'درباره ما', to: '/about' },
-  { type: 'page', label: 'تماس با ما', to: '/contact' },
+const SECTION_ITEMS = [
+  { id: 'categories', key: 'nav.categories' },
+  { id: 'products', key: 'nav.products' },
+  { id: 'packages', key: 'nav.packages' },
 ]
 
 function scrollToId(id) {
@@ -16,6 +15,7 @@ function scrollToId(id) {
 }
 
 function Header({ theme, onToggleTheme }) {
+  const { t } = useTranslation()
   const location = useLocation()
   const navigate = useNavigate()
   const [menuOpen, setMenuOpen] = useState(false)
@@ -49,34 +49,36 @@ function Header({ theme, onToggleTheme }) {
       <div className="container nav-bar">
         <Link to="/" className="logo" style={{ textDecoration: 'none' }} onClick={closeMenu}>
           <div className="logo-icon">💧</div>
-          <span>آکوا پرو</span>
+          <span>{t('brand')}</span>
         </Link>
 
         <ul className="nav-links">
-          {NAV_ITEMS.map(item =>
-            item.type === 'section' ? (
-              <li key={item.id}>
-                <a href={`#${item.id}`} onClick={e => handleSectionClick(e, item.id)}>
-                  {item.label}
-                </a>
-              </li>
-            ) : (
-              <li key={item.to}>
-                <Link to={item.to} onClick={closeMenu}>
-                  {item.label}
-                </Link>
-              </li>
-            )
-          )}
+          <li>
+            <Link to="/" onClick={closeMenu}>{t('nav.home')}</Link>
+          </li>
+          {SECTION_ITEMS.map(item => (
+            <li key={item.id}>
+              <a href={`#${item.id}`} onClick={e => handleSectionClick(e, item.id)}>
+                {t(item.key)}
+              </a>
+            </li>
+          ))}
+          <li>
+            <Link to="/about" onClick={closeMenu}>{t('nav.about')}</Link>
+          </li>
+          <li>
+            <Link to="/contact" onClick={closeMenu}>{t('nav.contact')}</Link>
+          </li>
         </ul>
 
         <div className="nav-actions">
-          <button className="btn btn-primary desktop-cta">مشاوره و سفارش</button>
+          <button className="btn btn-primary desktop-cta">{t('nav.cta')}</button>
+          <LanguageSwitcher />
           <ThemeToggle theme={theme} onToggle={onToggleTheme} />
           <button
             className={`hamburger ${menuOpen ? 'open' : ''}`}
             onClick={() => setMenuOpen(p => !p)}
-            aria-label="منو"
+            aria-label={t('nav.menu')}
           >
             <span /><span /><span />
           </button>
@@ -87,26 +89,28 @@ function Header({ theme, onToggleTheme }) {
       <nav className={`mobile-nav ${menuOpen ? 'open' : ''}`}>
         <div className="mobile-nav-top">
           <button className="mobile-nav-close" onClick={closeMenu}>✕</button>
+          <LanguageSwitcher />
           <ThemeToggle theme={theme} onToggle={onToggleTheme} />
         </div>
         <ul className="mobile-nav-links">
-          {NAV_ITEMS.map(item =>
-            item.type === 'section' ? (
-              <li key={item.id}>
-                <a href={`#${item.id}`} onClick={e => handleSectionClick(e, item.id)}>
-                  {item.label}
-                </a>
-              </li>
-            ) : (
-              <li key={item.to}>
-                <Link to={item.to} onClick={closeMenu}>
-                  {item.label}
-                </Link>
-              </li>
-            )
-          )}
+          <li>
+            <Link to="/" onClick={closeMenu}>{t('nav.home')}</Link>
+          </li>
+          {SECTION_ITEMS.map(item => (
+            <li key={item.id}>
+              <a href={`#${item.id}`} onClick={e => handleSectionClick(e, item.id)}>
+                {t(item.key)}
+              </a>
+            </li>
+          ))}
+          <li>
+            <Link to="/about" onClick={closeMenu}>{t('nav.about')}</Link>
+          </li>
+          <li>
+            <Link to="/contact" onClick={closeMenu}>{t('nav.contact')}</Link>
+          </li>
         </ul>
-        <button className="btn btn-primary mobile-cta">مشاوره و سفارش</button>
+        <button className="btn btn-primary mobile-cta">{t('nav.cta')}</button>
       </nav>
     </header>
   )

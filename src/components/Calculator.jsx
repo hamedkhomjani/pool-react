@@ -1,10 +1,11 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const shapes = [
-  { value: 'rect', label: 'مستطیلی', icon: '▬' },
-  { value: 'circ', label: 'دایره‌ای', icon: '●' },
-  { value: 'oval', label: 'بیضی', icon: '⬮' },
-  { value: 'custom', label: 'سفارشی', icon: '✏️' },
+  { value: 'rect', icon: '▬' },
+  { value: 'circ', icon: '●' },
+  { value: 'oval', icon: '⬮' },
+  { value: 'custom', icon: '✏️' },
 ]
 
 function calcVolume(shape, dims) {
@@ -59,9 +60,9 @@ function recommend(volume) {
   return { pump, filter, heater, uv }
 }
 
-function formatVolume(volume) {
+function formatVolume(volume, lang) {
   try {
-    return new Intl.NumberFormat('fa').format(volume)
+    return new Intl.NumberFormat(lang === 'en' ? 'en-US' : 'fa').format(volume)
   } catch {
     return volume.toLocaleString()
   }
@@ -70,6 +71,7 @@ function formatVolume(volume) {
 import Reveal from './Reveal'
 
 function Calculator() {
+  const { t, i18n } = useTranslation()
   const [shape, setShape] = useState('rect')
   const [dims, setDims] = useState({ length: '', width: '', diameter: '', depth: '', volume: '' })
   const [result, setResult] = useState(null)
@@ -96,8 +98,8 @@ function Calculator() {
       <div className="container">
         <Reveal>
           <div className="section-header">
-            <h2>محاسبه تجهیزات استخر من</h2>
-            <p>ابعاد استخر خود را وارد کنید تا بهترین تجهیزات متناسب با حجم آب به شما پیشنهاد شود</p>
+            <h2>{t('calculator.title')}</h2>
+            <p>{t('calculator.subtitle')}</p>
           </div>
         </Reveal>
         <Reveal>
@@ -110,7 +112,7 @@ function Calculator() {
                 onClick={() => { setShape(s.value); setResult(null) }}
               >
                 <span className="calc-shape-icon">{s.icon}</span>
-                <span>{s.label}</span>
+                <span>{t(`calculator.shapes.${s.value}`)}</span>
               </button>
             ))}
           </div>
@@ -119,80 +121,80 @@ function Calculator() {
             <div className="calc-fields">
               {shape === 'custom' ? (
                 <div className="calc-field" style={{ gridColumn: '1 / -1' }}>
-                  <label>حجم استخر (متر مکعب)</label>
-                  <input type="number" name="volume" step="0.1" min="1" required value={dims.volume} onChange={handleChange} placeholder="مثلاً ۵۰" />
+                  <label>{t('calculator.volumeLabel')}</label>
+                  <input type="number" name="volume" step="0.1" min="1" required value={dims.volume} onChange={handleChange} placeholder={t('calculator.volumePlaceholder')} />
                 </div>
               ) : (
                 <>
                   {shape !== 'circ' && (
                     <>
                       <div className="calc-field">
-                        <label>طول (متر)</label>
-                        <input type="number" name="length" step="0.1" min="1" required value={dims.length} onChange={handleChange} placeholder="مثلاً ۱۰" />
+                        <label>{t('calculator.lengthLabel')}</label>
+                        <input type="number" name="length" step="0.1" min="1" required value={dims.length} onChange={handleChange} placeholder={t('calculator.lengthPlaceholder')} />
                       </div>
                       <div className="calc-field">
-                        <label>عرض (متر)</label>
-                        <input type="number" name="width" step="0.1" min="1" required value={dims.width} onChange={handleChange} placeholder="مثلاً ۵" />
+                        <label>{t('calculator.widthLabel')}</label>
+                        <input type="number" name="width" step="0.1" min="1" required value={dims.width} onChange={handleChange} placeholder={t('calculator.widthPlaceholder')} />
                       </div>
                     </>
                   )}
                   {shape === 'circ' && (
                     <div className="calc-field">
-                      <label>قطر (متر)</label>
-                      <input type="number" name="diameter" step="0.1" min="1" required value={dims.diameter} onChange={handleChange} placeholder="مثلاً ۶" />
+                      <label>{t('calculator.diameterLabel')}</label>
+                      <input type="number" name="diameter" step="0.1" min="1" required value={dims.diameter} onChange={handleChange} placeholder={t('calculator.diameterPlaceholder')} />
                     </div>
                   )}
                   <div className="calc-field">
-                    <label>عمق متوسط (متر)</label>
-                    <input type="number" name="depth" step="0.1" min="0.5" required value={dims.depth} onChange={handleChange} placeholder="مثلاً ۱.۵" />
+                    <label>{t('calculator.depthLabel')}</label>
+                    <input type="number" name="depth" step="0.1" min="0.5" required value={dims.depth} onChange={handleChange} placeholder={t('calculator.depthPlaceholder')} />
                   </div>
                 </>
               )}
             </div>
             <div className="calc-actions">
-              <button type="submit" className="btn btn-primary">محاسبه تجهیزات</button>
-              {result && <button type="button" className="btn btn-outline" onClick={handleReset}>محاسبه مجدد</button>}
+              <button type="submit" className="btn btn-primary">{t('calculator.calcBtn')}</button>
+              {result && <button type="button" className="btn btn-outline" onClick={handleReset}>{t('calculator.recalcBtn')}</button>}
             </div>
           </form>
 
           {result && (
             <div className="calc-result">
               <div className="calc-result-header">
-                <span className="calc-volume">حجم استخر: <strong>{formatVolume(result.volume)} متر مکعب</strong></span>
+                <span className="calc-volume" dangerouslySetInnerHTML={{ __html: t('calculator.resultVolume', { volume: formatVolume(result.volume, i18n.language) }) }} />
               </div>
               <div className="calc-rec-grid">
                 <div className="calc-rec-card">
                   <div className="rec-icon">⚙️</div>
-                  <h4>پمپ تصفیه</h4>
+                  <h4>{t('calculator.pumpCard')}</h4>
                   <div className="rec-model">{result.pump.model}</div>
-                  <div className="rec-detail">توان: {result.pump.power}</div>
-                  <div className="rec-detail">دبی: {result.pump.flow}</div>
+                  <div className="rec-detail">{t('calculator.powerDetail', { value: result.pump.power })}</div>
+                  <div className="rec-detail">{t('calculator.flowDetail', { value: result.pump.flow })}</div>
                 </div>
                 <div className="calc-rec-card">
                   <div className="rec-icon">🌪️</div>
-                  <h4>فیلتر شنی</h4>
+                  <h4>{t('calculator.filterCard')}</h4>
                   <div className="rec-model">{result.filter.model}</div>
-                  <div className="rec-detail">قطر: {result.filter.diameter}</div>
-                  <div className="rec-detail">دبی: {result.filter.flow}</div>
+                  <div className="rec-detail">{t('calculator.diameterDetail', { value: result.filter.diameter })}</div>
+                  <div className="rec-detail">{t('calculator.flowDetail', { value: result.filter.flow })}</div>
                 </div>
                 <div className="calc-rec-card">
                   <div className="rec-icon">🔥</div>
-                  <h4>مبدل حرارتی</h4>
+                  <h4>{t('calculator.heaterCard')}</h4>
                   <div className="rec-model">{result.heater.model}</div>
-                  <div className="rec-detail">توان: {result.heater.power}</div>
+                  <div className="rec-detail">{t('calculator.powerDetail', { value: result.heater.power })}</div>
                 </div>
                 <div className="calc-rec-card">
                   <div className="rec-icon">🧪</div>
-                  <h4>سیستم UV</h4>
+                  <h4>{t('calculator.uvCard')}</h4>
                   <div className="rec-model">{result.uv.model}</div>
-                  <div className="rec-detail">توان: {result.uv.power}</div>
-                  <div className="rec-detail">دبی: {result.uv.flow}</div>
+                  <div className="rec-detail">{t('calculator.powerDetail', { value: result.uv.power })}</div>
+                  <div className="rec-detail">{t('calculator.flowDetail', { value: result.uv.flow })}</div>
                 </div>
               </div>
-              <p className="calc-note">پیشنهاد فوق بر اساس استانداردهای عمومی طراحی شده است. برای دریافت مشاوره تخصصی با کارشناسان ما تماس بگیرید.</p>
+              <p className="calc-note">{t('calculator.note')}</p>
               <div style={{ textAlign: 'center', marginTop: '24px' }}>
                 <a href="tel:+982188888888" className="btn btn-primary" style={{ fontSize: '16px', padding: '14px 36px' }}>
-                  📞 تماس با کارشناسان فروش
+                  {t('calculator.ctaCall')}
                 </a>
               </div>
             </div>
