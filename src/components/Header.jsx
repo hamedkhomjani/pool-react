@@ -3,11 +3,12 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import ThemeToggle from './ThemeToggle'
 
 const NAV_ITEMS = [
+  { type: 'page', label: 'صفحه اصلی', to: '/' },
   { type: 'section', label: 'دسته‌بندی‌ها', id: 'categories' },
   { type: 'section', label: 'تجهیزات اصلی', id: 'products' },
   { type: 'section', label: 'پکیج‌های آماده', id: 'packages' },
-  { type: 'link', label: 'درباره ما', to: '/about' },
-  { type: 'link', label: 'تماس با ما', to: '/contact' },
+  { type: 'page', label: 'درباره ما', to: '/about' },
+  { type: 'page', label: 'تماس با ما', to: '/contact' },
 ]
 
 function scrollToId(id) {
@@ -43,10 +44,6 @@ function Header({ theme, onToggleTheme }) {
     }
   }
 
-  function isActive(item) {
-    return item.type === 'link' && location.pathname === item.to
-  }
-
   return (
     <header>
       <div className="container nav-bar">
@@ -65,11 +62,7 @@ function Header({ theme, onToggleTheme }) {
               </li>
             ) : (
               <li key={item.to}>
-                <Link
-                  to={item.to}
-                  onClick={closeMenu}
-                  className={isActive(item) ? 'active' : ''}
-                >
+                <Link to={item.to} onClick={closeMenu}>
                   {item.label}
                 </Link>
               </li>
@@ -106,11 +99,7 @@ function Header({ theme, onToggleTheme }) {
               </li>
             ) : (
               <li key={item.to}>
-                <Link
-                  to={item.to}
-                  onClick={closeMenu}
-                  className={isActive(item) ? 'active' : ''}
-                >
+                <Link to={item.to} onClick={closeMenu}>
                   {item.label}
                 </Link>
               </li>
