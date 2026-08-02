@@ -47,7 +47,8 @@
     "heater": "Heat Exchangers",
     "lighting": "Lights & Lighting",
     "disinfection": "Disinfection & UV",
-    "accessories": "Ladders & Accessories"
+    "accessories": "Ladders & Accessories",
+    "piping": "Pipes & Fittings"
   },
   "productsSection": {
     "title": "Most Popular Filtration & Heating Equipment",
@@ -67,7 +68,8 @@
       "flowRate": "Flow Rate",
       "lampLife": "Lamp Life",
       "light": "Light Output",
-      "efficiency": "Efficiency"
+      "efficiency": "Efficiency",
+      "pressure": "Working Pressure"
     },
     "detailLabels": {
       "model": "Model",
@@ -90,7 +92,9 @@
       "colorCount": "Color Count",
       "protection": "Protection Rating",
       "voltageRange": "Voltage Range",
-      "efficiency": "Efficiency"
+      "efficiency": "Efficiency",
+      "pressure": "Working Pressure",
+      "length": "Length"
     },
     "items": {
       "hw1500": {
@@ -266,6 +270,55 @@
           "weight": "0.8 kg",
           "warranty": "18 months"
         }
+      },
+      "pipe50": {
+        "badge": "",
+        "title": "PVC Pressure Pipe 50mm (2 inch)",
+        "desc": "High-pressure PVC pipe for the pool's return and suction lines, resistant to chemicals and UV.",
+        "price": "850,000",
+        "longDesc": "The 50mm high-pressure PVC pipe with standard wall thickness is designed for pool suction and return piping. It resists chemicals, sunlight and pressure, and is permanently joined with special PVC glue. Sold per meter.",
+        "features": [
+          "Resistant to chemicals and UV",
+          "10 bar working pressure",
+          "Standard wall thickness",
+          "Glue and solvent-weld joints",
+          "Suitable for pools, spas and saunas"
+        ],
+        "specs": {
+          "diameter": "50 mm",
+          "pressure": "10 bar"
+        },
+        "detailSpecs": {
+          "model": "PVC-50",
+          "diameter": "50 mm",
+          "workingPressure": "10 bar",
+          "bodyMaterial": "PVC-U",
+          "length": "6 m",
+          "warranty": "12 months"
+        }
+      },
+      "fitkit50": {
+        "badge": "",
+        "title": "Pool Piping Fittings Kit (50mm)",
+        "desc": "Complete fittings kit — elbows, tees, unions and PVC glue — to build your pool piping loop.",
+        "price": "1,250,000",
+        "longDesc": "This kit includes everything needed for the pool's suction and return piping: 90-degree elbows, tees, two-piece unions, couplings and special PVC glue. Assemble the full piping loop without sourcing parts separately.",
+        "features": [
+          "90-degree elbows and tees",
+          "Two-piece unions for opening the line",
+          "Couplings",
+          "Special PVC glue included",
+          "Fits 50mm pipes"
+        ],
+        "specs": {
+          "diameter": "50 mm"
+        },
+        "detailSpecs": {
+          "model": "FITTING-KIT-50",
+          "diameter": "50 mm",
+          "bodyMaterial": "PVC-U",
+          "warranty": "12 months"
+        }
       }
     }
   },
@@ -295,9 +348,11 @@
     "filterCard": "Sand Filter",
     "heaterCard": "Heat Exchanger",
     "uvCard": "UV System",
+    "pipingCard": "Pipes & Fittings",
     "powerDetail": "Power: {{value}}",
     "flowDetail": "Flow: {{value}}",
     "diameterDetail": "Diameter: {{value}}",
+    "fittingDetail": "Fittings: {{value}}",
     "note": "The recommendation above is based on general industry standards. Contact our experts for professional consultation.",
     "ctaCall": "📞 Call Sales Experts",
     "chemTitle": "Recommended Chemical Dosages",

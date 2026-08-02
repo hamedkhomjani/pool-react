@@ -60,6 +60,12 @@ function recommend(volume) {
   return { pump, filter, heater, uv }
 }
 
+function recommendPiping(volume) {
+  if (volume <= 80) return { diameter: '50 mm', model: 'PVC-50', fitting: 'FITTING-KIT-50' }
+  if (volume <= 150) return { diameter: '63 mm', model: 'PVC-63', fitting: 'FITTING-KIT-63' }
+  return { diameter: '75 mm', model: 'PVC-75', fitting: 'FITTING-KIT-75' }
+}
+
 function recommendChemicals(volume) {
   return {
     chlorineShock: Math.round(volume * 15),
@@ -96,7 +102,8 @@ function Calculator() {
     if (volume <= 0) return
     const recs = recommend(volume)
     const chems = recommendChemicals(volume)
-    setResult({ volume: Math.round(volume * 10) / 10, ...recs, chemicals: chems })
+    const piping = recommendPiping(volume)
+    setResult({ volume: Math.round(volume * 10) / 10, ...recs, piping, chemicals: chems })
   }
 
   function handleReset() {
@@ -200,6 +207,13 @@ function Calculator() {
                   <div className="rec-model">{result.uv.model}</div>
                   <div className="rec-detail">{t('calculator.powerDetail', { value: result.uv.power })}</div>
                   <div className="rec-detail">{t('calculator.flowDetail', { value: result.uv.flow })}</div>
+                </div>
+                <div className="calc-rec-card">
+                  <div className="rec-icon">🔧</div>
+                  <h4>{t('calculator.pipingCard')}</h4>
+                  <div className="rec-model">{result.piping.model}</div>
+                  <div className="rec-detail">{t('calculator.diameterDetail', { value: result.piping.diameter })}</div>
+                  <div className="rec-detail">{t('calculator.fittingDetail', { value: result.piping.fitting })}</div>
                 </div>
               </div>
               <p className="calc-note">{t('calculator.note')}</p>
