@@ -1,0 +1,871 @@
+{
+  "generatedAt": "2026-08-03T12:57:29.763Z",
+  "source": "src/i18n/locales/en.json + src/data/products.js",
+  "count": 144,
+  "chunks": [
+    {
+      "type": "guide",
+      "title": "Pool Pumps: introduction",
+      "text": "Pool Pump Buying Guide in 1405; HP Selection Chart by Pool Volume.\nChoosing the wrong pool pump means at least 30% higher electricity bills, annoying noise in your yard, and water that keeps getting covered with leaves every time the wind blows. With the right choice, everything works quietly and automatically. Over the past 15 years, AquaPro has completed more than 1,200 residential and villa pool projects. In this guide we explain in plain language — with real numbers only — what the pump built exactly for your pool volume looks like. No complicated marketing jargon.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Pumps: why it matters",
+      "text": "The pump is the heart of your pool's water circulation loop. Water flows from the skimmer to the pump, passes through the sand filter, and returns to the pool. If the pump is too weak, the water never turns clear and bacteria and algae get a chance to grow. If the pump is too strong, your electricity bill multiplies and your plumbing and filter take extra stress.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Pumps: hidden costs",
+      "text": "Hidden costs to watch for:\n<strong>Electricity bill:</strong> A 2 HP pump compared to a 1 HP pump for the same pool costs roughly 4 to 6 million Toman more per year.\n<strong>Premature wear:</strong> An oversized pump constantly cycles on and off, wearing out its seals sooner.\n<strong>Fittings and pipes:</strong> Excessive pressure gradually loosens connections and causes leaks.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Pumps: types",
+      "text": "Pumps fall into three categories based on motor type:\n- Single-Speed Pump: The simplest and most economical choice upfront. It always runs at full speed and power; a sensible option for small residential pools.\n- Two-Speed Pump: Has normal and low-consumption modes. Run daily circulation on low speed (up to 50% electricity savings) and switch to high speed only for bottom skimming or filter backwashing.\n- Variable-Speed Pump: The most expensive but most economical option long-term. The motor speed adjusts intelligently and, with more than 8 hours of daily operation, reduces electricity use by up to 70%.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Pumps: sizing",
+      "text": "First, calculate your pool volume. For a rectangular pool: <strong>length × width × average depth</strong> in cubic meters. For a circular pool: <strong>3.14 × (radius × radius) × depth</strong>. Not sure? Use our <calculatorLink>pool equipment calculator</calculatorLink>.\nUp to 30\n30 to 50\n50 to 80\n80 to 120\n120 to 200\nOver 200",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Pumps: piping",
+      "text": "Every 10 meters of plumbing and each 90-degree elbow effectively steals 1 to 1.5 meters of the pump's suction head. If your equipment room is more than 15 meters from the pool or the plumbing route is full of branches, choose one step higher in the chart.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Pumps: disinfection pairing",
+      "text": "The pump handles water <strong>circulation</strong>, the sand filter handles <strong>filtration</strong> (catching suspended particles), and the heat exchanger handles water <strong>heating</strong>. A stronger pump cannot compensate for the other two. Our technical team's advice: always buy the pump and filter together and equally sized.\n[object Object]\n[object Object]\n[object Object]",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Pumps: Flow Rate and Pump Head",
+      "text": "Flow rate is the volume of water the pump moves per hour (m³/h), and head is the height it can lift water (meters). The golden rule: your entire pool volume should pass through the filter about once every 6 hours.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Pumps: Power Consumption & Annual Cost",
+      "text": "Rough estimate: <strong>power in watts × daily working hours × 30 ÷ 1000</strong>. For example, a 1.5 HP pump (~1100W) running 8 hours daily consumes about 264 kWh per month.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Pumps: Body Material",
+      "text": "<strong>304 stainless steel</strong> is rust-proof and resistant to chemicals and salt water — our recommendation for any pool. Plastic and polyethylene are cheaper and quieter but last less against UV and chemicals.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Pumps: Noise Level & Warranty",
+      "text": "Quality pumps operate below 45 dB. Always check for a genuine written warranty (preferably over 18 months) and a reliable after-sales service network.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Pumps: brand Hayward",
+      "text": "The most popular brand for residential and villa pools; 304 stainless steel bodies, broad support and the widest range from 0.5 to 3 HP.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Pumps: brand Emaux",
+      "text": "A reliable choice for larger pools and commercial projects; pairs perfectly with its own family of sand filters.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Pumps: brand European Brands",
+      "text": "Higher quality and price; suitable for luxury villas and projects with bigger budgets.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Pumps — What HP pump do I need for a 50 m³ pool?",
+      "text": "Q: What HP pump do I need for a 50 m³ pool?\nA: For a 50 m³ pool, a 0.75 to 1 HP pump with a flow of 12 to 16 m³/h is enough to fully filter the water in less than 6 hours.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Pumps — How much is the monthly electricity cost of a pool pump?",
+      "text": "Q: How much is the monthly electricity cost of a pool pump?\nA: It depends on pump power and running hours. A 1.5 HP pump running 8 hours daily uses about 260–270 kWh per month, which a variable-speed pump can reduce by up to 70%.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Pumps — What is the difference between two-speed and variable-speed pumps?",
+      "text": "Q: What is the difference between two-speed and variable-speed pumps?\nA: A two-speed pump has only two modes, while a variable-speed pump intelligently selects between nine speed levels. Variable speed saves up to 70% electricity in high-usage pools but costs more upfront.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Pumps — How long does a pool pump last?",
+      "text": "Q: How long does a pool pump last?\nA: With proper maintenance (filter backwashing, preventing dry running, and winter draining), quality pumps last between 8 and 12 years.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Pumps — Do I really need an acid-resistant pump for a salt-water pool?",
+      "text": "Q: Do I really need an acid-resistant pump for a salt-water pool?\nA: Yes. In pools with salt chlorinators, a pump with a 304 stainless steel body and acid-resistant seal is essential; otherwise metal parts corrode within less than two years.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Pumps — How often should I replace my pool pump?",
+      "text": "Q: How often should I replace my pool pump?\nA: If your pump makes unusual noise, its flow has dropped, or the casing has cracked, it is time to replace it. An annual inspection by an expert before the swim season is recommended.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Filters: introduction",
+      "text": "Pool Sand Filter Buying Guide in 1405; Sizing Chart by Flow Rate.\nThe sand filter is what actually makes pool water clear — the pump only moves it. Choosing a filter too small for your pump forces constant backwashing and leaves the water dull. In this guide we show, with real numbers only, how to size the filter, choose the body and valve, and buy without overpaying.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Filters: why it matters",
+      "text": "Think of the pump as the heart and the filter as the kidneys of your pool. The pump circulates water; the filter captures the suspended particles. If the filter is too small, water bypasses the sand bed, algae food stays in the pool, and you end up adding more chemicals. If it is too large, you have paid for capacity you will never use.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Filters: hidden costs",
+      "text": "Hidden costs to watch for:\n<strong>Constantly dirty water:</strong> an undersized filter is cleaned backwashed so often that its downtime lets algae bloom.\n<strong>High pressure loss:</strong> the pump works harder, consuming more electricity and wearing out sooner.\n<strong>Extra chemicals:</strong> a weak filter cannot keep up, so you buy more clarifiers and shock doses.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Filters: types",
+      "text": "There are three main filter technologies, and sand is the most popular for residential pools:\n- Sand Filter: The most popular choice. Water passes through a bed of silica sand that traps particles down to about 40 microns. Simple, reliable and cheap to maintain.\n- Cartridge Filter: Finer filtration (down to 10–15 microns) with no backwashing — the cartridge is simply rinsed. Great for small pools and salt-water pools.\n- Diatomaceous Earth (DE) Filter: The finest filtration (down to 2–5 microns), giving the clearest water. More expensive and higher maintenance; best for commercial or very sensitive pools.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Filters: sizing",
+      "text": "The filter must comfortably handle your pump's flow rate. As a rule of thumb, the filter's recommended flow should be equal to or greater than your pump's maximum output. Use our <calculatorLink>pool equipment calculator</calculatorLink> to find your pump flow first.\nUp to 30 | 8 m³/h | 42 cm | MEGA-420\n30 to 50 | 12 m³/h | 50 cm | MEGA-500\n50 to 80 | 16 m³/h | 58 cm | MEGA-580\n80 to 120 | 21 m³/h | 65 cm | MEGA-650\n120 to 200 | 28 m³/h | 75 cm | MEGA-750",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Filters: Diameter and Sand Capacity",
+      "text": "Diameter determines the filter area. For a given flow, a bigger diameter means lower pressure loss and longer intervals between backwashes. Check the sand bag capacity (kg) as well.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Filters: Valve Type",
+      "text": "An automatic 6-way valve (filter, backwash, rinse, recirculate, waste, closed) is the industry standard. It makes maintenance a one-lever operation.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Filters: Body Material",
+      "text": "<strong>Fiberglass</strong> is rust-proof and UV-resistant — our recommendation. Polyethylene is cheaper but less rigid under pressure.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Filters: Working Pressure",
+      "text": "Look for a minimum working pressure of 2.5 bar, with a recommended operating pressure around 1.5 bar at normal flow.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Filters: brand Emaux",
+      "text": "The most popular brand for residential and villa pools; reliable fiberglass tanks with automatic 6-way valves at a fair price.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Filters: brand Hayward",
+      "text": "Premium US brand with a very wide range; excellent valve quality and long service life.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Filters: brand European Brands",
+      "text": "Higher price and quality; ideal for large villas and commercial projects.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Filters — How often should I backwash my sand filter?",
+      "text": "Q: How often should I backwash my sand filter?\nA: When the pressure gauge reads 0.3–0.5 bar above the clean baseline (usually every 1–2 weeks in summer). Backwashing more often than needed wastes water.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Filters — How long does filter sand last?",
+      "text": "Q: How long does filter sand last?\nA: With regular backwashing, silica sand lasts 5–7 years before the grains round off and stop trapping particles. Replace it with a fresh bed when filtration visibly drops.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Filters — Can a sand filter clear green (algae) water?",
+      "text": "Q: Can a sand filter clear green (algae) water?\nA: A healthy filter removes suspended algae once the algae is killed by shock treatment. Filtration alone will not fix a heavy bloom — treat first, then filter.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Filters — Should the filter be bigger than the pump?",
+      "text": "Q: Should the filter be bigger than the pump?\nA: Yes — the filter's flow capacity should be equal to or greater than the pump's maximum flow, so the pump never pushes water faster than the sand bed can handle.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Filters — Do I need a pressure gauge?",
+      "text": "Q: Do I need a pressure gauge?\nA: Absolutely. A working pressure gauge is the only reliable way to know when to backwash. Buy a filter with a built-in gauge or install one.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Filters: installation",
+      "text": "The filter sits between the pump and the pool return, always after the pump. Leave room around the tank to reach the valve and the sand cover, and place it on a level, stable base. In cold climates, drain the tank completely before winter to avoid freeze cracks.",
+      "meta": {}
+    },
+    {
+      "type": "product_link",
+      "title": "Pool Filters product",
+      "text": "Featured pool filters product key: mega650.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Heaters: introduction",
+      "text": "Pool Heat Exchanger Buying Guide in 1405; kW Capacity Chart.\nA heat exchanger brings your pool to a comfortable temperature and keeps it there. Choosing the right capacity is a balance of pool volume, climate and patience — too small and the water never warms up; too big and you overpay for a boiler you do not need.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Heaters: why it matters",
+      "text": "Heating a pool is a question of energy, not temperature. Every cubic meter of water needs a fixed amount of heat to rise one degree. The exchanger's job is to supply that heat at a rate your boiler or heat pump can sustain. An undersized unit heats slowly or not at all in cold weather.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Heaters: hidden costs",
+      "text": "Hidden costs to watch for:\n<strong>Never reaching target temperature:</strong> an undersized exchanger works non-stop yet the pool stays cold.\n<strong>Boiler overload:</strong> the heat source runs continuously at maximum, shortening its life.\n<strong>Wasted money:</strong> an oversized unit costs more to buy and its excess capacity is simply never used.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Heaters: types",
+      "text": "Three main technologies heat pool water. The heat exchanger works with the first two:\n- Heat Exchanger + Boiler: The classic setup. A boiler (gas or diesel) heats water, and the exchanger transfers that heat into the pool loop. Powerful and ideal for large pools.\n- Heat Exchanger + Heat Pump: An energy-efficient heat pump supplies warm water that the exchanger transfers to the pool. Lower running cost, best for milder climates.\n- Electric Heater: A direct immersion heater for small pools and spas. Simple but expensive to run for large volumes.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Heaters: sizing",
+      "text": "As a starting point, allow roughly 1 kW of heating capacity per 3–5 m³ of pool water, then adjust for climate and how fast you want the pool ready. Use our <calculatorLink>pool equipment calculator</calculatorLink> to confirm your volume.\nUp to 20 | 6 kW | HT-20\n20 to 35 | 9 kW | HT-30\n35 to 55 | 12 kW | HT-40\n55 to 80 | 15 kW | HT-60\n80 to 120 | 20 kW | HT-80",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Heaters: Body Material",
+      "text": "<strong>Titanium</strong> resists chlorine and salt water and is the best value long-term. Copper is cheaper but corrodes in salt-water pools. Stainless steel sits in between.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Heaters: Connection Sizes",
+      "text": "The exchanger's ports must match your plumbing. Mismatched fittings add pressure loss and can restrict flow through the unit.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Heaters: Maximum Operating Temperature",
+      "text": "Check the unit handles your boiler's supply temperature (typically up to 90–110°C). PVC exchangers have much lower limits.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Heaters: Heat Transfer Surface",
+      "text": "More surface area (plate vs. shell-and-tube design) means better efficiency for the same footprint. Plate exchangers are compact and highly efficient.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Heaters: brand Hayward",
+      "text": "Trusted US brand with a wide range of titanium heat exchangers and heaters for residential and villa pools.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Heaters: brand Emaux",
+      "text": "Reliable and well-priced; pairs cleanly with its own pumps and filters.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Heaters: brand European Brands",
+      "text": "Premium efficiency and build quality for luxury villas and commercial projects.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Heaters — How long does it take to heat a pool?",
+      "text": "Q: How long does it take to heat a pool?\nA: With correct sizing, a pool typically rises 1–1.5°C per hour of heating. Heating a pool from 20°C to 28°C usually takes 12–24 hours, not minutes.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Heaters — Is a heat exchanger better than an electric heater?",
+      "text": "Q: Is a heat exchanger better than an electric heater?\nA: For large pools, yes — a heat exchanger powered by a boiler or heat pump delivers far more heat per Toman of fuel than direct electric heating.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Heaters — Do I need titanium for a salt-water pool?",
+      "text": "Q: Do I need titanium for a salt-water pool?\nA: Yes. Salt chlorinators are aggressive to copper and ordinary steel. A titanium exchanger is essential to avoid corrosion and pinhole leaks.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Heaters — What temperature should I set my pool?",
+      "text": "Q: What temperature should I set my pool?\nA: 26–28°C is comfortable for most recreational pools, 30–32°C for therapy and toddler pools. Each extra degree costs roughly 5–10% more energy.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Heaters — Can I heat my pool with the exchanger only?",
+      "text": "Q: Can I heat my pool with the exchanger only?\nA: No — the exchanger is a component. You still need a boiler or heat pump as the heat source, plus a properly sized circulation pump.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Heaters: installation",
+      "text": "Install the exchanger after the filter, in the return line, so only clean water flows through it. Orient it so water flows against gravity inside (counter-current) for maximum heat transfer, and always fit a bypass valve so you can isolate it for winter or maintenance.",
+      "meta": {}
+    },
+    {
+      "type": "product_link",
+      "title": "Pool Heaters product",
+      "text": "Featured pool heaters product key: ht36.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Lighting: introduction",
+      "text": "Pool LED Light Buying Guide in 1405; Wattage and Color Guide.\nModern LED pool lights make your pool stunning at night while using a fraction of the electricity of old halogen bulbs — and lasting up to ten times longer. Here is how to choose the light, the voltage and the colors for your pool.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Lighting: why it matters",
+      "text": "A typical 120W halogen pool light uses roughly six times the electricity of a 20W LED to produce the same light, and needs replacing far more often. LEDs also open the door to multi-color effects and smart control that no halogen can match.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Lighting: hidden costs",
+      "text": "Hidden costs to watch for:\n<strong>High electricity bills:</strong> running halogen lights for a few hours every night quietly adds up.\n<strong>Frequent bulb changes:</strong> halogens burn out quickly and every swap means draining or lifting the light out.\n<strong>No upgrade path:</strong> cheap non-IP68 units fail fast from water ingress.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Lighting: types",
+      "text": "Choose your light by voltage and capability:\n- Fixed-White LED: A single bright white light. Simple, affordable and the most reliable option for most residential pools.\n- Multi-Color RGB LED: Cycles through colors or locks to your favorite shade. Great for evening entertainment and modern design.\n- Smart/App-Controlled LED: Wirelessly controllable color, brightness and schedules from your phone. The premium option for new builds.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Lighting: sizing",
+      "text": "A common rule is one light per 15–20 m² of pool surface area, spaced evenly along the length. For deep or dark-sided pools, add one more. Plan the niche (recess) during construction.\nUp to 15 | 1 | 12–20 W\n15 to 30 | 2 | 20 W\n30 to 50 | 3–4 | 20–30 W\n50 to 80 | 4–6 | 30 W",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Lighting: Protection Rating (IP)",
+      "text": "<strong>IP68</strong> means the light is fully protected against continuous immersion — the minimum you should accept for a pool fixture.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Lighting: Voltage",
+      "text": "12V low-voltage lights are the safe standard for residential pools. 220V mains-voltage lights exist but need extra care with waterproofing.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Lighting: Color Temperature",
+      "text": "4000–6500K gives a crisp, clear 'crystal' look; warmer 3000K gives a softer, more relaxing glow.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Lighting: Light Output and Beam",
+      "text": "Check the lumen output and beam angle. Wide beams (120°) spread light evenly; narrow beams create dramatic pools of light.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Lighting: brand Hayward",
+      "text": "Reliable colorLED and white LED ranges with proven waterproofing and long life.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Lighting: brand Emaux",
+      "text": "Well-priced LED options for residential pools with solid build quality.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Lighting: brand European Brands",
+      "text": "Premium RGB and smart lights for luxury villas and modern designs.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Lighting — Are LED pool lights worth the higher price?",
+      "text": "Q: Are LED pool lights worth the higher price?\nA: Yes — they use 5–6× less electricity and last 10× longer than halogen, so the payback is quick and total cost of ownership is much lower.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Lighting — Can I install a pool light in an existing pool?",
+      "text": "Q: Can I install a pool light in an existing pool?\nA: Only if a niche and conduit were built during construction. Retrofit kits exist for some pools but are rarely as clean or durable.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Lighting — Do I need a transformer for LED lights?",
+      "text": "Q: Do I need a transformer for LED lights?\nA: For 12V lights, yes — a correctly sized transformer is essential and must match the total wattage of all lights.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Lighting — How long do LED pool lights last?",
+      "text": "Q: How long do LED pool lights last?\nA: Quality LEDs last 30,000–50,000 hours — many years of nightly use — versus 2,000–4,000 hours for halogen.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Lighting — Why is my LED light flickering?",
+      "text": "Q: Why is my LED light flickering?\nA: Almost always a voltage supply issue: undersized transformer, long cable run, or a failing connection. Check supply before replacing the light.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Lighting: installation",
+      "text": "Pool lights are installed in a wall niche below water level, with the cable run through conduit to a junction box above deck. Use a 12V transformer and an RCD/GFCI breaker. Niche and conduit must be planned during pool construction — retrofitting is costly.",
+      "meta": {}
+    },
+    {
+      "type": "product_link",
+      "title": "Pool Lighting product",
+      "text": "Featured pool lighting product key: led18.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Disinfection (UV & Saltwater): introduction",
+      "text": "Pool Disinfection Buying Guide in 1405; UV and Salt Chlorinator.\nA UV system or salt chlorinator takes your pool from 'chemically managed' to 'cleaner, easier and healthier'. These systems cut chlorine use dramatically and keep the water safe. Here is how to choose between UV and salt, and how to size them.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Disinfection (UV & Saltwater): why it matters",
+      "text": "Traditional chlorine alone needs constant monitoring and dosing. UV-C radiation destroys up to 99.9% of microorganisms as water passes through the unit, and salt chlorinators generate chlorine continuously from a small amount of salt — so your free-chlorine level stays steady without daily attention.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Disinfection (UV & Saltwater): hidden costs",
+      "text": "Hidden costs to watch for:\n<strong>High chemical spending:</strong> without UV or salt, you buy chlorine, shock and algaecide all season long.\n<strong>Eye and skin irritation:</strong> unbalanced chlorine and chloramines cause red eyes and dry skin.\n<strong>Algae recurrence:</strong> a weak or mis-sized system lets algae return despite regular dosing.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Disinfection (UV & Saltwater): types",
+      "text": "Choose the technology that fits your pool and lifestyle:\n- UV-C Disinfection: Water flows past a UV lamp that kills microorganisms without adding anything to the water. Cuts chlorine use by up to 80% and reduces chloramines.\n- Salt Chlorinator: Converts dissolved salt into chlorine automatically. No handling of liquid chlorine, steady dosing, and a pleasant 'soft' water feel.\n- Hybrid (UV + Salt): The gold standard: UV destroys pathogens while the salt cell provides a constant residual chlorine. Maximum water quality and minimum chemicals.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Disinfection (UV & Saltwater): sizing",
+      "text": "Both UV lamps and salt cells are sized to your pool volume and pump flow. As a rule, the UV unit should match your pump's maximum flow, and the salt cell's capacity should exceed your pool volume. Confirm your volume with the <calculatorLink>pool equipment calculator</calculatorLink>.\nUp to 30 | 40 W | 15 g/h | UV-40\n30 to 50 | 55 W | 20 g/h | UV-55\n50 to 80 | 85 W | 30 g/h | UV-85\n80 to 120 | 110 W | 40 g/h | UV-110",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Disinfection (UV & Saltwater): Lamp Life",
+      "text": "UV lamps typically last 8,000–12,000 hours. Check the replacement cost — the lamp is the only real consumable and its price matters over time.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Disinfection (UV & Saltwater): Body Material",
+      "text": "<strong>Stainless steel 304</strong> resists chlorine and salt water. Cheaper plastic chambers can crack and leak over time.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Disinfection (UV & Saltwater): Flow Capacity",
+      "text": "The unit must handle your pump's full flow. If water passes too fast, the UV dose drops and effectiveness falls.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Disinfection (UV & Saltwater): Cell Size (Salt Systems)",
+      "text": "The salt cell is rated in g/h of chlorine. Choose a cell rated above your daily need so it does not run at maximum all day.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Disinfection (UV & Saltwater): brand Hayward",
+      "text": "Leading US brand for salt chlorinators and UV systems with proven reliability.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Disinfection (UV & Saltwater): brand Emaux",
+      "text": "Well-priced UV and salt systems that integrate cleanly with Emaux pumps and filters.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Disinfection (UV & Saltwater): brand European Brands",
+      "text": "Premium UV systems with the longest lamp life and best build quality.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Disinfection (UV & Saltwater) — Can UV completely replace chlorine?",
+      "text": "Q: Can UV completely replace chlorine?\nA: UV destroys pathogens in the water passing through it, but it leaves no residual protection. You still need a small residual of chlorine (1–3 ppm) to protect the pool after the water leaves the unit.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Disinfection (UV & Saltwater) — How much salt does a salt chlorinator need?",
+      "text": "Q: How much salt does a salt chlorinator need?\nA: Typically 3–5 grams of salt per liter of pool water (3,000–5,000 ppm). You add salt only once or twice per season, after top-ups.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Disinfection (UV & Saltwater) — How often must I replace the UV lamp?",
+      "text": "Q: How often must I replace the UV lamp?\nA: Every 8,000–12,000 hours of operation, usually once per season. UV output drops as the lamp ages even if it still looks lit.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Disinfection (UV & Saltwater) — Will a salt chlorinator damage my equipment?",
+      "text": "Q: Will a salt chlorinator damage my equipment?\nA: Salt water is corrosive to copper and ordinary steel. Use a titanium heat exchanger, 304 stainless pump and fittings designed for salt-water pools.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Disinfection (UV & Saltwater) — Do I still need to shock the pool with UV or salt?",
+      "text": "Q: Do I still need to shock the pool with UV or salt?\nA: Occasionally, yes — after heavy use or rain, a shock dose helps. But the frequency drops dramatically compared to chlorine-only pools.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Disinfection (UV & Saltwater): installation",
+      "text": "Mount the unit horizontally in the return line after the filter, with the lamp chamber easy to reach for annual lamp replacement. Leave straight pipe before and after the unit for proper flow. Always protect the lamp housing with a bypass for cleaning or winterizing.",
+      "meta": {}
+    },
+    {
+      "type": "product_link",
+      "title": "Disinfection (UV & Saltwater) product",
+      "text": "Featured disinfection (uv & saltwater) product key: uv85.",
+      "meta": {}
+    },
+    {
+      "type": "product_link",
+      "title": "Disinfection (UV & Saltwater) product",
+      "text": "Featured disinfection (uv & saltwater) product key: swg40.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Accessories: introduction",
+      "text": "Pool Accessories Buying Guide in 1405; Ladders, Rails and Covers.\nLadders, handrails, covers and cleaning tools turn a bare pool into a safe, comfortable and low-maintenance space. This short guide covers what to look for so you buy once and buy right.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Accessories: why it matters",
+      "text": "A cheap ladder that rusts or a cover that lets heat escape quietly costs you more over time — in replacement, energy and comfort. Quality accessories are sized to your pool, corrosion-proof and safe for the whole family.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Accessories: hidden costs",
+      "text": "Hidden costs to watch for:\n<strong>Rust and discoloration:</strong> non-stainless hardware stains your coping and stains the water line.\n<strong>Safety risks:</strong> wobbly steps or sharp edges are a hazard, especially for children.\n<strong>Heat loss:</strong> a poorly fitting cover loses warmth and lets debris in, raising heating and cleaning costs.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Accessories: types",
+      "text": "The essential accessories fall into a few clear categories:\n- Ladders and Handrails: Stainless steel ladders for steps into the water, plus deck and pool-edge handrails for safe entry and exit.\n- Covers: Winter covers and solar covers that keep debris out, reduce evaporation and hold in heat.\n- Cleaning Tools: Skimmers, brushes, vacuum heads and telescopic poles for daily and weekly cleaning.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Accessories: sizing",
+      "text": "Ladders are sized by step count and deck height; covers by exact pool dimensions; poles by reach. Measure your pool and deck carefully, and when in doubt choose the size that gives more grip and stability.\nLadder | Deck height & depth | Stainless, 3–4 steps\nHandrail | Coping width | Stainless, anti-slip grip\nCover | Pool length & width | Solar or winter by climate\nPole & brush | Pool length | Aluminum, 2–4 m telescopic",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Accessories: Material Grade",
+      "text": "Look for <strong>304 stainless steel</strong> for anything in or near the water. 201-grade steel looks similar but rusts over time.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Accessories: Load Capacity",
+      "text": "Check the rated load — steps and rails should comfortably support adults without flexing.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Accessories: Anti-Slip Surfaces",
+      "text": "Steps should have textured, anti-slip treads; rails should offer a secure grip even when wet.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Accessories: Cover Thickness",
+      "text": "Thicker, reinforced covers last longer and hold heat better. Check the density (g/m²) before buying.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Accessories: brand Stainless Steel Specialists",
+      "text": "Look for brands that specify real 304/316 grade and offer warranty on rust — a reliable signal of quality.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Accessories: brand Well-Known Pool Brands",
+      "text": "Hayward, Emaux and similar brands make accessories that match their pumps and filters in quality.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Accessories: brand Local Quality Makers",
+      "text": "Good local stainless fabricators can deliver custom-sized ladders and rails at fair prices.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Accessories — Stainless or plastic ladder?",
+      "text": "Q: Stainless or plastic ladder?\nA: Stainless steel 304 for durability and looks. Plastic is cheaper but yellows under UV and flexes under load.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Accessories — Do I really need a pool cover?",
+      "text": "Q: Do I really need a pool cover?\nA: Yes — a solar cover can cut heating energy by 30–50% and dramatically reduce debris, evaporation and chemical loss.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Accessories — How do I stop a ladder from rusting?",
+      "text": "Q: How do I stop a ladder from rusting?\nA: Buy 304 stainless, rinse it with fresh water after chemical shocks, and avoid touching it with metal tools that scratch the passivation layer.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Accessories — What cleaning tools are essential?",
+      "text": "Q: What cleaning tools are essential?\nA: A skimmer net, a wall brush, a vacuum head with hose, and a telescopic pole cover the essentials for weekly maintenance.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pool Accessories — Should I remove the ladder over winter?",
+      "text": "Q: Should I remove the ladder over winter?\nA: Yes — removing and storing ladders and rails prevents freeze damage and theft, and keeps them in better condition.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pool Accessories: installation",
+      "text": "Ladders and rails bolt to the deck with stainless anchors — no glues or expanding plugs that corrode. Solar covers roll out in minutes; winter covers should be secured with the included clips and weights so wind cannot lift them.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pipes & Fittings: introduction",
+      "text": "Pool Piping & Fittings Buying Guide in 1405; Diameter Selection.\nThe plumbing loop quietly decides how well every other piece of equipment performs. Wrong pipe diameters cause pressure loss, noisy pumps and leaks. This guide shows how to choose pipe size, joints and fittings so your pump works at its best.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pipes & Fittings: why it matters",
+      "text": "Water must travel from the pool to the pump, filter and back. Every meter of pipe and every elbow creates resistance that the pump must overcome. Correct sizing keeps the pump in its efficient range; poor sizing raises energy bills and shortens equipment life.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pipes & Fittings: hidden costs",
+      "text": "Hidden costs to watch for:\n<strong>Pressure loss:</strong> too-narrow pipes choke the flow, and the pump works harder for less water.\n<strong>Noise and vibration:</strong> restrictive plumbing makes the pump cavitate and hum.\n<strong>Leaks over time:</strong> poorly glued joints or mismatched fittings fail at the worst moments.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pipes & Fittings: types",
+      "text": "The right materials make the difference between a 10-year and a 30-year system:\n- PVC-U Pressure Pipe: The standard for pool plumbing. Resistant to chemicals, UV and pressure, joined with solvent-weld glue.\n- Fittings (Elbows, Tees, Unions): Two-piece unions let you open the line for maintenance; elbows and tees route the water with minimal resistance.\n- PVC Glue and Cleaner: The solvent system that makes permanent, leak-free joints. Primer cleans, glue welds — both must match the pipe.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pipes & Fittings: sizing",
+      "text": "Match the pipe diameter to your pump's inlet and outlet, and size up for long runs. For a typical residential pool, 50 mm (2 inch) is standard; larger pools and long plumbing benefit from 63 mm (2.5 inch). Confirm your flow with the <calculatorLink>pool equipment calculator</calculatorLink>.\nUp to 40 | 50 mm (2\") | PVC-50\n40 to 80 | 50–63 mm | PVC-50/63\n80 to 120 | 63 mm (2.5\") | PVC-63\nOver 120 | 75 mm (3\") | PVC-75",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pipes & Fittings: Working Pressure",
+      "text": "Pool pressure pipe should be rated at least 10 bar. The pipe wall thickness must match the pressure rating you need.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pipes & Fittings: Diameter vs. Flow",
+      "text": "Bigger diameter means lower velocity, less friction and less pressure loss — at a slightly higher material cost. Size up for long or elbow-heavy routes.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pipes & Fittings: Solvent-Weld Joints",
+      "text": "Properly glued PVC joints are stronger than the pipe itself. Cheap or mismatched glue is the most common cause of leaks.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pipes & Fittings: UV Resistance",
+      "text": "PVC-U resists UV, but exposed above-ground runs last longer when painted or shielded from direct sun.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pipes & Fittings: brand Iranian PVC Producers",
+      "text": "Good local pressure-pipe brands offer reliable PVC-U at fair prices — check the 10-bar rating and wall thickness label.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pipes & Fittings: brand Imported Pressure Pipes",
+      "text": "Higher consistency and documented pressure ratings; a safe choice for commercial projects.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pipes & Fittings: brand Complete Fitting Kits",
+      "text": "Buying elbows, tees, unions and glue as a kit saves time and guarantees compatible parts.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pipes & Fittings — Which pipe is best for a pool — PVC or polyethylene?",
+      "text": "Q: Which pipe is best for a pool — PVC or polyethylene?\nA: PVC-U pressure pipe is the standard for permanent pool plumbing. Polyethylene is flexible and good for underground runs but harder to join and to keep straight.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pipes & Fittings — How many elbows are too many?",
+      "text": "Q: How many elbows are too many?\nA: Each 90-degree elbow steals 1–1.5 m of pump head. Keep the total of elbows and long runs in mind — if the route is crowded, increase the pipe diameter one step.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pipes & Fittings — Do I need unions on the piping?",
+      "text": "Q: Do I need unions on the piping?\nA: Yes — two-piece unions before and after the pump and filter let you open the line for maintenance without cutting pipes.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pipes & Fittings — How long does PVC glue take to cure?",
+      "text": "Q: How long does PVC glue take to cure?\nA: The joint holds within minutes but reaches full strength in about 24 hours. Do not pressurize the line for a full day after gluing.",
+      "meta": {}
+    },
+    {
+      "type": "faq",
+      "title": "Pipes & Fittings — Why is my pump making a loud humming noise?",
+      "text": "Q: Why is my pump making a loud humming noise?\nA: Often a sign of cavitation from restrictive plumbing. Check for clogged skimmers, narrow pipes, or too many elbows before suspecting the pump.",
+      "meta": {}
+    },
+    {
+      "type": "guide",
+      "title": "Pipes & Fittings: installation",
+      "text": "Cut square, deburr the edges, clean with primer and apply PVC glue to both surfaces before joining — the joint is permanent within minutes. Support horizontal runs every 1–1.5 m, and give the pump straight pipe before and after for smooth flow.",
+      "meta": {}
+    },
+    {
+      "type": "product_link",
+      "title": "Pipes & Fittings product",
+      "text": "Featured pipes & fittings product key: pipe50.",
+      "meta": {}
+    },
+    {
+      "type": "product_link",
+      "title": "Pipes & Fittings product",
+      "text": "Featured pipes & fittings product key: fitkit50.",
+      "meta": {}
+    },
+    {
+      "type": "product",
+      "title": "Pool Pumps product hw1500",
+      "text": "Product key hw1500 belongs to the Pool Pumps category.",
+      "meta": {}
+    },
+    {
+      "type": "product",
+      "title": "Pool Filters product mega650",
+      "text": "Product key mega650 belongs to the Pool Filters category.",
+      "meta": {}
+    },
+    {
+      "type": "product",
+      "title": "Disinfection (UV & Saltwater) product uv85",
+      "text": "Product key uv85 belongs to the Disinfection (UV & Saltwater) category.",
+      "meta": {}
+    },
+    {
+      "type": "product",
+      "title": "Pool Heaters product ht36",
+      "text": "Product key ht36 belongs to the Pool Heaters category.",
+      "meta": {}
+    },
+    {
+      "type": "product",
+      "title": "Disinfection (UV & Saltwater) product swg40",
+      "text": "Product key swg40 belongs to the Disinfection (UV & Saltwater) category.",
+      "meta": {}
+    },
+    {
+      "type": "product",
+      "title": "Pool Lighting product led18",
+      "text": "Product key led18 belongs to the Pool Lighting category.",
+      "meta": {}
+    },
+    {
+      "type": "product",
+      "title": "Pipes & Fittings product pipe50",
+      "text": "Product key pipe50 belongs to the Pipes & Fittings category.",
+      "meta": {}
+    },
+    {
+      "type": "product",
+      "title": "Pipes & Fittings product fitkit50",
+      "text": "Product key fitkit50 belongs to the Pipes & Fittings category.",
+      "meta": {}
+    },
+    {
+      "type": "contact",
+      "title": "Contact",
+      "text": "Phone:  | WhatsApp:  | Email:",
+      "meta": {}
+    }
+  ]
+}

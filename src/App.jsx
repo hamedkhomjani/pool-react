@@ -15,6 +15,7 @@ const ProductPage = lazy(() => import('./pages/ProductPage'))
 const PoolPumpGuide = lazy(() => import('./pages/PoolPumpGuide'))
 const CategoryGuide = lazy(() => import('./pages/CategoryGuide'))
 const GuidesPage = lazy(() => import('./pages/GuidesPage'))
+const ChatWidget = lazy(() => import('./components/ChatWidget'))
 
 function PageLoading() {
   return (
@@ -50,6 +51,9 @@ function App() {
           <Route path="/guide/:slug" element={<CategoryGuide />} />
           <Route path="/guides" element={<GuidesPage />} />
         </Routes>
+      </Suspense>
+      <Suspense fallback={null}>
+        <ChatWidget />
       </Suspense>
       <Footer />
     </>

@@ -1,0 +1,39 @@
+# AquaPro AI Chatbot
+# A RAG-based support chatbot for the pool equipment website.
+#
+# It answers questions ONLY from the site's knowledge base (guides, products,
+# FAQs, contact info). If the answer is not in the knowledge base it says so
+# instead of making things up.
+
+# --- Cloudflare setup ---
+# 1. Sign up at https://dash.cloudflare.com/sign-up (free)
+# 2. Install wrangler:  npm install -g wrangler
+# 3. Login:             wrangler login
+# 4. Enable Workers AI in the dashboard (Workers AI > Get started)
+# 5. Create the vector index:  npm run kb:index
+# 6. Deploy:            npm run deploy
+
+name = "aquapro-ai-chatbot"
+main = "src/index.js"
+compatibility_date = "2026-01-01"
+
+[vars]
+# "llm" uses Workers AI. "mock" returns local keyword answers (no API needed).
+CHAT_MODE = "mock"
+# Comma-separated CORS origins allowed to call the chat API.
+ALLOWED_ORIGINS = "https://aquapro.ir"
+
+# Workers AI lets the worker call AI models without an API key.
+# Enabled automatically via the dashboard.
+[ai]
+binding = "AI"
+
+# Vector search index for the knowledge base (1536-dim, cosine).
+[[vectorize]]
+binding = "VECTORIZE"
+index_name = "aquapro-knowledge"
+
+# KV namespace for optional conversation history + rate limiting.
+[[kv_namespaces]]
+binding = "CHAT_STATE"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"

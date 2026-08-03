@@ -1,0 +1,15 @@
+{
+  "name": "aquapro-ai-chatbot",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "kb:build": "node scripts/build-kb.mjs",
+    "kb:index": "node scripts/index-kb.mjs",
+    "dev": "wrangler dev",
+    "deploy": "npm run kb:build && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

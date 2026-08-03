@@ -1462,5 +1462,17 @@
   "mobileCta": {
     "call": "Phone Consultation",
     "calc": "Online Pump Size Calculator"
+  },
+  "chatbot": {
+    "label": "AquaPro Assistant",
+    "greeting": "Hello! I'm the AquaPro assistant. Ask me about pool pumps, filters, heaters, lighting, disinfection, accessories or pipes — I'll answer based on our buying guides.",
+    "placeholder": "Ask about pool equipment...",
+    "send": "Send",
+    "close": "Close chat",
+    "open": "Open chat",
+    "botError": "Sorry, the chat service is unavailable. Please try again shortly.",
+    "human": "Talk to an expert",
+    "contactPhone": "+98-21-88888888",
+    "disclaimer": "Answers are based on our published guides and may not cover your exact setup. For precise advice, talk to an expert."
   }
 }
