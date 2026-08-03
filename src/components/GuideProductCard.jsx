@@ -14,7 +14,7 @@ function GuideProductCard({ product }) {
       <div className="guide-product-price">
         {p.price} <span>{t('guideProductCard.toman')}</span>
       </div>
-      <Link to={`/category/${p.category}`} className="btn btn-primary guide-product-cta">
+      <Link to={`/product/${p.key}`} className="btn btn-primary guide-product-cta">
         {t('guideProductCard.cta')}
       </Link>
     </div>

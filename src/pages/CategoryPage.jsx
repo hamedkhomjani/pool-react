@@ -63,7 +63,9 @@ function CategoryPage() {
                   </div>
                   <div className="product-footer">
                     <div className="product-price">{product.price} <span>{t('product.toman')}</span></div>
-                    <span className="btn btn-primary">{t('product.details')}</span>
+                    <Link to={`/product/${product.key}`} className="btn btn-primary" onClick={e => e.stopPropagation()}>
+                      {t('product.details')}
+                    </Link>
                   </div>
                 </div>
               ))}

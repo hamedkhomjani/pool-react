@@ -12,7 +12,9 @@
     "guideTitle": "Pool Pump Buying Guide [1405]; HP Selection Chart by Pool Volume",
     "guideDescription": "Complete pool pump buying guide: HP chart by volume, power consumption and brand comparison. Free consultation: +98-21-88888888",
     "categoryTitle": "{{name}} | AquaPro",
-    "categoryDescription": "A complete collection of {{name}} with the best brands and prices at the AquaPro store. Product authenticity guarantee and valid warranty."
+    "categoryDescription": "A complete collection of {{name}} with the best brands and prices at the AquaPro store. Product authenticity guarantee and valid warranty.",
+    "productTitle": "{{name}} | AquaPro",
+    "productDescription": "{{name}} with an authenticity guarantee and valid warranty at the best market price at the AquaPro store."
   },
   "nav": {
     "home": "Home",
@@ -424,7 +426,7 @@
     "contactAddress": "Tehran, Niavaran Street",
     "shareTitle": "Share",
     "shareText": "AquaPro - Pool Equipment Specialists",
-    "copyright": "All rights reserved for AquaPro. Design inspired by the modern Blueriiot style © 2026"
+    "copyright": "All rights reserved for AquaPro. Design & development by <0>Hamed Khomjani</0> | Inspired by the modern Blueriiot style © 2026"
   },
   "contact": {
     "title": "Contact Us",
@@ -474,6 +476,15 @@
     "subtitle": "A complete collection of {{name}} with the best brands and prices",
     "empty": "No products available in this category yet.",
     "seeAll": "View Other Products"
+  },
+  "productPage": {
+    "notFound": "Product Not Found",
+    "backHome": "Back to Home",
+    "orderNow": "Order Now",
+    "callConsult": "Call for Consultation",
+    "authenticityNote": "All AquaPro products carry an authenticity guarantee and a valid warranty.",
+    "relatedTitle": "Related Products",
+    "orderTemplate": "Hello, I would like to order the following product from the AquaPro website:\n\n🛒 Product: {{name}}\n🔢 Model: {{model}}\n💰 Price: {{price}} Toman"
   },
   "guide": {
     "badge": "Expert Buying Guide",

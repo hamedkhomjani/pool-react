@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 function Footer() {
   const { t } = useTranslation()
@@ -65,7 +65,9 @@ function Footer() {
         </div>
 
         <div className="copyright">
-          {t('footer.copyright')}
+          <Trans i18nKey="footer.copyright">
+            <a href="https://www.linkedin.com/in/hamed-khomjani" target="_blank" rel="noopener noreferrer">Hamed Khomjani</a>
+          </Trans>
         </div>
       </div>
     </footer>

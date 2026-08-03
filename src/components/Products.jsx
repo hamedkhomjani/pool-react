@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import products from '../data/products'
 import { translateProduct, translateChipLabel, translateSpecLabel } from '../i18n/product'
@@ -35,7 +36,9 @@ function Products() {
                   </div>
                   <div className="product-footer">
                     <div className="product-price">{product.price} <span>{t('product.toman')}</span></div>
-                    <span className="btn btn-primary">{t('product.details')}</span>
+                    <Link to={`/product/${product.key}`} className="btn btn-primary" onClick={e => e.stopPropagation()}>
+                      {t('product.details')}
+                    </Link>
                   </div>
                 </div>
               </Reveal>

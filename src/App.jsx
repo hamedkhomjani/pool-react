@@ -10,6 +10,7 @@ import Home from './pages/Home'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
 import CategoryPage from './pages/CategoryPage'
+import ProductPage from './pages/ProductPage'
 import PoolPumpGuide from './pages/PoolPumpGuide'
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/category/:slug" element={<CategoryPage />} />
+        <Route path="/product/:key" element={<ProductPage />} />
         <Route path="/pool-pump-guide" element={<PoolPumpGuide />} />
       </Routes>
       <Footer />
