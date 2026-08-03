@@ -64,6 +64,9 @@ function Header({ theme, onToggleTheme }) {
             </li>
           ))}
           <li>
+            <Link to="/guides" onClick={closeMenu}>{t('nav.guides')}</Link>
+          </li>
+          <li>
             <Link to="/about" onClick={closeMenu}>{t('nav.about')}</Link>
           </li>
           <li>
@@ -103,6 +106,9 @@ function Header({ theme, onToggleTheme }) {
               </a>
             </li>
           ))}
+          <li>
+            <Link to="/guides" onClick={closeMenu}>{t('nav.guides')}</Link>
+          </li>
           <li>
             <Link to="/about" onClick={closeMenu}>{t('nav.about')}</Link>
           </li>

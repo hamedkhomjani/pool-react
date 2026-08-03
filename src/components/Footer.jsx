@@ -28,6 +28,7 @@ function Footer() {
           <div className="footer-col">
             <h4>{t('footer.servicesTitle')}</h4>
             <ul>
+              <li><Link to="/guides">{t('footer.services.guides')}</Link></li>
               <li><Link to="/pool-pump-guide">{t('footer.services.guide')}</Link></li>
               <li><Link to="/">{t('footer.services.calculator')}</Link></li>
               <li><a href="#">{t('footer.services.consulting')}</a></li>
