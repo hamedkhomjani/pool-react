@@ -57,6 +57,10 @@ header {
   list-style: none;
 }
 
+.nav-links li {
+  flex-shrink: 0;
+}
+
 .nav-links a {
   text-decoration: none;
   color: var(--text-main);
@@ -64,6 +68,7 @@ header {
   transition: var(--transition-premium);
   position: relative;
   padding: 6px 0;
+  white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -1862,6 +1867,16 @@ footer {
 
   .nav-links a {
     font-size: 15px;
+  }
+}
+
+@media (max-width: 940px) {
+  .desktop-cta {
+    display: none;
+  }
+
+  .nav-links {
+    gap: 14px;
   }
 }
 
