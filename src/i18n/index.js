@@ -1,7 +1,5 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import fa from './locales/fa.json'
-import en from './locales/en.json'
 
 export const LANGUAGES = [
   { code: 'fa', label: 'فارسی', short: 'FA', dir: 'rtl' },
@@ -9,6 +7,17 @@ export const LANGUAGES = [
 ]
 
 export const SUPPORTED_LANGUAGES = ['fa', 'en']
+
+const resourceCache = {}
+
+function loadResource(lng) {
+  if (resourceCache[lng]) return resourceCache[lng]
+  resourceCache[lng] =
+    lng === 'en'
+      ? import('./locales/en.json')
+      : import('./locales/fa.json')
+  return resourceCache[lng]
+}
 
 function getInitialLanguage() {
   if (typeof window === 'undefined') return 'fa'
@@ -19,18 +28,33 @@ function getInitialLanguage() {
 }
 
 i18n.use(initReactI18next).init({
-  resources: {
-    fa: { translation: fa },
-    en: { translation: en },
-  },
+  resources: {},
   lng: getInitialLanguage(),
   fallbackLng: 'fa',
   supportedLngs: SUPPORTED_LANGUAGES,
+  ns: ['translation'],
+  defaultNS: 'translation',
   interpolation: {
     escapeValue: false,
   },
   returnObjects: true,
+  react: {
+    useSuspense: false,
+  },
 })
+
+async function loadLanguage(lng) {
+  try {
+    const data = await loadResource(lng)
+    if (!i18n.hasResourceBundle(lng, 'translation')) {
+      i18n.addResourceBundle(lng, 'translation', data)
+    }
+  } catch {
+    /* load error: fallback is used */
+  }
+}
+
+const initPromise = loadLanguage(i18n.language)
 
 i18n.on('languageChanged', lng => {
   if (typeof document === 'undefined') return
@@ -43,6 +67,9 @@ i18n.on('languageChanged', lng => {
   } catch {
     /* ignore */
   }
+  loadLanguage(lang)
 })
+
+export { initPromise }
 
 export default i18n

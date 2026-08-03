@@ -2,8 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import './index.css'
-import './i18n'
-import i18n from './i18n'
+import i18n, { initPromise } from './i18n'
 import App from './App.jsx'
 
 if ('scrollRestoration' in history) {
@@ -13,12 +12,14 @@ if ('scrollRestoration' in history) {
 const initialLang = i18n.language === 'en' ? 'en' : 'fa'
 document.documentElement.setAttribute('lang', initialLang === 'fa' ? 'fa' : 'en')
 document.documentElement.setAttribute('dir', initialLang === 'fa' ? 'rtl' : 'ltr')
-document.title = i18n.t('meta.homeTitle')
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </StrictMode>,
-)
+initPromise.then(() => {
+  document.title = i18n.t('meta.homeTitle')
+  createRoot(document.getElementById('root')).render(
+    <StrictMode>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </StrictMode>,
+  )
+})

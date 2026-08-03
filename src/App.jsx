@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, lazy, Suspense } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import './App.css'
@@ -6,14 +6,23 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import useTheme from './hooks/useTheme'
-import Home from './pages/Home'
-import AboutPage from './pages/AboutPage'
-import ContactPage from './pages/ContactPage'
-import CategoryPage from './pages/CategoryPage'
-import ProductPage from './pages/ProductPage'
-import PoolPumpGuide from './pages/PoolPumpGuide'
-import CategoryGuide from './pages/CategoryGuide'
-import GuidesPage from './pages/GuidesPage'
+
+const Home = lazy(() => import('./pages/Home'))
+const AboutPage = lazy(() => import('./pages/AboutPage'))
+const ContactPage = lazy(() => import('./pages/ContactPage'))
+const CategoryPage = lazy(() => import('./pages/CategoryPage'))
+const ProductPage = lazy(() => import('./pages/ProductPage'))
+const PoolPumpGuide = lazy(() => import('./pages/PoolPumpGuide'))
+const CategoryGuide = lazy(() => import('./pages/CategoryGuide'))
+const GuidesPage = lazy(() => import('./pages/GuidesPage'))
+
+function PageLoading() {
+  return (
+    <section className="page-loading" aria-hidden="true">
+      <div className="page-loading-spinner" />
+    </section>
+  )
+}
 
 function App() {
   const { theme, toggleTheme } = useTheme()
@@ -29,17 +38,19 @@ function App() {
     <>
       <Header theme={theme} onToggleTheme={toggleTheme} />
       <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/category/:slug" element={<CategoryPage />} />
-        <Route path="/product/:key" element={<ProductPage />} />
-        <Route path="/pool-pump-guide" element={<PoolPumpGuide />} />
-        <Route path="/guide/pump" element={<Navigate to="/pool-pump-guide" replace />} />
-        <Route path="/guide/:slug" element={<CategoryGuide />} />
-        <Route path="/guides" element={<GuidesPage />} />
-      </Routes>
+      <Suspense fallback={<PageLoading />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/category/:slug" element={<CategoryPage />} />
+          <Route path="/product/:key" element={<ProductPage />} />
+          <Route path="/pool-pump-guide" element={<PoolPumpGuide />} />
+          <Route path="/guide/pump" element={<Navigate to="/pool-pump-guide" replace />} />
+          <Route path="/guide/:slug" element={<CategoryGuide />} />
+          <Route path="/guides" element={<GuidesPage />} />
+        </Routes>
+      </Suspense>
       <Footer />
     </>
   )
