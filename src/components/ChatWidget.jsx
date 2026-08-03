@@ -134,7 +134,7 @@ function ChatWidget() {
             <button className="chat-send" onClick={() => send()} disabled={loading} aria-label={t('chatbot.send')}>➤</button>
           </div>
           <a className="chat-human" href={waUrl} target="_blank" rel="noopener noreferrer">
-            {t('chatbot.human')} · {t('chatbot.contactPhone')}
+            {t('chatbot.human')} · <span className="chat-phone">{t('chatbot.contactPhone')}</span>
           </a>
         </div>
       )}

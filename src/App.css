@@ -3548,6 +3548,12 @@ footer {
   background: var(--primary-soft);
 }
 
+.chat-phone {
+  direction: ltr;
+  unicode-bidi: embed;
+  font-variant-numeric: tabular-nums;
+}
+
 @media (max-width: 480px) {
   .chat-fab {
     bottom: 76px;
