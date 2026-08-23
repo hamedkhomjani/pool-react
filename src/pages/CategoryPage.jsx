@@ -21,6 +21,7 @@ function CategoryPage() {
   useSeo({
     title: t('meta.categoryTitle', { name: categoryName }),
     description: t('meta.categoryDescription', { name: categoryName }),
+    path: `/category/${slug}/`,
   })
 
   if (!category) {

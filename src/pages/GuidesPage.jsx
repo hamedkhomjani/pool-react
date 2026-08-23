@@ -31,7 +31,7 @@ function GuidesPage() {
   useSeo({
     title: t('meta.guidesTitle'),
     description: t('meta.guidesDescription'),
-    canonical: `${window.location.origin}/guides/`,
+    path: '/guides/',
   })
 
   return (

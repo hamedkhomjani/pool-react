@@ -8,8 +8,7 @@ import GuideProductCard from '../components/GuideProductCard'
 import MobileCtaBar from '../components/MobileCtaBar'
 import CalculatorLink from '../components/CalculatorLink'
 import products from '../data/products'
-
-const siteUrl = 'https://aquapro.ir'
+import { SITE_URL as siteUrl } from '../config/site'
 
 const staticSizingRows = [
   { hp: '0.5 HP', flow: '8 m³/h', model: 'HW-0500' },
@@ -136,7 +135,7 @@ function PoolPumpGuide() {
   useSeo({
     title: t('meta.guideTitle'),
     description: t('meta.guideDescription'),
-    canonical: `${window.location.origin}/pool-pump-guide/`,
+    path: '/pool-pump-guide/',
     jsonLd: combinedSchema,
   })
 

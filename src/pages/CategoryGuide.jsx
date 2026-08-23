@@ -7,8 +7,7 @@ import GuideProductCard from '../components/GuideProductCard'
 import MobileCtaBar from '../components/MobileCtaBar'
 import CalculatorLink from '../components/CalculatorLink'
 import products from '../data/products'
-
-const siteUrl = 'https://aquapro.ir'
+import { SITE_URL as siteUrl } from '../config/site'
 
 function FAQItem({ q, a, open, onToggle }) {
   return (
@@ -97,7 +96,7 @@ function CategoryGuide() {
   useSeo({
     title: `${data.title} | ${t('brand')}`,
     description: data.lead,
-    canonical: `${window.location.origin}/guide/${slug}/`,
+    path: `/guide/${slug}/`,
     jsonLd: combinedSchema,
   })
 

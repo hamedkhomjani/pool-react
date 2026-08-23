@@ -24,7 +24,7 @@ function ContactPage() {
   useSeo({
     title: t('meta.contactTitle'),
     description: t('meta.contactDescription'),
-    canonical: `${window.location.origin}/contact/`,
+    path: '/contact/',
   })
 
   function buildMessage() {

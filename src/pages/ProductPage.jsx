@@ -30,7 +30,7 @@ function ProductPage() {
         .map(p => translateProduct(t, p))
     : []
 
-  const canonical = `${window.location.origin}/product/${key}/`
+  const canonical = `/product/${key}/`
 
   const jsonLd = useMemo(
     () =>
@@ -55,7 +55,7 @@ function ProductPage() {
   useSeo({
     title: product ? `${product.title} | ${t('brand')}` : t('productPage.notFound'),
     description: product ? product.desc : t('meta.defaultDescription'),
-    canonical,
+    path: canonical,
     jsonLd,
   })
 

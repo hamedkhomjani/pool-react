@@ -8,7 +8,7 @@ function AboutPage() {
   useSeo({
     title: t('meta.aboutTitle'),
     description: t('meta.aboutDescription'),
-    canonical: `${window.location.origin}/about/`,
+    path: '/about/',
   })
 
   return <About />

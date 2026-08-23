@@ -1,5 +1,6 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
+import { langFromPath } from '../config/site'
 
 export const LANGUAGES = [
   { code: 'fa', label: 'فارسی', short: 'FA', dir: 'rtl' },
@@ -8,13 +9,11 @@ export const LANGUAGES = [
 
 export const SUPPORTED_LANGUAGES = ['fa', 'en']
 
+// The URL decides the language: Persian at the root, English under /en.
 function getInitialLanguage() {
   if (typeof window === 'undefined') return 'fa'
   try {
-    const stored = localStorage.getItem('aquapro-language')
-    if (SUPPORTED_LANGUAGES.includes(stored)) return stored
-    const navLang = navigator.language?.toLowerCase()?.slice(0, 2)
-    return SUPPORTED_LANGUAGES.includes(navLang) ? navLang : 'fa'
+    return langFromPath(window.location.pathname)
   } catch {
     return 'fa'
   }

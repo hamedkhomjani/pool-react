@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom'
 import { Trans, useTranslation } from 'react-i18next'
 import { CONTACT_CONFIG } from '../config/contact'
+import { SITE_URL } from '../config/site'
 import CalculatorLink from './CalculatorLink'
 
 function Footer() {
   const { t } = useTranslation()
-  const shareUrl = 'https://aquapro.ir'
+  const shareUrl = SITE_URL
   const shareText = t('footer.shareText')
 
   return (
