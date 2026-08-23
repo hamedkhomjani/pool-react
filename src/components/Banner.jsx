@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import Reveal from './Reveal'
 
@@ -10,7 +11,7 @@ function Banner() {
         <div className="banner-text">
           <h3>{t('banner.title')}</h3>
           <p>{t('banner.subtitle')}</p>
-          <a href="#" className="btn banner-btn">{t('banner.cta')}</a>
+          <Link to="/contact" className="btn banner-btn">{t('banner.cta')}</Link>
         </div>
         <div className="banner-icon">🏊‍♂️</div>
       </div>

@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Trans, useTranslation } from 'react-i18next'
+import { CONTACT_CONFIG } from '../config/contact'
+import CalculatorLink from './CalculatorLink'
 
 function Footer() {
   const { t } = useTranslation()
@@ -20,9 +22,9 @@ function Footer() {
           <div className="footer-col">
             <h4>{t('footer.equipmentTitle')}</h4>
             <ul>
-              <li><a href="#">{t('footer.equipment.pumps')}</a></li>
-              <li><a href="#">{t('footer.equipment.filters')}</a></li>
-              <li><a href="#">{t('footer.equipment.heaters')}</a></li>
+              <li><Link to="/category/pump">{t('footer.equipment.pumps')}</Link></li>
+              <li><Link to="/category/filter">{t('footer.equipment.filters')}</Link></li>
+              <li><Link to="/category/heater">{t('footer.equipment.heaters')}</Link></li>
             </ul>
           </div>
           <div className="footer-col">
@@ -30,16 +32,16 @@ function Footer() {
             <ul>
               <li><Link to="/guides">{t('footer.services.guides')}</Link></li>
               <li><Link to="/pool-pump-guide">{t('footer.services.guide')}</Link></li>
-              <li><Link to="/">{t('footer.services.calculator')}</Link></li>
-              <li><a href="#">{t('footer.services.consulting')}</a></li>
-              <li><a href="#">{t('footer.services.warranty')}</a></li>
+              <li><CalculatorLink className="">{t('footer.services.calculator')}</CalculatorLink></li>
+              <li><Link to="/contact">{t('footer.services.consulting')}</Link></li>
+              <li><Link to="/contact">{t('footer.services.warranty')}</Link></li>
             </ul>
           </div>
           <div className="footer-col">
             <h4>{t('footer.contactTitle')}</h4>
             <ul>
-              <li><a href="tel:+982188888888">{t('footer.contactPhone')}</a></li>
-              <li><a href="#">{t('footer.contactAddress')}</a></li>
+              <li><a href={CONTACT_CONFIG.phoneHref}>{t('footer.contactPhone')}</a></li>
+              <li><Link to="/contact">{t('footer.contactAddress')}</Link></li>
             </ul>
           </div>
         </div>

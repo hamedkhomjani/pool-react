@@ -1,14 +1,12 @@
+import { useMemo } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import products, { categories } from '../data/products'
 import { translateProduct, translateChipLabel, translateSpecLabel } from '../i18n/product'
+import { whatsappUrl, CONTACT_CONFIG } from '../config/contact'
+import normalizeDigits from '../utils/digits'
 import useSeo from '../hooks/useSeo'
 import Reveal from '../components/Reveal'
-
-const CONTACT_CONFIG = {
-  whatsappNumber: '989123456789',
-  phone: '+982188888888',
-}
 
 function buildOrderMessage(t, product) {
   return t('productPage.orderTemplate', {
@@ -34,25 +32,31 @@ function ProductPage() {
 
   const canonical = `${window.location.origin}/product/${key}/`
 
+  const jsonLd = useMemo(
+    () =>
+      product
+        ? {
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name: product.title,
+            description: product.desc,
+            category: categoryName,
+            offers: {
+              '@type': 'Offer',
+              priceCurrency: 'IRR',
+              price: normalizeDigits(product.price).replace(/[^\d]/g, ''),
+              availability: 'https://schema.org/InStock',
+            },
+          }
+        : null,
+    [product, categoryName],
+  )
+
   useSeo({
     title: product ? `${product.title} | ${t('brand')}` : t('productPage.notFound'),
     description: product ? product.desc : t('meta.defaultDescription'),
     canonical,
-    jsonLd: product
-      ? {
-          '@context': 'https://schema.org',
-          '@type': 'Product',
-          name: product.title,
-          description: product.desc,
-          category: categoryName,
-          offers: {
-            '@type': 'Offer',
-            priceCurrency: 'IRR',
-            price: product.price.replace(/[^\d]/g, ''),
-            availability: 'https://schema.org/InStock',
-          },
-        }
-      : null,
+    jsonLd,
   })
 
   if (!product) {
@@ -66,7 +70,7 @@ function ProductPage() {
     )
   }
 
-  const orderUrl = `https://wa.me/${CONTACT_CONFIG.whatsappNumber}?text=${encodeURIComponent(buildOrderMessage(t, product))}`
+  const orderUrl = whatsappUrl(buildOrderMessage(t, product))
 
   return (
     <>
@@ -106,7 +110,7 @@ function ProductPage() {
                   <a href={orderUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
                     {t('productPage.orderNow')}
                   </a>
-                  <a href={`tel:${CONTACT_CONFIG.phone}`} className="btn btn-outline">
+                  <a href={CONTACT_CONFIG.phoneHref} className="btn btn-outline">
                     {t('productPage.callConsult')}
                   </a>
                 </div>

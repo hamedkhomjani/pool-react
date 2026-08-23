@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import Reveal from './Reveal'
+import { CONTACT_CONFIG } from '../config/contact'
 
 const shapes = [
   { value: 'rect', icon: '▬' },
@@ -83,8 +85,6 @@ function formatVolume(volume, lang) {
     return volume.toLocaleString()
   }
 }
-
-import Reveal from './Reveal'
 
 function Calculator() {
   const { t, i18n } = useTranslation()
@@ -260,7 +260,7 @@ function Calculator() {
               </div>
 
               <div style={{ textAlign: 'center', marginTop: '24px' }}>
-                <a href="tel:+982188888888" className="btn btn-primary" style={{ fontSize: '16px', padding: '14px 36px' }}>
+                <a href={CONTACT_CONFIG.phoneHref} className="btn btn-primary" style={{ fontSize: '16px', padding: '14px 36px' }}>
                   {t('calculator.ctaCall')}
                 </a>
               </div>

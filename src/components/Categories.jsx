@@ -10,8 +10,8 @@ function Categories() {
       <div className="container">
         <Reveal>
           <div className="cat-grid">
-            {categories.map((cat, index) => (
-              <Link to={`/category/${cat.slug}`} className="cat-card" key={index} style={{ textDecoration: 'none' }}>
+            {categories.map(cat => (
+              <Link to={`/category/${cat.slug}`} className="cat-card" key={cat.slug} style={{ textDecoration: 'none' }}>
                 <div className="cat-icon">{cat.icon}</div>
                 <h4>{t(`categories.${cat.slug}`)}</h4>
               </Link>

@@ -1,11 +1,12 @@
 import { useMemo, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useTranslation, Trans } from 'react-i18next'
 import Reveal from '../components/Reveal'
 import useSeo from '../hooks/useSeo'
 import GuideSizer from '../components/GuideSizer'
 import GuideProductCard from '../components/GuideProductCard'
 import MobileCtaBar from '../components/MobileCtaBar'
+import CalculatorLink from '../components/CalculatorLink'
 import products from '../data/products'
 
 const siteUrl = 'https://aquapro.ir'
@@ -25,23 +26,6 @@ const clusterIcons = ['⚙️', '🌪️', '🔥']
 const featuredPump = products.find(p => p.category === 'pump')
 const featuredFilter = products.find(p => p.category === 'filter')
 const featuredDisinfection = products.find(p => p.category === 'disinfection')
-
-function CalculatorLink({ children }) {
-  const navigate = useNavigate()
-  return (
-    <a
-      href="/#calculator"
-      className="guide-inline-link"
-      onClick={e => {
-        e.preventDefault()
-        sessionStorage.setItem('scrollTo', 'calculator')
-        navigate('/')
-      }}
-    >
-      {children}
-    </a>
-  )
-}
 
 function FAQItem({ q, a, open, onToggle }) {
   return (
@@ -63,7 +47,9 @@ function PoolPumpGuide() {
 
   const sizingRows = useMemo(() => {
     const volumes = t('guide.sections.sizingRows', { returnObjects: true }) || []
-    return volumes.map((v, i) => ({ ...staticSizingRows[i], volume: v.volume }))
+    return volumes
+      .slice(0, staticSizingRows.length)
+      .map((v, i) => ({ ...staticSizingRows[i], volume: v.volume }))
   }, [t])
 
   const pumpTypes = useMemo(

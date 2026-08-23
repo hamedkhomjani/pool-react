@@ -28,7 +28,7 @@ ALLOWED_ORIGINS = "https://aquapro.ir"
 [ai]
 binding = "AI"
 
-# Vector search index for the knowledge base (1536-dim, cosine).
+# Vector search index for the knowledge base (1024-dim, cosine, bge-m3).
 [[vectorize]]
 binding = "VECTORIZE"
 index_name = "aquapro-knowledge"

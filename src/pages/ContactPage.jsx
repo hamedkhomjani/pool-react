@@ -2,17 +2,14 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Reveal from '../components/Reveal'
 import useSeo from '../hooks/useSeo'
-
-const CONTACT_CONFIG = {
-  whatsappNumber: '989123456789',
-  email: 'info@aquapro.ir',
-}
+import { CONTACT_CONFIG, whatsappUrl } from '../config/contact'
+import normalizeDigits from '../utils/digits'
 
 const contactKeys = ['phone', 'mobile', 'email', 'address', 'hours']
 
 const contactHrefs = {
-  phone: 'tel:+982188888888',
-  mobile: 'tel:+989123456789',
+  phone: CONTACT_CONFIG.phoneHref,
+  mobile: CONTACT_CONFIG.mobileHref,
   email: `mailto:${CONTACT_CONFIG.email}`,
 }
 
@@ -31,10 +28,11 @@ function ContactPage() {
   })
 
   function buildMessage() {
+    const phone = normalizeDigits(form.phone)
     const emailLine = form.email ? `${t('contact.messageEmail', { email: form.email })}\n` : ''
     return t('contact.messageTemplate', {
       name: form.name,
-      phone: form.phone,
+      phone,
       email: emailLine,
       subject: form.subject,
       message: form.message,
@@ -48,8 +46,7 @@ function ContactPage() {
   function handleSubmit(e) {
     e.preventDefault()
     const message = buildMessage()
-    const url = `https://wa.me/${CONTACT_CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`
-    window.open(url, '_blank', 'noopener,noreferrer')
+    window.open(whatsappUrl(message), '_blank', 'noopener,noreferrer')
     setStatus('sent')
   }
 

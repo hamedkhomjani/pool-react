@@ -75,7 +75,7 @@ function Header({ theme, onToggleTheme }) {
         </ul>
 
         <div className="nav-actions">
-          <button className="btn btn-primary desktop-cta">{t('nav.cta')}</button>
+          <Link to="/contact" className="btn btn-primary desktop-cta">{t('nav.cta')}</Link>
           <LanguageSwitcher />
           <ThemeToggle theme={theme} onToggle={onToggleTheme} />
           <button
@@ -116,7 +116,7 @@ function Header({ theme, onToggleTheme }) {
             <Link to="/contact" onClick={closeMenu}>{t('nav.contact')}</Link>
           </li>
         </ul>
-        <button className="btn btn-primary mobile-cta">{t('nav.cta')}</button>
+        <Link to="/contact" className="btn btn-primary mobile-cta">{t('nav.cta')}</Link>
       </nav>
     </header>
   )

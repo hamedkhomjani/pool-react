@@ -1,10 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-
-const CONTACT_CONFIG = {
-  whatsappNumber: '989123456789',
-  phone: '+982188888888',
-}
+import { whatsappUrl } from '../config/contact'
 
 const CHAT_API_URL = '/api/chat'
 
@@ -28,24 +24,26 @@ function Message({ role, children }) {
   )
 }
 
+const API_TIMEOUT = 20000
+
+async function postMessage(message, signal) {
+  const res = await fetch(CHAT_API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message }),
+    signal,
+  })
+  return res.json()
+}
+
 function ChatWidget() {
   const { t } = useTranslation()
   const [open, setOpen] = useState(false)
-  const [messages, setMessages] = useState([])
+  const [messages, setMessages] = useState([{ role: 'bot', greeting: true }])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
-  const [init, setInit] = useState(false)
   const bodyRef = useRef(null)
   const inputRef = useRef(null)
-
-  useEffect(() => {
-    if (open && !init) {
-      setInit(true)
-      setMessages([
-        { role: 'bot', text: t('chatbot.greeting'), sources: [] },
-      ])
-    }
-  }, [open, init, t])
 
   useEffect(() => {
     if (bodyRef.current) {
@@ -57,15 +55,12 @@ function ChatWidget() {
     const message = (text || input).trim()
     if (!message || loading) return
     setInput('')
-    setMessages(prev => [...prev, { role: 'user', text: message, sources: [] }])
+    setMessages(prev => [...prev, { role: 'user', text: message }])
     setLoading(true)
+    const controller = new AbortController()
+    const timer = setTimeout(() => controller.abort(), API_TIMEOUT)
     try {
-      const res = await fetch(CHAT_API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message }),
-      })
-      const data = await res.json()
+      const data = await postMessage(message, controller.signal)
       const answer = data.answer || t('chatbot.botError')
       setMessages(prev => [
         ...prev,
@@ -77,6 +72,7 @@ function ChatWidget() {
         { role: 'bot', text: t('chatbot.botError'), sources: [] },
       ])
     } finally {
+      clearTimeout(timer)
       setLoading(false)
     }
   }
@@ -88,7 +84,7 @@ function ChatWidget() {
     }
   }
 
-  const waUrl = `https://wa.me/${CONTACT_CONFIG.whatsappNumber}?text=${encodeURIComponent(t('footer.shareText'))}`
+  const waUrl = whatsappUrl(t('footer.shareText'))
 
   return (
     <>
@@ -105,8 +101,8 @@ function ChatWidget() {
           <div className="chat-body" ref={bodyRef}>
             {messages.map((m, i) => (
               <Message key={i} role={m.role}>
-                {formatLinks(m.text)}
-                {m.sources.length > 0 && (
+                {m.greeting ? t('chatbot.greeting') : formatLinks(m.text)}
+                {m.sources?.length > 0 && (
                   <div className="chat-sources">
                     {m.sources.slice(0, 2).map((s, j) => (
                       <span key={j}>{s}</span>

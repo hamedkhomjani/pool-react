@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import Reveal from './Reveal'
 
 const statKeys = ['projects', 'years', 'cities', 'satisfaction']
 
@@ -8,8 +9,6 @@ const valueKeys = [
   { icon: '📞', key: 'support' },
   { icon: '🧾', key: 'price' },
 ]
-
-import Reveal from './Reveal'
 
 function About() {
   const { t } = useTranslation()

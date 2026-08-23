@@ -1,6 +1,5 @@
-import { useEffect, lazy, Suspense } from 'react'
+import { lazy, Suspense } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
 import './App.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -27,13 +26,6 @@ function PageLoading() {
 
 function App() {
   const { theme, toggleTheme } = useTheme()
-  const { i18n } = useTranslation()
-
-  useEffect(() => {
-    const lang = i18n.language === 'en' ? 'en' : 'fa'
-    document.documentElement.setAttribute('lang', lang)
-    document.documentElement.setAttribute('dir', lang === 'fa' ? 'rtl' : 'ltr')
-  }, [i18n.language])
 
   return (
     <>

@@ -13,12 +13,13 @@
 //   - "llm"  : full RAG via Workers AI (needs Cloudflare account + keys)
 //   - "mock" : offline keyword retrieval with template answers (no API needed)
 
-import kbJson from '../kb/chunks.json' assert { type: 'json' }
+import kbJson from '../kb/chunks.json' with { type: 'json' }
+import { createMockRetriever, buildMockAnswer } from './mock.js'
 
 const KB = kbJson.chunks || []
-const EMBEDDING_MODEL = '@cf/baai/bge-large-en-v1.5'
+const EMBEDDING_MODEL = '@cf/baai/bge-m3'
 const LLM_MODEL = '@cf/meta/llama-3.1-8b-instruct'
-const EMBEDDING_DIM = 1536
+const EMBEDDING_DIM = 1024
 
 const corsHeaders = (request, env) => {
   const config = (env?.ALLOWED_ORIGINS || '').split(',').map(s => s.trim())
@@ -39,123 +40,12 @@ function json(body, status = 200, extra = {}) {
   })
 }
 
-function textChunk(text, max = 160) {
-  return text.length > max ? `${text.slice(0, max)}…` : text
-}
-
 // ---- Mock mode: offline retrieval + canned answers ---------------------
-// Tokenize + stem-light matching against the knowledge base, then build a
-// truthful answer by quoting the best chunks. No external API is called.
+// Keyword retrieval against the knowledge base, then a truthful answer
+// built by quoting the best chunks. No external API is called.
+// Logic lives in src/mock.js (shared with the offline tests).
 
-const STOPWORDS = new Set([
-  'the', 'a', 'an', 'is', 'are', 'was', 'were', 'to', 'of', 'for', 'and',
-  'or', 'in', 'on', 'at', 'by', 'with', 'about', 'how', 'what', 'when',
-  'where', 'which', 'who', 'why', 'do', 'does', 'did', 'i', 'you', 'we',
-  'they', 'it', 'my', 'your', 'our', 'their', 'can', 'should', 'pool',
-])
-
-function tokenize(text) {
-  return (text || '')
-    .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, ' ')
-    .split(/\s+/)
-    .filter(w => w.length > 1 && !STOPWORDS.has(w))
-}
-
-// Terms that strongly indicate a pool-equipment question. If a query contains
-// none of these, the mock mode refuses to answer (avoids false positives on
-// generic words like "life" or "meaning").
-const DOMAIN_TERMS = new Set([
-  'pump', 'pumps', 'filter', 'filters', 'heater', 'heaters', 'heating',
-  'light', 'lights', 'led', 'uv', 'salt', 'chlorine', 'sanitiser', 'sanitizer',
-  'disinfect', 'sand', 'glass', 'flow', 'pressure', 'valve', 'pipe', 'pipes',
-  'fitting', 'fittings', 'accessory', 'accessories', 'backwash', 'gauge',
-  'electric', 'solar', 'heat', 'volume', 'hp', 'kw', 'watt', 'volt', 'tank',
-  'skimmer', 'brush', 'ladder', 'cover', 'cable', 'transformer', 'cell',
-  'media', 'basket', 'impeller', 'swimming', 'water', 'pool', 'pools',
-  'temperature', 'freeze', 'flowrate', 'bar', 'm3', 'backwashing',
-  'lifespan', 'warranty', 'contact', 'price', 'buy', 'brand', 'install',
-  'repair', 'maintenance', 'green', 'algae', 'cloudy', 'leak',
-])
-
-function hasDomainTerm(query) {
-  const tokens = tokenize(query)
-  return tokens.some(tok => DOMAIN_TERMS.has(tok))
-}
-
-// Precomputed term frequency maps for the knowledge base (mock mode only).
-let kbDocFreq = null
-
-function termFreq(text) {
-  const tf = new Map()
-  for (const tok of tokenize(text)) tf.set(tok, (tf.get(tok) || 0) + 1)
-  return tf
-}
-
-function ensureDocFreq() {
-  if (kbDocFreq) return kbDocFreq
-  const df = new Map()
-  for (const chunk of KB) {
-    const seen = new Set(tokenize(chunk.title + ' ' + chunk.text))
-    for (const tok of seen) df.set(tok, (df.get(tok) || 0) + 1)
-  }
-  kbDocFreq = { df, total: KB.length }
-  return kbDocFreq
-}
-
-async function retrieveMock(query, topK = 4) {
-  const MIN_SCORE = 0.5
-  if (!hasDomainTerm(query)) return []
-
-  const { df, total } = ensureDocFreq()
-  const qt = tokenize(query)
-  const qtf = termFreq(query)
-  const seen = new Set(qt)
-
-  const scored = KB.map((chunk, i) => {
-    let dot = 0
-    const tf = termFreq(chunk.title + ' ' + chunk.text)
-    for (const tok of seen) {
-      const fq = qtf.get(tok) || 0
-      const fd = tf.get(tok) || 0
-      if (fq && fd) {
-        const idf = Math.log((total + 1) / ((df.get(tok) || 0) + 1)) + 1
-        dot += fq * idf
-      }
-    }
-    return { chunk, i, score: dot }
-  })
-    .filter(x => x.score >= MIN_SCORE)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, topK)
-
-  return scored.map(x => ({
-    title: x.chunk.title,
-    text: x.chunk.text,
-    score: x.score,
-    type: x.chunk.type,
-  }))
-}
-
-function buildMockAnswer(query, results) {
-  if (!results.length) {
-    return {
-      answer: "I couldn't find that in our knowledge base. Could you rephrase, or try asking about pumps, filters, heaters, lighting, disinfection, accessories or pipes & fittings? You can also contact us for help.",
-      grounded: false,
-    }
-  }
-  const parts = results.map(r => {
-    const t = textChunk(r.text)
-    return r.type === 'faq'
-      ? `Q&A: ${r.title}\n${t}`
-      : `${r.title}: ${t}`
-  })
-  return {
-    answer: `Based on our buying guides:\n\n${parts.join('\n\n')}`,
-    grounded: true,
-    sources: results.map(r => r.title),
-  }
-}
+const retrieveMock = createMockRetriever(KB)
 
 // ---- LLM mode: real embeddings + vector retrieval + grounded answer -----
 async function embedReal(env, text) {
@@ -272,7 +162,7 @@ export default {
 
         // mock mode
         const results = await retrieveMock(query)
-        const reply = buildMockAnswer(query, results)
+        const reply = buildMockAnswer(results)
         return json(reply, 200, cors)
       } catch {
         return json({ error: 'Chat service unavailable. Please try again shortly.' }, 500, cors)

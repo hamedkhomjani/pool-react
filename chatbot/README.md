@@ -59,9 +59,10 @@ endpoint until you deploy the Worker with real credentials.
 3. **Enable Workers AI** in the dashboard: *Workers AI → Get started*
 4. **Create the vector index** for the knowledge base:
    ```bash
-   wrangler vectorize create aquapro-knowledge --dimensions=1536 --metric=cosine
+   wrangler vectorize create aquapro-knowledge --dimensions=1024 --metric=cosine
    ```
-   > The Worker uses `bge-large-en-v1.5` (1536-dim) for embeddings.
+   > The Worker uses `bge-m3` (multilingual, 1024-dim) for embeddings, so
+   > Persian and English questions both retrieve relevant chunks.
 5. **Create a KV namespace** for rate limiting, copy its ID into
    `wrangler.toml` → `[kv_namespaces].id`.
 6. **Switch to LLM mode** — edit `wrangler.toml`:

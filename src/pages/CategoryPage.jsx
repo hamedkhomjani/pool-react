@@ -2,19 +2,21 @@ import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import products, { categories } from '../data/products'
-import { translateProduct, translateChipLabel, translateSpecLabel } from '../i18n/product'
+import { translateProduct, translateChipLabel } from '../i18n/product'
 import useSeo from '../hooks/useSeo'
+import ProductModal from '../components/ProductModal'
 
 function CategoryPage() {
   const { slug } = useParams()
   const { t } = useTranslation()
-  const [selected, setSelected] = useState(null)
+  const [selectedKey, setSelectedKey] = useState(null)
 
   const category = categories.find(c => c.slug === slug)
   const categoryName = category ? t(`categories.${category.slug}`) : ''
   const categoryProducts = products
     .filter(p => p.category === slug)
     .map(p => translateProduct(t, p))
+  const selected = selectedKey ? categoryProducts.find(p => p.key === selectedKey) : null
 
   useSeo({
     title: t('meta.categoryTitle', { name: categoryName }),
@@ -50,8 +52,8 @@ function CategoryPage() {
             </div>
           ) : (
             <div className="product-grid">
-              {categoryProducts.map((product, index) => (
-                <div className="product-card" key={index} onClick={() => setSelected(product)}>
+              {categoryProducts.map(product => (
+                <div className="product-card" key={product.key} onClick={() => setSelectedKey(product.key)}>
                   {product.badge && <span className="badge-top">{product.badge}</span>}
                   <div className="product-image">{product.icon}</div>
                   <h3 className="product-title">{product.title}</h3>
@@ -74,41 +76,7 @@ function CategoryPage() {
         </div>
       </section>
 
-      {selected && (
-        <div className="modal-overlay" onClick={() => setSelected(null)}>
-          <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <button className="modal-close" onClick={() => setSelected(null)}>✕</button>
-            <div className="modal-header">
-              <div className="modal-icon">{selected.icon}</div>
-              <div>
-                <h3 className="modal-title">{selected.title}</h3>
-                <span className="modal-price">{selected.price} <span>{t('product.toman')}</span></span>
-              </div>
-            </div>
-            <p className="modal-desc">{selected.longDesc}</p>
-            <div className="modal-features">
-              <h4>{t('product.modalFeatures')}</h4>
-              <div className="features-grid">
-                {selected.features.map((feat, i) => (
-                  <div className="feature-item" key={i}>✓ {feat}</div>
-                ))}
-              </div>
-            </div>
-            <div className="modal-specs">
-              <h4>{t('product.modalSpecs')}</h4>
-              <div className="specs-table">
-                {Object.entries(selected.detailSpecs).map(([key, value]) => (
-                  <div className="spec-row" key={key}>
-                    <span className="spec-label">{translateSpecLabel(t, key)}</span>
-                    <span className="spec-value">{value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <button className="btn btn-primary modal-cta">{t('product.addToCart')}</button>
-          </div>
-        </div>
-      )}
+      {selected && <ProductModal product={selected} onClose={() => setSelectedKey(null)} />}
     </>
   )
 }

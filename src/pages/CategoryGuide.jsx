@@ -1,30 +1,14 @@
 import { useMemo, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useTranslation, Trans } from 'react-i18next'
 import Reveal from '../components/Reveal'
 import useSeo from '../hooks/useSeo'
 import GuideProductCard from '../components/GuideProductCard'
 import MobileCtaBar from '../components/MobileCtaBar'
+import CalculatorLink from '../components/CalculatorLink'
 import products from '../data/products'
 
 const siteUrl = 'https://aquapro.ir'
-
-function CalculatorLink({ children }) {
-  const navigate = useNavigate()
-  return (
-    <a
-      href="/#calculator"
-      className="guide-inline-link"
-      onClick={e => {
-        e.preventDefault()
-        sessionStorage.setItem('scrollTo', 'calculator')
-        navigate('/')
-      }}
-    >
-      {children}
-    </a>
-  )
-}
 
 function FAQItem({ q, a, open, onToggle }) {
   return (

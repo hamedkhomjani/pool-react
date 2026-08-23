@@ -4,11 +4,11 @@
 //   1. wrangler login
 //   2. Set CHAT_MODE = "llm" in wrangler.toml
 //   3. Create the index:
-//        npx wrangler vectorize create aquapro-knowledge --dimensions=1536 --metric=cosine
+//        npx wrangler vectorize create aquapro-knowledge --dimensions=1024 --metric=cosine
 //   4. Run this script with your API token:
 //        CLOUDFLARE_API_TOKEN=... CLOUDFLARE_ACCOUNT_ID=... npm run kb:index
 //
-// It embeds every chunk with @cf/baai/bge-large-en-v1.5 (1536 dims) and
+// It embeds every chunk with @cf/baai/bge-m3 (multilingual, 1024 dims) and
 // upserts the vectors into Vectorize. Run `npm run kb:build` first so
 // chunks.json is up to date.
 
@@ -19,8 +19,8 @@ import { dirname, join } from 'node:path'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const kbPath = join(__dirname, '..', 'kb', 'chunks.json')
 
-const EMBEDDING_MODEL = '@cf/baai/bge-large-en-v1.5'
-const EMBEDDING_DIM = 1536
+const EMBEDDING_MODEL = '@cf/baai/bge-m3'
+const EMBEDDING_DIM = 1024
 const INDEX_NAME = 'aquapro-knowledge'
 
 const token = process.env.CLOUDFLARE_API_TOKEN
