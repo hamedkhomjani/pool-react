@@ -8,6 +8,7 @@ export const ROUTES = [
   { path: '/contact', load: () => import('./pages/ContactPage') },
   { path: '/category/:slug', load: () => import('./pages/CategoryPage') },
   { path: '/product/:key', load: () => import('./pages/ProductPage') },
+  { path: '/search', load: () => import('./pages/SearchPage') },
   { path: '/pool-pump-guide', load: () => import('./pages/PoolPumpGuide') },
   { path: '/guides', load: () => import('./pages/GuidesPage') },
   { path: '/guide/:slug', load: () => import('./pages/CategoryGuide') },

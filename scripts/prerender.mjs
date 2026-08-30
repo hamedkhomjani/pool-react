@@ -8,7 +8,8 @@ import react from '@vitejs/plugin-react'
 import fs from 'node:fs'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
-import products, { categories } from '../src/data/products.js'
+import products from '../src/data/catalog/products.base.js'
+import { categories } from '../src/data/catalog/categories.js'
 import { SITE_URL } from '../src/config/site.js'
 
 const ROOT = path.resolve(import.meta.dirname, '..')

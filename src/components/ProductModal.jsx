@@ -1,10 +1,14 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { translateSpecLabel } from '../i18n/product'
+import { formatPrice } from '../utils/price'
 import { whatsappUrl } from '../config/contact'
+import { useCart } from '../context/CartContext'
 
 function ProductModal({ product, onClose }) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const cart = useCart()
+  const [qty, setQty] = useState(1)
 
   useEffect(() => {
     function onKey(e) {
@@ -25,7 +29,7 @@ function ProductModal({ product, onClose }) {
     t('productPage.orderTemplate', {
       name: product.title,
       model: product.detailSpecs.model || '',
-      price: product.price,
+      price: formatPrice(product.price, i18n.language),
     }),
   )
 
@@ -37,7 +41,7 @@ function ProductModal({ product, onClose }) {
           <div className="modal-icon">{product.icon}</div>
           <div>
             <h3 className="modal-title">{product.title}</h3>
-            <span className="modal-price">{product.price} <span>{t('product.toman')}</span></span>
+            <span className="modal-price">{formatPrice(product.price, i18n.language)} <span>{t('product.toman')}</span></span>
           </div>
         </div>
         <p className="modal-desc">{product.longDesc}</p>
@@ -60,14 +64,19 @@ function ProductModal({ product, onClose }) {
             ))}
           </div>
         </div>
-        <a
-          href={orderUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn btn-primary modal-cta"
-        >
-          {t('productPage.orderNow')}
-        </a>
+        <div className="modal-cta-row">
+          <div className="cart-qty" role="group" aria-label={t('cart.qty')}>
+            <button type="button" onClick={() => setQty(q => q + 1)} aria-label={t('cart.inc')}>+</button>
+            <span className="cart-qty-value">{qty}</span>
+            <button type="button" onClick={() => setQty(q => Math.max(1, q - 1))} aria-label={t('cart.dec')} disabled={qty <= 1}>−</button>
+          </div>
+          <button type="button" className="btn btn-primary" onClick={() => cart.add(product.key, qty)}>
+            {t('cart.addToCart')}
+          </button>
+          <a href={orderUrl} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
+            {t('productPage.orderNow')}
+          </a>
+        </div>
       </div>
     </div>
   )

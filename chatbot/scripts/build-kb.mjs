@@ -2,7 +2,7 @@
 //
 // Sources (read from the React app):
 //   - Full buying guides   (src/i18n/locales/en.json -> fullGuides)
-//   - Product catalog      (src/data/products.js)
+//   - Product catalog      (src/data/catalog)
 //   - Contact info         (src/i18n/locales/en.json -> contact)
 //
 // Output: chatbot/kb/chunks.json — a list of plain-text chunks used for
@@ -10,34 +10,29 @@
 // facts about the products.
 
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import { dirname, join } from 'node:path'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const repoRoot = join(__dirname, '..', '..')
 const enPath = join(repoRoot, 'src', 'i18n', 'locales', 'en.json')
-const productsPath = join(repoRoot, 'src', 'data', 'products.js')
 const outDir = join(__dirname, '..', 'kb')
 const outPath = join(outDir, 'chunks.json')
 
 const en = JSON.parse(readFileSync(enPath, 'utf8'))
 
-// products.js is ESM source; evaluate it by importing it as data.
-// It only exports arrays, so it is safe to run in this context.
+// Import the catalog modules (ESM) for keys, category slugs and branding.
 let catalog = { categories: [], products: [] }
 try {
-  catalog = parseProductsSource(readFileSync(productsPath, 'utf8'))
+  const { categories } = await import(
+    pathToFileURL(join(repoRoot, 'src/data/catalog/categories.js')).href
+  )
+  const { default: products } = await import(
+    pathToFileURL(join(repoRoot, 'src/data/catalog/products.base.js')).href
+  )
+  catalog = { categories, products }
 } catch {
-  /* keep empty catalog */
-}
-
-function parseProductsSource(src) {
-  const categories = [...src.matchAll(/slug:\s*'([^']+)'/g)].map(m => m[1])
-  const products = [...src.matchAll(/key:\s*'([^']+)',\s*category:\s*'([^']+)'/g)].map(m => ({
-    key: m[1],
-    category: m[2],
-  }))
-  return { categories: [...new Set(categories)], products }
+  // keep empty catalog
 }
 
 class Chunk {
@@ -131,7 +126,7 @@ add('contact', 'Contact', `Phone: ${c.phone || ''} | WhatsApp: ${c.whatsapp || '
 mkdirSync(outDir, { recursive: true })
 const output = {
   generatedAt: new Date().toISOString(),
-  source: 'src/i18n/locales/en.json + src/data/products.js',
+  source: 'src/i18n/locales/en.json + src/data/catalog',
   count: chunks.length,
   chunks,
 }

@@ -4,6 +4,7 @@ import useSeo from '../hooks/useSeo'
 import { SITE_URL } from '../config/site'
 import Hero from '../components/Hero'
 import Categories from '../components/Categories'
+import FeaturedProducts from '../components/FeaturedProducts'
 import Products from '../components/Products'
 import Calculator from '../components/Calculator'
 import Banner from '../components/Banner'
@@ -62,6 +63,7 @@ function Home() {
     <>
       <Hero />
       <Categories />
+      <FeaturedProducts />
       <Products />
       <Calculator />
       <Banner />

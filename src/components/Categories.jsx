@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { categories } from '../data/products'
+import { categories } from '../data/catalog/categories'
 import Reveal from './Reveal'
 
 function Categories() {

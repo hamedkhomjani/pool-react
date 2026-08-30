@@ -5,27 +5,28 @@ import Reveal from '../components/Reveal'
 import useSeo from '../hooks/useSeo'
 import GuideProductCard from '../components/GuideProductCard'
 import MobileCtaBar from '../components/MobileCtaBar'
-import products, { categories } from '../data/products'
+import { useCatalog } from '../hooks/useCatalog'
 
 function GuidesPage() {
   const { t } = useTranslation()
   const [openIndex, setOpenIndex] = useState(0)
+  const catalog = useCatalog()
 
   const items = useMemo(
     () =>
-      categories
+      (catalog ? catalog.categories : [])
         .map((cat, index) => {
           const data = t(`guides.items.${cat.slug}`, { returnObjects: true }) || {}
           return {
             ...cat,
             ...data,
             name: t(`categories.${cat.slug}`),
-            featured: products.find(p => p.category === cat.slug),
+            featured: catalog ? catalog.categoryFeatured(cat.slug) : null,
             index,
           }
         })
         .filter(item => item.intro && item.points),
-    [t],
+    [t, catalog],
   )
 
   useSeo({

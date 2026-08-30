@@ -1,13 +1,17 @@
-import { lazy, Suspense, useEffect } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import './App.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
+import ErrorBoundary from './components/ErrorBoundary'
+import CartProvider from './context/CartContext'
+import CartDrawer from './components/CartDrawer'
 import useTheme from './hooks/useTheme'
 import { ROUTES, REDIRECTS } from './routes'
 import { langFromPath } from './config/site'
+import { track } from './utils/track'
 
 const ChatWidget = lazy(() => import('./components/ChatWidget'))
 
@@ -70,22 +74,43 @@ function PageLoading() {
   )
 }
 
+// Emits a page_view event for the analytics seam on every route change.
+function PageViewTrack() {
+  const location = useLocation()
+  useEffect(() => {
+    track('page_view', { path: location.pathname + location.search })
+  }, [location.pathname, location.search])
+  return null
+}
+
+// Resets the error boundary when the route changes, so a failure on one page
+// is not carried over to the next navigation.
+function KeyedErrorBoundary({ children }) {
+  const location = useLocation()
+  return <ErrorBoundary key={location.pathname}>{children}</ErrorBoundary>
+}
+
 export function AppShell({ resolvePage }) {
   const { theme, toggleTheme } = useTheme()
+  const [cartOpen, setCartOpen] = useState(false)
 
   return (
-    <>
-      <Header theme={theme} onToggleTheme={toggleTheme} />
+    <CartProvider>
+      <Header theme={theme} onToggleTheme={toggleTheme} onOpenCart={() => setCartOpen(true)} />
       <ScrollToTop />
       <LangSync />
-      <Suspense fallback={<PageLoading />}>
-        <Routes>{routeElements(resolvePage)}</Routes>
-      </Suspense>
+      <PageViewTrack />
+      <KeyedErrorBoundary>
+        <Suspense fallback={<PageLoading />}>
+          <Routes>{routeElements(resolvePage)}</Routes>
+        </Suspense>
+      </KeyedErrorBoundary>
       <Suspense fallback={null}>
         <ChatWidget />
       </Suspense>
       <Footer />
-    </>
+      <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
+    </CartProvider>
   )
 }
 

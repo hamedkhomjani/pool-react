@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-03T12:57:29.763Z",
-  "source": "src/i18n/locales/en.json + src/data/products.js",
+  "generatedAt": "2026-08-30T08:19:52.791Z",
+  "source": "src/i18n/locales/en.json + src/data/catalog",
   "count": 144,
   "chunks": [
     {

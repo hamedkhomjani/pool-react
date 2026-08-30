@@ -100,231 +100,6 @@
       "efficiency": "Efficiency",
       "pressure": "Working Pressure",
       "length": "Length"
-    },
-    "items": {
-      "hw1500": {
-        "badge": "Best Seller",
-        "title": "Hayward 1.5 HP Pool Pump",
-        "desc": "Powerful and quiet pump ideal for water circulation in residential and commercial pools up to 60 m³.",
-        "price": "12,500,000",
-        "longDesc": "The Hayward pool pump with a 1.5 HP motor and a full stainless steel body is one of the best-selling pumps on the market. Its advanced hydraulic design reduces energy consumption by up to 30% compared to similar models.",
-        "features": [
-          "1.5 HP high-efficiency motor",
-          "Full 304 stainless steel body",
-          "Quiet operation (under 45 dB)",
-          "Low power consumption",
-          "Suitable for pools up to 60 m³",
-          "2-inch inlet and outlet"
-        ],
-        "specs": {
-          "power": "1.5 HP",
-          "flow": "21 m³/h"
-        },
-        "detailSpecs": {
-          "model": "HW-1500",
-          "power": "1.5 HP (1100W)",
-          "flow": "21 m³/h",
-          "maxHead": "12 m",
-          "bodyMaterial": "304 Stainless Steel",
-          "inletOutlet": "2 inch",
-          "weight": "18 kg",
-          "warranty": "18 months"
-        }
-      },
-      "mega650": {
-        "badge": "Special Offer",
-        "title": "Emaux MEGA Sand Filter",
-        "desc": "Fiberglass body resistant to rust and chemicals with an automatic 6-way valve.",
-        "price": "18,200,000",
-        "longDesc": "The Emaux MEGA sand filter with a durable fiberglass body and automatic 6-way valve is an ideal solution for filtering large pools. With minimal pressure loss, it delivers the highest filtration quality.",
-        "features": [
-          "Fiberglass body resistant to UV",
-          "Automatic 6-way valve",
-          "Uniform water distribution system",
-          "Drain jet for easy emptying",
-          "2.5 bar working pressure",
-          "Suitable for pools up to 80 m³"
-        ],
-        "specs": {
-          "diameter": "65 cm",
-          "flow": "15 m³/h"
-        },
-        "detailSpecs": {
-          "model": "MEGA-650",
-          "diameter": "65 cm",
-          "flow": "15 m³/h",
-          "workingPressure": "2.5 bar",
-          "bodyMaterial": "Fiberglass",
-          "valveType": "Automatic 6-way",
-          "weight": "25 kg",
-          "warranty": "24 months"
-        }
-      },
-      "uv85": {
-        "badge": "",
-        "title": "UV Disinfection System",
-        "desc": "Reduces chlorine usage by up to 80% and completely eliminates algae and bacteria in the water.",
-        "price": "9,800,000",
-        "longDesc": "The advanced UV-C disinfection system with an 85W ultraviolet lamp eliminates 99.9% of water microorganisms without chemicals. This system dramatically reduces chlorine consumption and improves water quality.",
-        "features": [
-          "85W UV-C lamp",
-          "9,000 hours useful life",
-          "Stainless steel body",
-          "Automatic start",
-          "Reduces chlorine use by 80%",
-          "Smart control panel"
-        ],
-        "specs": {
-          "power": "85W",
-          "lampLife": "9000h"
-        },
-        "detailSpecs": {
-          "model": "UV-85P",
-          "power": "85 W",
-          "lampLife": "9,000 hours",
-          "flow": "10 m³/h",
-          "bodyMaterial": "304 Stainless Steel",
-          "inletOutlet": "1.5 inch",
-          "weight": "4.5 kg",
-          "warranty": "12 months"
-        }
-      },
-      "ht36": {
-        "badge": "Best Seller",
-        "title": "Hayward Titanium Heat Exchanger",
-        "desc": "Fast and even pool water heating with a titanium exchanger resistant to corrosion and chemicals.",
-        "price": "28,500,000",
-        "longDesc": "The Hayward titanium heat exchanger with 36 kW power is the best choice for heating residential and commercial pools. The titanium plate resists corrosion and chemicals while guaranteeing 98% thermal efficiency.",
-        "features": [
-          "Pure titanium plate",
-          "98% thermal efficiency",
-          "Digital thermostat",
-          "Stainless steel body",
-          "Horizontal and vertical installation",
-          "Suitable for pools up to 80 m²"
-        ],
-        "specs": {
-          "power": "36 kW",
-          "efficiency": "98%"
-        },
-        "detailSpecs": {
-          "model": "HT-36",
-          "power": "36 kW",
-          "efficiency": "98%",
-          "bodyMaterial": "Pure Titanium",
-          "maxTemp": "40°C",
-          "inletOutlet": "1.5 inch",
-          "weight": "12 kg",
-          "warranty": "36 months"
-        }
-      },
-      "swg40": {
-        "badge": "",
-        "title": "Salt Chlorinator System (Salt Cell)",
-        "desc": "Automatic chlorine production from salt, eliminating the need to buy and store chemicals.",
-        "price": "15,800,000",
-        "longDesc": "The AquaPro salt chlorinator produces 40 grams of chlorine per hour, fully automating your pool's disinfection process. Add salt to the water and the system naturally produces chlorine through electrolysis — no need to buy or store chemicals.",
-        "features": [
-          "Automatic chlorine production from salt",
-          "Titanium plate with ruthenium coating",
-          "100% fewer chemical purchases",
-          "Digital chlorine level display",
-          "Automatic adjustment based on temperature",
-          "5-year cell life"
-        ],
-        "specs": {
-          "power": "250W",
-          "capacity": "40 g/h"
-        },
-        "detailSpecs": {
-          "model": "SWG-40",
-          "power": "250 W",
-          "capacity": "40 g/h",
-          "suitableUpTo": "80 m³",
-          "cellMaterial": "Titanium + Ruthenium",
-          "inputVoltage": "220 V",
-          "weight": "6.5 kg",
-          "warranty": "24 months"
-        }
-      },
-      "led18": {
-        "badge": "New",
-        "title": "RGB LED Pool Light",
-        "desc": "Professional pool lighting with 16 adjustable colors and remote control.",
-        "price": "4,800,000",
-        "longDesc": "The AquaPro LED pool light with 18W power and 1600 lumens gives your pool a striking, colorful atmosphere. With 16 adjustable colors and remote control, you can create exactly the ambiance you want.",
-        "features": [
-          "16 adjustable colors",
-          "Remote control",
-          "Very low power consumption",
-          "Waterproof IP68",
-          "Easy wall installation",
-          "Stainless steel body"
-        ],
-        "specs": {
-          "power": "18W",
-          "light": "1600 lm"
-        },
-        "detailSpecs": {
-          "model": "LED-18RGB",
-          "power": "18 W",
-          "light": "1600 lumens",
-          "colorCount": "16 colors + white",
-          "protection": "IP68",
-          "voltageRange": "12-24 V AC/DC",
-          "weight": "0.8 kg",
-          "warranty": "18 months"
-        }
-      },
-      "pipe50": {
-        "badge": "",
-        "title": "PVC Pressure Pipe 50mm (2 inch)",
-        "desc": "High-pressure PVC pipe for the pool's return and suction lines, resistant to chemicals and UV.",
-        "price": "850,000",
-        "longDesc": "The 50mm high-pressure PVC pipe with standard wall thickness is designed for pool suction and return piping. It resists chemicals, sunlight and pressure, and is permanently joined with special PVC glue. Sold per meter.",
-        "features": [
-          "Resistant to chemicals and UV",
-          "10 bar working pressure",
-          "Standard wall thickness",
-          "Glue and solvent-weld joints",
-          "Suitable for pools, spas and saunas"
-        ],
-        "specs": {
-          "diameter": "50 mm",
-          "pressure": "10 bar"
-        },
-        "detailSpecs": {
-          "model": "PVC-50",
-          "diameter": "50 mm",
-          "workingPressure": "10 bar",
-          "bodyMaterial": "PVC-U",
-          "length": "6 m",
-          "warranty": "12 months"
-        }
-      },
-      "fitkit50": {
-        "badge": "",
-        "title": "Pool Piping Fittings Kit (50mm)",
-        "desc": "Complete fittings kit — elbows, tees, unions and PVC glue — to build your pool piping loop.",
-        "price": "1,250,000",
-        "longDesc": "This kit includes everything needed for the pool's suction and return piping: 90-degree elbows, tees, two-piece unions, couplings and special PVC glue. Assemble the full piping loop without sourcing parts separately.",
-        "features": [
-          "90-degree elbows and tees",
-          "Two-piece unions for opening the line",
-          "Couplings",
-          "Special PVC glue included",
-          "Fits 50mm pipes"
-        ],
-        "specs": {
-          "diameter": "50 mm"
-        },
-        "detailSpecs": {
-          "model": "FITTING-KIT-50",
-          "diameter": "50 mm",
-          "bodyMaterial": "PVC-U",
-          "warranty": "12 months"
-        }
-      }
     }
   },
   "calculator": {
@@ -533,12 +308,24 @@
       "tableFlow": "Recommended Flow",
       "tableModel": "Sample Model",
       "sizingRows": [
-        { "volume": "Up to 30" },
-        { "volume": "30 to 50" },
-        { "volume": "50 to 80" },
-        { "volume": "80 to 120" },
-        { "volume": "120 to 200" },
-        { "volume": "Over 200" }
+        {
+          "volume": "Up to 30"
+        },
+        {
+          "volume": "30 to 50"
+        },
+        {
+          "volume": "50 to 80"
+        },
+        {
+          "volume": "80 to 120"
+        },
+        {
+          "volume": "120 to 200"
+        },
+        {
+          "volume": "Over 200"
+        }
       ],
       "featuredTitle": "Technical Team's Pick for 80–120 m³ Pools",
       "pipingTitle": "How Plumbing and Distance Affect Your Choice",
@@ -744,7 +531,11 @@
         ],
         "typesTitle": "Types of Pool Filters",
         "typesP": "There are three main filter technologies, and sand is the most popular for residential pools:",
-        "typeIcons": ["⏳", "💡", "🧻"],
+        "typeIcons": [
+          "⏳",
+          "💡",
+          "🧻"
+        ],
         "types": [
           {
             "title": "Sand Filter",
@@ -763,16 +554,48 @@
         "protip1": "<strong>Tip from the field (15 years of experience):</strong> a sand filter that is 'one size too big' is harmless, but 'one size too small' is a constant headache. When in doubt, size up.",
         "sizingTitle": "What Size Sand Filter Do I Need?",
         "sizingP1": "The filter must comfortably handle your pump's flow rate. As a rule of thumb, the filter's recommended flow should be equal to or greater than your pump's maximum output. Use our <calculatorLink>pool equipment calculator</calculatorLink> to find your pump flow first.",
-        "tableCols": ["Pool Volume (m³)", "Pump Flow", "Filter Diameter", "Sample Model"],
+        "tableCols": [
+          "Pool Volume (m³)",
+          "Pump Flow",
+          "Filter Diameter",
+          "Sample Model"
+        ],
         "sizingRows": [
-          { "volume": "Up to 30", "pumpFlow": "8 m³/h", "diameter": "42 cm", "model": "MEGA-420" },
-          { "volume": "30 to 50", "pumpFlow": "12 m³/h", "diameter": "50 cm", "model": "MEGA-500" },
-          { "volume": "50 to 80", "pumpFlow": "16 m³/h", "diameter": "58 cm", "model": "MEGA-580" },
-          { "volume": "80 to 120", "pumpFlow": "21 m³/h", "diameter": "65 cm", "model": "MEGA-650" },
-          { "volume": "120 to 200", "pumpFlow": "28 m³/h", "diameter": "75 cm", "model": "MEGA-750" }
+          {
+            "volume": "Up to 30",
+            "pumpFlow": "8 m³/h",
+            "diameter": "42 cm",
+            "model": "MEGA-420"
+          },
+          {
+            "volume": "30 to 50",
+            "pumpFlow": "12 m³/h",
+            "diameter": "50 cm",
+            "model": "MEGA-500"
+          },
+          {
+            "volume": "50 to 80",
+            "pumpFlow": "16 m³/h",
+            "diameter": "58 cm",
+            "model": "MEGA-580"
+          },
+          {
+            "volume": "80 to 120",
+            "pumpFlow": "21 m³/h",
+            "diameter": "65 cm",
+            "model": "MEGA-650"
+          },
+          {
+            "volume": "120 to 200",
+            "pumpFlow": "28 m³/h",
+            "diameter": "75 cm",
+            "model": "MEGA-750"
+          }
         ],
         "featuredTitle": "Technical Team's Pick for 50–80 m³ Pools",
-        "featuredKeys": ["mega650"],
+        "featuredKeys": [
+          "mega650"
+        ],
         "installTitle": "Installation Notes",
         "installP": "The filter sits between the pump and the pool return, always after the pump. Leave room around the tank to reach the valve and the sand cover, and place it on a level, stable base. In cold climates, drain the tank completely before winter to avoid freeze cracks.",
         "specsTitle": "Technical Specifications to Know Before Buying",
@@ -861,7 +684,11 @@
         ],
         "typesTitle": "Types of Pool Heating",
         "typesP": "Three main technologies heat pool water. The heat exchanger works with the first two:",
-        "typeIcons": ["🔄", "🔥", "☀️"],
+        "typeIcons": [
+          "🔄",
+          "🔥",
+          "☀️"
+        ],
         "types": [
           {
             "title": "Heat Exchanger + Boiler",
@@ -880,16 +707,42 @@
         "protip1": "<strong>Tip from the field (15 years of experience):</strong> customers often blame the heater for 'cold water' when the real issue is the pump. The exchanger needs a pump moving enough water through it — check circulation before upgrading the heater.",
         "sizingTitle": "What Size Heat Exchanger Do I Need?",
         "sizingP1": "As a starting point, allow roughly 1 kW of heating capacity per 3–5 m³ of pool water, then adjust for climate and how fast you want the pool ready. Use our <calculatorLink>pool equipment calculator</calculatorLink> to confirm your volume.",
-        "tableCols": ["Pool Volume (m³)", "Recommended Capacity", "Sample Model"],
+        "tableCols": [
+          "Pool Volume (m³)",
+          "Recommended Capacity",
+          "Sample Model"
+        ],
         "sizingRows": [
-          { "volume": "Up to 20", "capacity": "6 kW", "model": "HT-20" },
-          { "volume": "20 to 35", "capacity": "9 kW", "model": "HT-30" },
-          { "volume": "35 to 55", "capacity": "12 kW", "model": "HT-40" },
-          { "volume": "55 to 80", "capacity": "15 kW", "model": "HT-60" },
-          { "volume": "80 to 120", "capacity": "20 kW", "model": "HT-80" }
+          {
+            "volume": "Up to 20",
+            "capacity": "6 kW",
+            "model": "HT-20"
+          },
+          {
+            "volume": "20 to 35",
+            "capacity": "9 kW",
+            "model": "HT-30"
+          },
+          {
+            "volume": "35 to 55",
+            "capacity": "12 kW",
+            "model": "HT-40"
+          },
+          {
+            "volume": "55 to 80",
+            "capacity": "15 kW",
+            "model": "HT-60"
+          },
+          {
+            "volume": "80 to 120",
+            "capacity": "20 kW",
+            "model": "HT-80"
+          }
         ],
         "featuredTitle": "Technical Team's Pick for 55–80 m³ Pools",
-        "featuredKeys": ["ht36"],
+        "featuredKeys": [
+          "ht36"
+        ],
         "installTitle": "Installation Notes",
         "installP": "Install the exchanger after the filter, in the return line, so only clean water flows through it. Orient it so water flows against gravity inside (counter-current) for maximum heat transfer, and always fit a bypass valve so you can isolate it for winter or maintenance.",
         "specsTitle": "Technical Specifications to Know Before Buying",
@@ -978,7 +831,11 @@
         ],
         "typesTitle": "Types of Pool Lighting",
         "typesP": "Choose your light by voltage and capability:",
-        "typeIcons": ["💡", "🎨", "📱"],
+        "typeIcons": [
+          "💡",
+          "🎨",
+          "📱"
+        ],
         "types": [
           {
             "title": "Fixed-White LED",
@@ -997,15 +854,37 @@
         "protip1": "<strong>Tip from the field (15 years of experience):</strong> most early LED failures we see are caused by incorrect voltage supply, not the lamp itself. Confirm your transformer and cable gauge before install.",
         "sizingTitle": "How Many Lights Do I Need?",
         "sizingP1": "A common rule is one light per 15–20 m² of pool surface area, spaced evenly along the length. For deep or dark-sided pools, add one more. Plan the niche (recess) during construction.",
-        "tableCols": ["Pool Surface (m²)", "Number of Lights", "Suggested Wattage"],
+        "tableCols": [
+          "Pool Surface (m²)",
+          "Number of Lights",
+          "Suggested Wattage"
+        ],
         "sizingRows": [
-          { "surface": "Up to 15", "lights": "1", "wattage": "12–20 W" },
-          { "surface": "15 to 30", "lights": "2", "wattage": "20 W" },
-          { "surface": "30 to 50", "lights": "3–4", "wattage": "20–30 W" },
-          { "surface": "50 to 80", "lights": "4–6", "wattage": "30 W" }
+          {
+            "surface": "Up to 15",
+            "lights": "1",
+            "wattage": "12–20 W"
+          },
+          {
+            "surface": "15 to 30",
+            "lights": "2",
+            "wattage": "20 W"
+          },
+          {
+            "surface": "30 to 50",
+            "lights": "3–4",
+            "wattage": "20–30 W"
+          },
+          {
+            "surface": "50 to 80",
+            "lights": "4–6",
+            "wattage": "30 W"
+          }
         ],
         "featuredTitle": "Technical Team's Pick for Residential Pools",
-        "featuredKeys": ["led18"],
+        "featuredKeys": [
+          "led18"
+        ],
         "installTitle": "Installation Notes",
         "installP": "Pool lights are installed in a wall niche below water level, with the cable run through conduit to a junction box above deck. Use a 12V transformer and an RCD/GFCI breaker. Niche and conduit must be planned during pool construction — retrofitting is costly.",
         "specsTitle": "Technical Specifications to Know Before Buying",
@@ -1094,7 +973,11 @@
         ],
         "typesTitle": "Types of Disinfection Systems",
         "typesP": "Choose the technology that fits your pool and lifestyle:",
-        "typeIcons": ["☀️", "🧂", "⚗️"],
+        "typeIcons": [
+          "☀️",
+          "🧂",
+          "⚗️"
+        ],
         "types": [
           {
             "title": "UV-C Disinfection",
@@ -1113,15 +996,43 @@
         "protip1": "<strong>Tip from the field (15 years of experience):</strong> install the disinfection unit last in the circulation loop — after the filter and heater — so it treats the cleanest, warmest water and the lamp stays effective.",
         "sizingTitle": "What Size Disinfection System Do I Need?",
         "sizingP1": "Both UV lamps and salt cells are sized to your pool volume and pump flow. As a rule, the UV unit should match your pump's maximum flow, and the salt cell's capacity should exceed your pool volume. Confirm your volume with the <calculatorLink>pool equipment calculator</calculatorLink>.",
-        "tableCols": ["Pool Volume (m³)", "UV Lamp", "Salt Cell", "Sample Model"],
+        "tableCols": [
+          "Pool Volume (m³)",
+          "UV Lamp",
+          "Salt Cell",
+          "Sample Model"
+        ],
         "sizingRows": [
-          { "volume": "Up to 30", "uv": "40 W", "salt": "15 g/h", "model": "UV-40" },
-          { "volume": "30 to 50", "uv": "55 W", "salt": "20 g/h", "model": "UV-55" },
-          { "volume": "50 to 80", "uv": "85 W", "salt": "30 g/h", "model": "UV-85" },
-          { "volume": "80 to 120", "uv": "110 W", "salt": "40 g/h", "model": "UV-110" }
+          {
+            "volume": "Up to 30",
+            "uv": "40 W",
+            "salt": "15 g/h",
+            "model": "UV-40"
+          },
+          {
+            "volume": "30 to 50",
+            "uv": "55 W",
+            "salt": "20 g/h",
+            "model": "UV-55"
+          },
+          {
+            "volume": "50 to 80",
+            "uv": "85 W",
+            "salt": "30 g/h",
+            "model": "UV-85"
+          },
+          {
+            "volume": "80 to 120",
+            "uv": "110 W",
+            "salt": "40 g/h",
+            "model": "UV-110"
+          }
         ],
         "featuredTitle": "Technical Team's Pick for 50–80 m³ Pools",
-        "featuredKeys": ["uv85", "swg40"],
+        "featuredKeys": [
+          "uv85",
+          "swg40"
+        ],
         "installTitle": "Installation Notes",
         "installP": "Mount the unit horizontally in the return line after the filter, with the lamp chamber easy to reach for annual lamp replacement. Leave straight pipe before and after the unit for proper flow. Always protect the lamp housing with a bypass for cleaning or winterizing.",
         "specsTitle": "Technical Specifications to Know Before Buying",
@@ -1210,7 +1121,11 @@
         ],
         "typesTitle": "Types of Pool Accessories",
         "typesP": "The essential accessories fall into a few clear categories:",
-        "typeIcons": ["🪜", "🧹", "🛡️"],
+        "typeIcons": [
+          "🪜",
+          "🧹",
+          "🛡️"
+        ],
         "types": [
           {
             "title": "Ladders and Handrails",
@@ -1229,12 +1144,32 @@
         "protip1": "<strong>Tip from the field (15 years of experience):</strong> measure before you buy. A ladder that is too short for your deck height or a cover a few centimeters off wastes both money and time.",
         "sizingTitle": "How to Choose the Right Size",
         "sizingP1": "Ladders are sized by step count and deck height; covers by exact pool dimensions; poles by reach. Measure your pool and deck carefully, and when in doubt choose the size that gives more grip and stability.",
-        "tableCols": ["Accessory", "What to Measure", "Recommendation"],
+        "tableCols": [
+          "Accessory",
+          "What to Measure",
+          "Recommendation"
+        ],
         "sizingRows": [
-          { "accessory": "Ladder", "measure": "Deck height & depth", "recommendation": "Stainless, 3–4 steps" },
-          { "accessory": "Handrail", "measure": "Coping width", "recommendation": "Stainless, anti-slip grip" },
-          { "accessory": "Cover", "measure": "Pool length & width", "recommendation": "Solar or winter by climate" },
-          { "accessory": "Pole & brush", "measure": "Pool length", "recommendation": "Aluminum, 2–4 m telescopic" }
+          {
+            "accessory": "Ladder",
+            "measure": "Deck height & depth",
+            "recommendation": "Stainless, 3–4 steps"
+          },
+          {
+            "accessory": "Handrail",
+            "measure": "Coping width",
+            "recommendation": "Stainless, anti-slip grip"
+          },
+          {
+            "accessory": "Cover",
+            "measure": "Pool length & width",
+            "recommendation": "Solar or winter by climate"
+          },
+          {
+            "accessory": "Pole & brush",
+            "measure": "Pool length",
+            "recommendation": "Aluminum, 2–4 m telescopic"
+          }
         ],
         "featuredTitle": "Popular Accessories",
         "featuredKeys": [],
@@ -1326,7 +1261,11 @@
         ],
         "typesTitle": "Types of Pipe and Fittings",
         "typesP": "The right materials make the difference between a 10-year and a 30-year system:",
-        "typeIcons": ["🔧", "🔩", "🧴"],
+        "typeIcons": [
+          "🔧",
+          "🔩",
+          "🧴"
+        ],
         "types": [
           {
             "title": "PVC-U Pressure Pipe",
@@ -1345,15 +1284,38 @@
         "protip1": "<strong>Tip from the field (15 years of experience):</strong> in over 30% of our 'weak pump' visits, the real problem was plumbing — narrow pipes or too many elbows. Check the plumbing before upgrading the pump.",
         "sizingTitle": "What Pipe Diameter Do I Need?",
         "sizingP1": "Match the pipe diameter to your pump's inlet and outlet, and size up for long runs. For a typical residential pool, 50 mm (2 inch) is standard; larger pools and long plumbing benefit from 63 mm (2.5 inch). Confirm your flow with the <calculatorLink>pool equipment calculator</calculatorLink>.",
-        "tableCols": ["Pool Volume (m³)", "Pipe Diameter", "Sample Pipe"],
+        "tableCols": [
+          "Pool Volume (m³)",
+          "Pipe Diameter",
+          "Sample Pipe"
+        ],
         "sizingRows": [
-          { "volume": "Up to 40", "diameter": "50 mm (2\")", "pipe": "PVC-50" },
-          { "volume": "40 to 80", "diameter": "50–63 mm", "pipe": "PVC-50/63" },
-          { "volume": "80 to 120", "diameter": "63 mm (2.5\")", "pipe": "PVC-63" },
-          { "volume": "Over 120", "diameter": "75 mm (3\")", "pipe": "PVC-75" }
+          {
+            "volume": "Up to 40",
+            "diameter": "50 mm (2\")",
+            "pipe": "PVC-50"
+          },
+          {
+            "volume": "40 to 80",
+            "diameter": "50–63 mm",
+            "pipe": "PVC-50/63"
+          },
+          {
+            "volume": "80 to 120",
+            "diameter": "63 mm (2.5\")",
+            "pipe": "PVC-63"
+          },
+          {
+            "volume": "Over 120",
+            "diameter": "75 mm (3\")",
+            "pipe": "PVC-75"
+          }
         ],
         "featuredTitle": "Technical Team's Pick for Residential Pools",
-        "featuredKeys": ["pipe50", "fitkit50"],
+        "featuredKeys": [
+          "pipe50",
+          "fitkit50"
+        ],
         "installTitle": "Installation Notes",
         "installP": "Cut square, deburr the edges, clean with primer and apply PVC glue to both surfaces before joining — the joint is permanent within minutes. Support horizontal runs every 1–1.5 m, and give the pump straight pipe before and after for smooth flow.",
         "specsTitle": "Technical Specifications to Know Before Buying",
@@ -1474,5 +1436,65 @@
     "human": "Talk to an expert",
     "contactPhone": "+98-21-88888888",
     "disclaimer": "Answers are based on our published guides and may not cover your exact setup. For precise advice, talk to an expert."
+  },
+  "search": {
+    "label": "Search",
+    "ariaLabel": "Search products",
+    "placeholder": "Search products, models and brands…",
+    "noQuery": "Start typing to search the catalog — try “pump”, “filter” or “UV”.",
+    "hint": "Search by product name, model or brand.",
+    "noResultsFor": "No products found for “{{query}}”.",
+    "viewAll": "View all results for “{{query}}”",
+    "resultsCount": "{{count}} products",
+    "submit": "Search",
+    "pageHeading": "Search",
+    "pageTitle": "Search | AquaPro",
+    "pageDescription": "Search the AquaPro pool equipment catalog."
+  },
+  "megaMenu": {
+    "explore": "Browse by category",
+    "featured": "Featured product",
+    "volumeCalc": "Calculate your pool volume",
+    "consult": "Need help choosing? Get free expert advice"
+  },
+  "filters": {
+    "showFilters": "Filters",
+    "brand": "Brand",
+    "price": "Price",
+    "from": "Min",
+    "to": "Max",
+    "sort": "Sort by",
+    "sortFeatured": "Featured",
+    "sortPriceAsc": "Price: Low to High",
+    "sortPriceDesc": "Price: High to Low",
+    "sortName": "Name (A–Z)",
+    "clear": "Clear filters",
+    "loadMore": "Load more"
+  },
+  "featured": {
+    "tag": "Hand-picked",
+    "title": "Featured products",
+    "subtitle": "The essentials our customers choose most — pumps, filters, clean water and light.",
+    "star": "Featured"
+  },
+  "errors": {
+    "title": "Something went wrong",
+    "message": "An unexpected error occurred while showing this page. Please try reloading.",
+    "reload": "Reload page"
+  },
+  "cart": {
+    "title": "Shopping cart",
+    "openAria": "Open cart ({{count}} items)",
+    "addToCart": "Add to cart",
+    "qty": "Quantity",
+    "inc": "Increase quantity",
+    "dec": "Decrease quantity",
+    "remove": "Remove",
+    "subtotal": "Subtotal",
+    "checkout": "Checkout via WhatsApp",
+    "clearCart": "Clear cart",
+    "empty": "Your cart is empty.",
+    "browse": "Browse categories",
+    "checkoutTemplate": "New order request\n\n{{lines}}\n\nSubtotal: {{subtotal}}\nPlease confirm availability and delivery."
   }
 }

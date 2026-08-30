@@ -1,33 +1,38 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import products, { categories } from '../data/products'
-import { translateProduct, translateChipLabel, translateSpecLabel } from '../i18n/product'
+import { useCatalog } from '../hooks/useCatalog'
+import { formatPrice } from '../utils/price'
+import { translateChipLabel, translateSpecLabel } from '../i18n/product'
 import { whatsappUrl, CONTACT_CONFIG } from '../config/contact'
-import normalizeDigits from '../utils/digits'
 import useSeo from '../hooks/useSeo'
 import Reveal from '../components/Reveal'
+import { useCart } from '../context/CartContext'
+import { track } from '../utils/track'
 
-function buildOrderMessage(t, product) {
+function buildOrderMessage(t, lang, product) {
   return t('productPage.orderTemplate', {
     name: product.title,
     model: product.detailSpecs.model || '',
-    price: product.price,
+    price: formatPrice(product.price, lang),
   })
 }
 
 function ProductPage() {
   const { key } = useParams()
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const catalog = useCatalog()
+  const cart = useCart()
+  const [qty, setQty] = useState(1)
 
-  const product = translateProduct(t, products.find(p => p.key === key))
-  const category = product ? categories.find(c => c.slug === product.category) : null
+  const product = catalog?.product(key)
+  const category = product ? catalog.category(product.category) : null
   const categoryName = category ? t(`categories.${category.slug}`) : ''
 
   const related = product
-    ? products
-        .filter(p => p.category === product.category && p.key !== product.key)
-        .map(p => translateProduct(t, p))
+    ? catalog
+        .categoryProducts(product.category)
+        .filter(p => p.key !== product.key)
     : []
 
   const canonical = `/product/${key}/`
@@ -44,7 +49,7 @@ function ProductPage() {
             offers: {
               '@type': 'Offer',
               priceCurrency: 'IRR',
-              price: normalizeDigits(product.price).replace(/[^\d]/g, ''),
+              price: product.price,
               availability: 'https://schema.org/InStock',
             },
           }
@@ -59,6 +64,11 @@ function ProductPage() {
     jsonLd,
   })
 
+  useEffect(() => {
+    if (product) track('product_view', { key: product.key, title: product.title })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [product?.key])
+
   if (!product) {
     return (
       <section className="prod-page">
@@ -70,7 +80,7 @@ function ProductPage() {
     )
   }
 
-  const orderUrl = whatsappUrl(buildOrderMessage(t, product))
+  const orderUrl = whatsappUrl(buildOrderMessage(t, i18n.language, product))
 
   return (
     <>
@@ -97,7 +107,7 @@ function ProductPage() {
             <Reveal direction="left">
               <div className="prod-info">
                 <h1 className="prod-title">{product.title}</h1>
-                <div className="prod-price">{product.price} <span>{t('product.toman')}</span></div>
+                <div className="prod-price">{formatPrice(product.price, i18n.language)} <span>{t('product.toman')}</span></div>
                 <p className="prod-desc">{product.longDesc}</p>
                 <div className="prod-specs-chips">
                   {Object.entries(product.specs).map(([specKey, value]) => (
@@ -107,7 +117,15 @@ function ProductPage() {
                   ))}
                 </div>
                 <div className="prod-actions">
-                  <a href={orderUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                  <div className="cart-qty" role="group" aria-label={t('cart.qty')}>
+                    <button type="button" onClick={() => setQty(q => q + 1)} aria-label={t('cart.inc')}>+</button>
+                    <span className="cart-qty-value">{qty}</span>
+                    <button type="button" onClick={() => setQty(q => Math.max(1, q - 1))} aria-label={t('cart.dec')} disabled={qty <= 1}>−</button>
+                  </div>
+                  <button type="button" className="btn btn-primary" onClick={() => cart.add(product.key, qty)}>
+                    {t('cart.addToCart')}
+                  </button>
+                  <a href={orderUrl} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
                     {t('productPage.orderNow')}
                   </a>
                   <a href={CONTACT_CONFIG.phoneHref} className="btn btn-outline">
@@ -151,8 +169,8 @@ function ProductPage() {
               <div className="prod-related">
                 <h2>{t('productPage.relatedTitle')}</h2>
                 <div className="product-grid">
-                  {related.map((rel, index) => (
-                    <Link to={`/product/${rel.key}`} className="product-card" key={index} style={{ textDecoration: 'none' }}>
+                  {related.map(rel => (
+                    <Link to={`/product/${rel.key}`} className="product-card" key={rel.key} style={{ textDecoration: 'none' }}>
                       {rel.badge && <span className="badge-top">{rel.badge}</span>}
                       <div className="product-image">{rel.icon}</div>
                       <h3 className="product-title">{rel.title}</h3>
@@ -163,7 +181,7 @@ function ProductPage() {
                         ))}
                       </div>
                       <div className="product-footer">
-                        <div className="product-price">{rel.price} <span>{t('product.toman')}</span></div>
+                        <div className="product-price">{formatPrice(rel.price, i18n.language)} <span>{t('product.toman')}</span></div>
                         <span className="btn btn-primary">{t('product.details')}</span>
                       </div>
                     </Link>

@@ -3,9 +3,13 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import ThemeToggle from './ThemeToggle'
 import LanguageSwitcher from './LanguageSwitcher'
+import SearchOverlay from './SearchOverlay'
+import CalculatorLink from './CalculatorLink'
+import { useCatalog } from '../hooks/useCatalog'
+import { formatPrice } from '../utils/price'
+import { useCart } from '../context/CartContext'
 
 const SECTION_ITEMS = [
-  { id: 'categories', key: 'nav.categories' },
   { id: 'products', key: 'nav.products' },
   { id: 'packages', key: 'nav.packages' },
 ]
@@ -14,14 +18,25 @@ function scrollToId(id) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 }
 
-function Header({ theme, onToggleTheme }) {
-  const { t } = useTranslation()
+function Header({ theme, onToggleTheme, onOpenCart }) {
+  const { t, i18n } = useTranslation()
   const location = useLocation()
   const navigate = useNavigate()
+  const catalog = useCatalog()
+  const cart = useCart()
   const [menuOpen, setMenuOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
+  const [megaOpen, setMegaOpen] = useState(false)
+  const [mobileCatsOpen, setMobileCatsOpen] = useState(false)
+  const [canHover] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches,
+  )
 
   useEffect(() => {
     setMenuOpen(false)
+    setSearchOpen(false)
+    setMegaOpen(false)
+    setMobileCatsOpen(false)
   }, [location.pathname, location.hash, location.search])
 
   useEffect(() => {
@@ -31,6 +46,10 @@ function Header({ theme, onToggleTheme }) {
 
   function closeMenu() {
     setMenuOpen(false)
+  }
+
+  function closeMega() {
+    setMegaOpen(false)
   }
 
   function handleSectionClick(e, id) {
@@ -44,8 +63,11 @@ function Header({ theme, onToggleTheme }) {
     }
   }
 
+  const featured = catalog?.products[0]
+  const categories = catalog?.topCategories || []
+
   return (
-    <header>
+    <header onMouseLeave={canHover ? closeMega : undefined}>
       <div className="container nav-bar">
         <Link to="/" className="logo" style={{ textDecoration: 'none' }} onClick={closeMenu}>
           <div className="logo-icon">💧</div>
@@ -63,6 +85,21 @@ function Header({ theme, onToggleTheme }) {
               </a>
             </li>
           ))}
+          <li
+            onMouseEnter={canHover ? () => setMegaOpen(true) : undefined}
+          >
+            <button
+              className={`mega-btn ${megaOpen ? 'open' : ''}`}
+              onClick={() => (canHover ? setMegaOpen(true) : setMegaOpen(o => !o))}
+              aria-expanded={megaOpen}
+              aria-haspopup="true"
+            >
+              {t('nav.categories')}
+              <svg className="mega-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                <path d="m6 9 6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </li>
           <li>
             <Link to="/guides" onClick={closeMenu}>{t('nav.guides')}</Link>
           </li>
@@ -76,6 +113,30 @@ function Header({ theme, onToggleTheme }) {
 
         <div className="nav-actions">
           <Link to="/contact" className="btn btn-primary desktop-cta">{t('nav.cta')}</Link>
+          <button
+            className="search-toggle"
+            onClick={() => setSearchOpen(true)}
+            aria-label={t('search.ariaLabel')}
+            title={t('search.label')}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" />
+              <path d="m20 20-3.5-3.5" strokeLinecap="round" />
+            </svg>
+          </button>
+          <button
+            className="cart-toggle"
+            onClick={onOpenCart}
+            aria-label={t('cart.openAria', { count: cart.count })}
+            title={t('cart.title')}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <circle cx="9" cy="20" r="1.6" />
+              <circle cx="17" cy="20" r="1.6" />
+              <path d="M3 3h2l2.6 12.5a1.5 1.5 0 0 0 1.5 1.2h7.6a1.5 1.5 0 0 0 1.5-1.2L20 7H6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            {cart.count > 0 && <span className="cart-badge">{cart.count > 99 ? '99+' : cart.count}</span>}
+          </button>
           <LanguageSwitcher />
           <ThemeToggle theme={theme} onToggle={onToggleTheme} />
           <button
@@ -88,6 +149,67 @@ function Header({ theme, onToggleTheme }) {
         </div>
       </div>
 
+      {megaOpen && (
+        <nav className="mega-panel" aria-label={t('nav.categories')}>
+          <div className="mega-panel-inner">
+            <div className="mega-col">
+              <h4 className="mega-title">{t('megaMenu.explore')}</h4>
+              <div className="mega-cat-grid">
+                {categories.map(cat => (
+                  <Link
+                    key={cat.slug}
+                    to={`/category/${cat.slug}`}
+                    className="mega-cat"
+                    onClick={closeMega}
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <span className="mega-cat-icon" aria-hidden="true">{cat.icon}</span>
+                    <span>{t(`categories.${cat.slug}`)}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="mega-col">
+              {featured && (
+                <Link
+                  to={`/product/${featured.key}`}
+                  className="mega-featured"
+                  onClick={closeMega}
+                  style={{ textDecoration: 'none' }}
+                >
+                  <h4 className="mega-title">{t('megaMenu.featured')}</h4>
+                  <div className="mega-featured-card">
+                    <div className="mega-featured-icon" aria-hidden="true">{featured.icon}</div>
+                    <div className="mega-featured-body">
+                      <strong className="mega-featured-title">{featured.title}</strong>
+                      <p className="mega-featured-desc">{featured.desc}</p>
+                      <div className="mega-featured-price">
+                        {formatPrice(featured.price, i18n.language)} <span>{t('product.toman')}</span>
+                      </div>
+                      <span className="btn btn-primary">{t('product.details')}</span>
+                    </div>
+                  </div>
+                </Link>
+              )}
+
+              <div className="mega-promo">
+                <CalculatorLink>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                    <rect x="4" y="2" width="16" height="20" rx="2" />
+                    <path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01" strokeLinecap="round" />
+                  </svg>
+                  {t('megaMenu.volumeCalc')}
+                </CalculatorLink>
+                <Link to="/contact" className="mega-promo-consult" onClick={closeMega}>
+                  {t('megaMenu.consult')}
+                </Link>
+              </div>
+            </div>
+          </div>
+        </nav>
+      )}
+
       <div className={`mobile-overlay ${menuOpen ? 'open' : ''}`} onClick={closeMenu} />
       <nav className={`mobile-nav ${menuOpen ? 'open' : ''}`}>
         <div className="mobile-nav-top">
@@ -98,6 +220,28 @@ function Header({ theme, onToggleTheme }) {
         <ul className="mobile-nav-links">
           <li>
             <Link to="/" onClick={closeMenu}>{t('nav.home')}</Link>
+          </li>
+          <li className="mobile-cats">
+            <button
+              className={`mobile-cats-toggle ${mobileCatsOpen ? 'open' : ''}`}
+              onClick={() => setMobileCatsOpen(o => !o)}
+              aria-expanded={mobileCatsOpen}
+            >
+              {t('nav.categories')}
+              <svg className="mega-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                <path d="m6 9 6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <ul className={`mobile-cats-list ${mobileCatsOpen ? 'open' : ''}`}>
+              {categories.map(cat => (
+                <li key={cat.slug}>
+                  <Link to={`/category/${cat.slug}`} onClick={closeMenu}>
+                    <span aria-hidden="true">{cat.icon}</span>
+                    {t(`categories.${cat.slug}`)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </li>
           {SECTION_ITEMS.map(item => (
             <li key={item.id}>
@@ -118,6 +262,7 @@ function Header({ theme, onToggleTheme }) {
         </ul>
         <Link to="/contact" className="btn btn-primary mobile-cta">{t('nav.cta')}</Link>
       </nav>
+      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   )
 }

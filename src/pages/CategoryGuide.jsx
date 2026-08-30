@@ -6,7 +6,7 @@ import useSeo from '../hooks/useSeo'
 import GuideProductCard from '../components/GuideProductCard'
 import MobileCtaBar from '../components/MobileCtaBar'
 import CalculatorLink from '../components/CalculatorLink'
-import products from '../data/products'
+import { useCatalog } from '../hooks/useCatalog'
 import { SITE_URL as siteUrl } from '../config/site'
 
 function FAQItem({ q, a, open, onToggle }) {
@@ -27,6 +27,7 @@ function CategoryGuide() {
   const { slug } = useParams()
   const { t, i18n } = useTranslation()
   const [openFaq, setOpenFaq] = useState(null)
+  const catalog = useCatalog()
 
   const base = `fullGuides.${slug}`
   const data = useMemo(() => t(base, { returnObjects: true }) || {}, [t, base])
@@ -40,7 +41,9 @@ function CategoryGuide() {
   const tableCols = sections.tableCols || []
   const faqs = sections.faqs || []
   const featuredKeys = sections.featuredKeys || []
-  const featured = featuredKeys.map(key => products.find(p => p.key === key)).filter(Boolean)
+  const featured = featuredKeys
+    .map(key => (catalog ? catalog.product(key) : null))
+    .filter(Boolean)
 
   const combinedSchema = useMemo(() => {
     const dataFaqs = data.sections?.faqs || []

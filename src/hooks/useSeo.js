@@ -20,7 +20,7 @@ export function takeCollectedSeo() {
   return collected
 }
 
-function buildMeta({ title, description, path, image, jsonLd }, pathname) {
+function buildMeta({ title, description, path, image, jsonLd, noindex }, pathname) {
   const lang = langFromPath(pathname)
   const seoPath = path || pathname
   const canonical = canonicalUrl(seoPath, lang)
@@ -28,6 +28,7 @@ function buildMeta({ title, description, path, image, jsonLd }, pathname) {
 
   const metas = [
     { name: 'description', content: description },
+    ...(noindex ? [{ name: 'robots', content: 'noindex, nofollow' }] : []),
     { property: 'og:title', content: title },
     { property: 'og:description', content: description },
     { property: 'og:url', content: canonical },
@@ -134,7 +135,7 @@ function applyToDocument(meta) {
   }
 }
 
-function useSeo({ title, description, path, image, jsonLd } = {}) {
+function useSeo({ title, description, path, image, jsonLd, noindex } = {}) {
   const location = useLocation()
   const isServer = typeof document === 'undefined'
 
@@ -142,7 +143,7 @@ function useSeo({ title, description, path, image, jsonLd } = {}) {
   if (isServer) {
     globalThis.__SEO_COLLECTED__ = globalThis.__SEO_COLLECTED__ || []
     globalThis.__SEO_COLLECTED__.push(
-      buildMeta({ title, description, path, image, jsonLd }, location.pathname),
+      buildMeta({ title, description, path, image, jsonLd, noindex }, location.pathname),
     )
   }
 
@@ -152,10 +153,10 @@ function useSeo({ title, description, path, image, jsonLd } = {}) {
   useEffect(() => {
     if (isServer) return undefined
     return applyToDocument(
-      buildMeta({ title, description, path, image, jsonLd }, location.pathname),
+      buildMeta({ title, description, path, image, jsonLd, noindex }, location.pathname),
     )
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [title, description, path, image, jsonLdKey, location.pathname])
+  }, [title, description, path, image, noindex, jsonLdKey, location.pathname])
 }
 
 export default useSeo

@@ -7,7 +7,7 @@ import GuideSizer from '../components/GuideSizer'
 import GuideProductCard from '../components/GuideProductCard'
 import MobileCtaBar from '../components/MobileCtaBar'
 import CalculatorLink from '../components/CalculatorLink'
-import products from '../data/products'
+import { useCatalog } from '../hooks/useCatalog'
 import { SITE_URL as siteUrl } from '../config/site'
 
 const staticSizingRows = [
@@ -21,10 +21,6 @@ const staticSizingRows = [
 
 const clusterSlugs = ['pump', 'filter', 'heater']
 const clusterIcons = ['⚙️', '🌪️', '🔥']
-
-const featuredPump = products.find(p => p.category === 'pump')
-const featuredFilter = products.find(p => p.category === 'filter')
-const featuredDisinfection = products.find(p => p.category === 'disinfection')
 
 function FAQItem({ q, a, open, onToggle }) {
   return (
@@ -43,6 +39,11 @@ function FAQItem({ q, a, open, onToggle }) {
 function PoolPumpGuide() {
   const { t, i18n } = useTranslation()
   const [openFaq, setOpenFaq] = useState(null)
+  const catalog = useCatalog()
+
+  const featuredPump = catalog?.categoryFeatured('pump')
+  const featuredFilter = catalog?.categoryFeatured('filter')
+  const featuredDisinfection = catalog?.categoryFeatured('disinfection')
 
   const sizingRows = useMemo(() => {
     const volumes = t('guide.sections.sizingRows', { returnObjects: true }) || []

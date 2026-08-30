@@ -5,6 +5,7 @@ import { AppShell } from '../App'
 import { takeCollectedSeo } from '../hooks/useSeo'
 import i18n, { initPromise } from '../i18n'
 import { langFromPath } from '../config/site'
+import { loadCatalogContent } from '../data/catalog'
 import { ROUTES } from '../routes'
 
 // Warm up i18n once (loads locale bundles through the same backend the
@@ -21,7 +22,9 @@ for (const route of ROUTES) {
 
 export async function render(url) {
   const lang = langFromPath(url)
-  await i18n.changeLanguage(lang)
+  // Warm the catalog for this language BEFORE rendering so product pages
+  // contain real content in the prerendered HTML (cached across renders).
+  await Promise.all([i18n.changeLanguage(lang), loadCatalogContent(lang)])
 
   const html = renderToString(
     <MemoryRouter initialEntries={[url]}>
