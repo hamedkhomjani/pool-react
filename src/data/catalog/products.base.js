@@ -31,6 +31,7 @@ export const products = [
     images: [],
     sort: 1,
     featured: true,
+    attributes: { horsePower: '1.5 HP', material: 'Stainless Steel', capacity: 'Up to 60 m³' },
   },
   {
     key: 'mega650',
@@ -45,10 +46,11 @@ export const products = [
     images: [],
     sort: 1,
     featured: true,
+    attributes: { diameter: '65 cm', material: 'Fiberglass', flowRate: '15 m³/h' },
   },
   {
     key: 'uv85',
-    category: 'disinfection',
+    category: 'disinfection-uv',
     brandId: null,
     model: 'UV-85P',
     price: 9800000,
@@ -59,6 +61,7 @@ export const products = [
     images: [],
     sort: 1,
     featured: true,
+    attributes: { type: 'UV', lampLife: '9000h', capacity: 'Up to 40 m³' },
   },
   {
     key: 'ht36',
@@ -72,10 +75,11 @@ export const products = [
     icon: '🔥',
     images: [],
     sort: 1,
+    attributes: { material: 'Titanium', power: '36 kW', capacity: 'Up to 80 m³' },
   },
   {
     key: 'swg40',
-    category: 'disinfection',
+    category: 'disinfection-salt',
     brandId: 'aquapro',
     model: 'SWG-40',
     price: 15800000,
@@ -85,6 +89,7 @@ export const products = [
     icon: '🧂',
     images: [],
     sort: 2,
+    attributes: { type: 'Salt', cellMaterial: 'Titanium', capacity: 'Up to 60 m³' },
   },
   {
     key: 'led18',
@@ -99,10 +104,11 @@ export const products = [
     images: [],
     sort: 1,
     featured: true,
+    attributes: { type: 'LED', power: '18 W', colorCount: 'RGB' },
   },
   {
     key: 'pipe50',
-    category: 'piping',
+    category: 'piping-pipes',
     brandId: null,
     model: 'PVC-50',
     price: 850000,
@@ -112,10 +118,11 @@ export const products = [
     icon: '🔧',
     images: [],
     sort: 1,
+    attributes: { size: '50 mm', material: 'PVC', type: 'Pipe' },
   },
   {
     key: 'fitkit50',
-    category: 'piping',
+    category: 'piping-fittings',
     brandId: null,
     model: 'FITTING-KIT-50',
     price: 1250000,
@@ -125,6 +132,7 @@ export const products = [
     icon: '🔩',
     images: [],
     sort: 2,
+    attributes: { size: '50 mm', material: 'PVC', type: 'Fitting' },
   },
 ]
 

@@ -53,7 +53,11 @@
     "lighting": "Lights & Lighting",
     "disinfection": "Disinfection & UV",
     "accessories": "Ladders & Accessories",
-    "piping": "Pipes & Fittings"
+    "piping": "Pipes & Fittings",
+    "disinfection-uv": "UV Disinfectors",
+    "disinfection-salt": "Salt Chlorinators",
+    "piping-pipes": "Pipes",
+    "piping-fittings": "Fittings"
   },
   "productsSection": {
     "title": "Most Popular Filtration & Heating Equipment",
@@ -100,6 +104,20 @@
       "efficiency": "Efficiency",
       "pressure": "Working Pressure",
       "length": "Length"
+    },
+    "price": "Price",
+    "attributeLabels": {
+      "horsePower": "Horsepower",
+      "material": "Material",
+      "flowRate": "Flow Rate",
+      "size": "Size",
+      "cellMaterial": "Cell Material",
+      "colorCount": "Colors",
+      "type": "Type",
+      "lampLife": "Lamp Life",
+      "capacity": "Capacity",
+      "diameter": "Diameter",
+      "power": "Power"
     }
   },
   "calculator": {
@@ -1496,5 +1514,55 @@
     "empty": "Your cart is empty.",
     "browse": "Browse categories",
     "checkoutTemplate": "New order request\n\n{{lines}}\n\nSubtotal: {{subtotal}}\nPlease confirm availability and delivery."
+  },
+  "compare": {
+    "title": "Compare Products",
+    "description": "Compare AquaPro pool products side by side to choose the right one for you.",
+    "subtitle": "Comparing {{count}} of {{max}} products",
+    "compare": "Compare",
+    "add": "Add to compare",
+    "remove": "Remove from compare",
+    "full": "Compare list full",
+    "ready": "Ready to compare",
+    "clear": "Clear all",
+    "emptyTitle": "Nothing to compare yet",
+    "empty": "Add products to the compare list to see their specifications side by side.",
+    "browse": "Browse categories"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "description": "Complete your AquaPro order securely.",
+    "subtitle": "Enter your details and place your order.",
+    "shipping": "Contact & shipping",
+    "name": "Full name",
+    "namePlaceholder": "e.g. Ali Rezaei",
+    "phone": "Phone number",
+    "phonePlaceholder": "e.g. 0912 000 0000",
+    "city": "City",
+    "cityPlaceholder": "e.g. Tehran",
+    "address": "Address",
+    "addressPlaceholder": "Street, building, unit",
+    "email": "Email",
+    "optional": "optional",
+    "emailPlaceholder": "you@example.com",
+    "paymentTitle": "How would you like to pay?",
+    "payment": {
+      "whatsapp": "Order via WhatsApp",
+      "whatsappDesc": "Our team confirms availability and details, then you pay.",
+      "cod": "Cash on delivery",
+      "codDesc": "Pay when your order arrives (availability confirmed first)."
+    },
+    "placeOrder": "Place order",
+    "disclaimer": "Submitting sends your order to our sales team for confirmation; nothing is charged automatically.",
+    "summary": "Order summary",
+    "total": "Total ({{count}} items)",
+    "emptyTitle": "Your cart is empty",
+    "empty": "Add some products before checking out.",
+    "browse": "Browse categories",
+    "doneTitle": "Order received!",
+    "doneSubtitle": "Your order has been sent to our sales team for confirmation.",
+    "doneNote": "Keep your order reference — you can share it with our team to track your order.",
+    "backHome": "Back to home",
+    "orderTemplate": "New order from the website\n\n👤 Name: {{name}}\n📞 Phone: {{phone}}\n💳 Payment: {{payment}}\n\n🛒 Items:\n{{lines}}\n\n💰 Subtotal: {{subtotal}}\n\nReference: {{ref}}\nPlease confirm availability and delivery."
   }
 }

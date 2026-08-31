@@ -7,7 +7,9 @@ import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import ErrorBoundary from './components/ErrorBoundary'
 import CartProvider from './context/CartContext'
+import CompareProvider from './context/CompareContext'
 import CartDrawer from './components/CartDrawer'
+import CompareTray from './components/CompareTray'
 import useTheme from './hooks/useTheme'
 import { ROUTES, REDIRECTS } from './routes'
 import { langFromPath } from './config/site'
@@ -96,20 +98,23 @@ export function AppShell({ resolvePage }) {
 
   return (
     <CartProvider>
-      <Header theme={theme} onToggleTheme={toggleTheme} onOpenCart={() => setCartOpen(true)} />
-      <ScrollToTop />
-      <LangSync />
-      <PageViewTrack />
-      <KeyedErrorBoundary>
-        <Suspense fallback={<PageLoading />}>
-          <Routes>{routeElements(resolvePage)}</Routes>
+      <CompareProvider>
+        <Header theme={theme} onToggleTheme={toggleTheme} onOpenCart={() => setCartOpen(true)} />
+        <ScrollToTop />
+        <LangSync />
+        <PageViewTrack />
+        <KeyedErrorBoundary>
+          <Suspense fallback={<PageLoading />}>
+            <Routes>{routeElements(resolvePage)}</Routes>
+          </Suspense>
+        </KeyedErrorBoundary>
+        <Suspense fallback={null}>
+          <ChatWidget />
         </Suspense>
-      </KeyedErrorBoundary>
-      <Suspense fallback={null}>
-        <ChatWidget />
-      </Suspense>
-      <Footer />
-      <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
+        <Footer />
+        <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
+        <CompareTray />
+      </CompareProvider>
     </CartProvider>
   )
 }

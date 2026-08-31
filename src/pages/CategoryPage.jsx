@@ -1,39 +1,57 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useCatalog } from '../hooks/useCatalog'
-import { formatPrice } from '../utils/price'
-import { filterProducts, hasActiveFilters, PAGE_SIZE } from '../utils/productFilters'
-import { translateChipLabel } from '../i18n/product'
+import { filterProducts, hasActiveFilters, buildFacets, PAGE_SIZE } from '../utils/productFilters'
 import useSeo from '../hooks/useSeo'
 import ProductModal from '../components/ProductModal'
+import ProductCard from '../components/ProductCard'
+import Breadcrumbs from '../components/Breadcrumbs'
 import { track } from '../utils/track'
+
+// Attribute keys that drive the faceted filter UI. Values selected for these
+// are persisted in the URL; presence here sets a stable display order.
+const FACET_ORDER = ['type', 'brand', 'size', 'material', 'horsePower', 'power', 'capacity', 'flowRate', 'diameter', 'lampLife']
+
+function parseMulti(searchParams, key) {
+  const raw = searchParams.get(key)
+  if (!raw) return []
+  return raw.split(',').map(s => s.trim()).filter(Boolean)
+}
 
 function CategoryPage() {
   const { slug } = useParams()
   const { t, i18n } = useTranslation()
+  const [searchParams, setSearchParams] = useSearchParams()
   const [selectedKey, setSelectedKey] = useState(null)
   const [filtersOpen, setFiltersOpen] = useState(false)
-  const [selectedBrands, setSelectedBrands] = useState([])
-  const [priceMin, setPriceMin] = useState('')
-  const [priceMax, setPriceMax] = useState('')
-  const [sort, setSort] = useState('featured')
   const [visible, setVisible] = useState(PAGE_SIZE)
   const catalog = useCatalog()
 
   const category = catalog?.category(slug)
   const categoryName = category ? t(`categories.${category.slug}`) : ''
 
+  const selectedBrands = parseMulti(searchParams, 'brand')
+  const priceMin = searchParams.get('min') || ''
+  const priceMax = searchParams.get('max') || ''
+  const sort = searchParams.get('sort') || 'featured'
+
+  // Build facet selections from URL: any param key registered in FACET_ORDER.
+  const selectedFacets = useMemo(() => {
+    const out = {}
+    for (const key of FACET_ORDER) {
+      const values = parseMulti(searchParams, key)
+      if (values.length) out[key] = values
+    }
+    return out
+  }, [searchParams])
+
   const baseProducts = useMemo(
     () => (catalog ? catalog.categoryProducts(slug) : []),
     [catalog, slug],
   )
 
-  const categoryBrands = useMemo(() => {
-    if (!catalog) return []
-    const present = new Set(baseProducts.map(p => p.brandId))
-    return catalog.brands.filter(b => present.has(b.slug))
-  }, [catalog, baseProducts])
+  const facetGroups = useMemo(() => buildFacets(baseProducts, FACET_ORDER), [baseProducts])
 
   const filtered = useMemo(
     () =>
@@ -41,15 +59,24 @@ function CategoryPage() {
         brands: selectedBrands,
         min: priceMin,
         max: priceMax,
+        facets: selectedFacets,
         sort,
         sortLang: i18n.language,
       }),
-    [baseProducts, selectedBrands, priceMin, priceMax, sort, i18n.language],
+    [baseProducts, selectedBrands, priceMin, priceMax, selectedFacets, sort, i18n.language],
   )
 
   const visibleProducts = filtered.slice(0, visible)
   const hasMore = filtered.length > visible
-  const activeFilters = hasActiveFilters({ brands: selectedBrands, min: priceMin, max: priceMax })
+  const activeFilters = hasActiveFilters({ brands: selectedBrands, min: priceMin, max: priceMax, facets: selectedFacets })
+
+  const selected = baseProducts.find(p => p.key === selectedKey)
+
+  // Subcategories to show when browsing a department.
+  const subCategories = useMemo(
+    () => (category ? catalog.categoryChildren(slug) : []),
+    [catalog, category, slug],
+  )
 
   useSeo({
     title: t('meta.categoryTitle', { name: categoryName }),
@@ -65,28 +92,35 @@ function CategoryPage() {
     setVisible(PAGE_SIZE)
   }, [filtered])
 
-  useEffect(() => {
-    setSelectedBrands([])
-    setPriceMin('')
-    setPriceMax('')
-    setSort('featured')
-  }, [slug])
-
-  const selected = baseProducts.find(p => p.key === selectedKey)
-
-  function resetFilters() {
-    setSelectedBrands([])
-    setPriceMin('')
-    setPriceMax('')
-    setSort('featured')
+  function updateParams(next) {
+    const params = new URLSearchParams(searchParams)
+    for (const [key, value] of Object.entries(next)) {
+      if (value === '' || value == null) params.delete(key)
+      else params.set(key, value)
+    }
+    setSearchParams(params, { replace: true })
+    setVisible(PAGE_SIZE)
   }
 
   function toggleBrand(brandSlug) {
-    setSelectedBrands(current =>
-      current.includes(brandSlug)
-        ? current.filter(b => b !== brandSlug)
-        : [...current, brandSlug],
-    )
+    const next = selectedBrands.includes(brandSlug)
+      ? selectedBrands.filter(b => b !== brandSlug)
+      : [...selectedBrands, brandSlug]
+    updateParams({ brand: next.join(',') })
+  }
+
+  function toggleFacet(key, value) {
+    const current = selectedFacets[key] || []
+    const next = current.includes(value) ? current.filter(v => v !== value) : [...current, value]
+    updateParams({ [key]: next.join(',') })
+  }
+
+  function resetFilters() {
+    const params = new URLSearchParams()
+    const s = searchParams.get('sort')
+    if (s) params.set('sort', s)
+    setSearchParams(params, { replace: true })
+    setVisible(PAGE_SIZE)
   }
 
   if (!catalog) {
@@ -116,12 +150,24 @@ function CategoryPage() {
     <>
       <section className="cat-page">
         <div className="container">
+          <Breadcrumbs categorySlug={slug} />
+
           <div className="cat-page-header">
-            <Link to="/" className="cat-page-back">{t('categoryPage.back')}</Link>
             <div className="cat-page-icon">{category.icon}</div>
             <h2>{categoryName}</h2>
             <p>{t('categoryPage.subtitle', { name: categoryName })}</p>
           </div>
+
+          {subCategories.length > 0 && (
+            <nav className="subcat-nav" aria-label={t('filters.subcategories')}>
+              {subCategories.map(sub => (
+                <Link key={sub.slug} to={`/category/${sub.slug}`} className="subcat-chip">
+                  <span aria-hidden="true">{sub.icon}</span>
+                  {t(`categories.${sub.slug}`)}
+                </Link>
+              ))}
+            </nav>
+          )}
 
           <div className="filter-bar">
             <div className="filter-bar-head">
@@ -139,22 +185,53 @@ function CategoryPage() {
             </div>
 
             <div className={`filter-panel ${filtersOpen ? 'open' : ''}`}>
-              <div className="filter-group">
-                <span className="filter-label">{t('filters.brand')}</span>
-                <div className="filter-chips">
-                  {categoryBrands.map(brand => (
-                    <button
-                      key={brand.slug}
-                      type="button"
-                      className={`chip ${selectedBrands.includes(brand.slug) ? 'active' : ''}`}
-                      onClick={() => toggleBrand(brand.slug)}
-                      aria-pressed={selectedBrands.includes(brand.slug)}
-                    >
-                      {brand.name}
-                    </button>
-                  ))}
+
+              {facetGroups.map(group => (
+                <div className="filter-group" key={group.key}>
+                  <span className="filter-label">{t(`product.attributeLabels.${group.key}`, { defaultValue: group.key })}</span>
+                  <div className="filter-chips">
+                    {group.values.map(value => (
+                      <button
+                        key={value}
+                        type="button"
+                        className={`chip ${(selectedFacets[group.key] || []).includes(value) ? 'active' : ''}`}
+                        onClick={() => toggleFacet(group.key, value)}
+                        aria-pressed={(selectedFacets[group.key] || []).includes(value)}
+                      >
+                        {value}
+                        {group.counts[value] != null && group.counts[value] > 1 && (
+                          <span className="chip-count">({group.counts[value]})</span>
+                        )}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              ))}
+
+              {!facetGroups.some(g => g.key === 'brand') && (
+                <div className="filter-group">
+                  <span className="filter-label">{t('filters.brand')}</span>
+                  <div className="filter-chips">
+                    {catalog
+                      .categoryProducts(slug)
+                      .map(p => p.brandId)
+                      .filter((v, i, a) => v && a.indexOf(v) === i)
+                      .map(brandId => catalog.brand(brandId))
+                      .filter(Boolean)
+                      .map(brand => (
+                        <button
+                          key={brand.slug}
+                          type="button"
+                          className={`chip ${selectedBrands.includes(brand.slug) ? 'active' : ''}`}
+                          onClick={() => toggleBrand(brand.slug)}
+                          aria-pressed={selectedBrands.includes(brand.slug)}
+                        >
+                          {brand.name}
+                        </button>
+                      ))}
+                  </div>
+                </div>
+              )}
 
               <div className="filter-group">
                 <span className="filter-label">{t('filters.price')}</span>
@@ -165,7 +242,7 @@ function CategoryPage() {
                     inputMode="numeric"
                     placeholder={t('filters.from')}
                     value={priceMin}
-                    onChange={e => setPriceMin(e.target.value)}
+                    onChange={e => updateParams({ min: e.target.value })}
                     aria-label={t('filters.from')}
                   />
                   <span className="filter-price-sep">–</span>
@@ -175,7 +252,7 @@ function CategoryPage() {
                     inputMode="numeric"
                     placeholder={t('filters.to')}
                     value={priceMax}
-                    onChange={e => setPriceMax(e.target.value)}
+                    onChange={e => updateParams({ max: e.target.value })}
                     aria-label={t('filters.to')}
                   />
                 </div>
@@ -186,7 +263,7 @@ function CategoryPage() {
                 <select
                   className="filter-sort"
                   value={sort}
-                  onChange={e => setSort(e.target.value)}
+                  onChange={e => updateParams({ sort: e.target.value })}
                   aria-label={t('filters.sort')}
                 >
                   <option value="featured">{t('filters.sortFeatured')}</option>
@@ -217,23 +294,7 @@ function CategoryPage() {
             <>
               <div className="product-grid">
                 {visibleProducts.map(product => (
-                  <div className="product-card" key={product.key} onClick={() => setSelectedKey(product.key)}>
-                    {product.badge && <span className="badge-top">{product.badge}</span>}
-                    <div className="product-image">{product.icon}</div>
-                    <h3 className="product-title">{product.title}</h3>
-                    <p className="product-desc">{product.desc}</p>
-                    <div className="product-specs">
-                      {Object.entries(product.specs).map(([key, value]) => (
-                        <span key={key}><strong>{translateChipLabel(t, key)}:</strong> {value}</span>
-                      ))}
-                    </div>
-                    <div className="product-footer">
-                      <div className="product-price">{formatPrice(product.price, i18n.language)} <span>{t('product.toman')}</span></div>
-                      <Link to={`/product/${product.key}`} className="btn btn-primary" onClick={e => e.stopPropagation()}>
-                        {t('product.details')}
-                      </Link>
-                    </div>
-                  </div>
+                  <ProductCard key={product.key} product={product} onSelect={() => setSelectedKey(product.key)} />
                 ))}
               </div>
 

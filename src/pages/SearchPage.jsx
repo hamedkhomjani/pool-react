@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useCatalog } from '../hooks/useCatalog'
-import { formatPrice } from '../utils/price'
-import { translateChipLabel } from '../i18n/product'
 import useSeo from '../hooks/useSeo'
+import ProductCard from '../components/ProductCard'
 import { track } from '../utils/track'
 
 function SearchPage() {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const catalog = useCatalog()
+  const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
   const [input, setInput] = useState(searchParams.get('q') || '')
   const query = (searchParams.get('q') || '').trim()
@@ -86,21 +86,11 @@ function SearchPage() {
             <div className="search-count">{t('search.resultsCount', { count: results.length })}</div>
             <div className="product-grid">
               {results.map(product => (
-                <Link to={`/product/${product.key}`} className="product-card" key={product.key} style={{ textDecoration: 'none' }}>
-                  {product.badge && <span className="badge-top">{product.badge}</span>}
-                  <div className="product-image">{product.icon}</div>
-                  <h3 className="product-title">{product.title}</h3>
-                  <p className="product-desc">{product.desc}</p>
-                  <div className="product-specs">
-                    {Object.entries(product.specs).map(([specKey, value]) => (
-                      <span key={specKey}><strong>{translateChipLabel(t, specKey)}:</strong> {value}</span>
-                    ))}
-                  </div>
-                  <div className="product-footer">
-                    <div className="product-price">{formatPrice(product.price, i18n.language)} <span>{t('product.toman')}</span></div>
-                    <span className="btn btn-primary">{t('product.details')}</span>
-                  </div>
-                </Link>
+                <ProductCard
+                  key={product.key}
+                  product={product}
+                  onSelect={() => navigate(`/product/${product.key}`)}
+                />
               ))}
             </div>
           </>

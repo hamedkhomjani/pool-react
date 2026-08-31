@@ -16,11 +16,14 @@ const ROOT = path.resolve(import.meta.dirname, '..')
 const DIST = path.join(ROOT, 'dist')
 const SSR_OUT = path.join(ROOT, '.prerender')
 
-const STATIC_PATHS = ['/', '/about/', '/contact/', '/guides/', '/pool-pump-guide/']
+const STATIC_PATHS = ['/', '/about/', '/contact/', '/guides/', '/pool-pump-guide/', '/compare/', '/checkout/']
 
 // The pump guide has its own dedicated page (/pool-pump-guide); other
-// categories get /guide/<slug>. /guide/pump is a legacy SPA redirect.
-const GUIDE_SLUGS = categories.map(c => c.slug).filter(s => s !== 'pump')
+// departments get /guide/<slug>. /guide/pump is a legacy SPA redirect.
+// Guides are authored per department (top-level), so subcategories are excluded.
+const GUIDE_SLUGS = categories
+  .map(c => c.slug)
+  .filter(s => s !== 'pump' && !categories.find(c => c.slug === s).parentId)
 
 function allPaths(lang) {
   const prefix = lang === 'en' ? '/en' : ''

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useCatalog } from '../hooks/useCatalog'
 import { formatPrice } from '../utils/price'
@@ -7,6 +7,8 @@ import { translateChipLabel, translateSpecLabel } from '../i18n/product'
 import { whatsappUrl, CONTACT_CONFIG } from '../config/contact'
 import useSeo from '../hooks/useSeo'
 import Reveal from '../components/Reveal'
+import Breadcrumbs from '../components/Breadcrumbs'
+import ProductCard from '../components/ProductCard'
 import { useCart } from '../context/CartContext'
 import { track } from '../utils/track'
 
@@ -23,6 +25,7 @@ function ProductPage() {
   const { t, i18n } = useTranslation()
   const catalog = useCatalog()
   const cart = useCart()
+  const navigate = useNavigate()
   const [qty, setQty] = useState(1)
 
   const product = catalog?.product(key)
@@ -87,13 +90,7 @@ function ProductPage() {
       <section className="prod-page">
         <div className="container">
           <Reveal>
-            <nav className="prod-breadcrumb" aria-label="Breadcrumb">
-              <Link to="/">{t('nav.home')}</Link>
-              <span className="prod-breadcrumb-sep">/</span>
-              <Link to={`/category/${product.category}`}>{categoryName}</Link>
-              <span className="prod-breadcrumb-sep">/</span>
-              <span className="prod-breadcrumb-current">{product.title}</span>
-            </nav>
+            <Breadcrumbs categorySlug={product.category} current={product.title} />
           </Reveal>
 
           <div className="prod-layout">
@@ -170,21 +167,11 @@ function ProductPage() {
                 <h2>{t('productPage.relatedTitle')}</h2>
                 <div className="product-grid">
                   {related.map(rel => (
-                    <Link to={`/product/${rel.key}`} className="product-card" key={rel.key} style={{ textDecoration: 'none' }}>
-                      {rel.badge && <span className="badge-top">{rel.badge}</span>}
-                      <div className="product-image">{rel.icon}</div>
-                      <h3 className="product-title">{rel.title}</h3>
-                      <p className="product-desc">{rel.desc}</p>
-                      <div className="product-specs">
-                        {Object.entries(rel.specs).map(([specKey, value]) => (
-                          <span key={specKey}><strong>{translateChipLabel(t, specKey)}:</strong> {value}</span>
-                        ))}
-                      </div>
-                      <div className="product-footer">
-                        <div className="product-price">{formatPrice(rel.price, i18n.language)} <span>{t('product.toman')}</span></div>
-                        <span className="btn btn-primary">{t('product.details')}</span>
-                      </div>
-                    </Link>
+                    <ProductCard
+                      key={rel.key}
+                      product={rel}
+                      onSelect={() => navigate(`/product/${rel.key}`)}
+                    />
                   ))}
                 </div>
               </div>

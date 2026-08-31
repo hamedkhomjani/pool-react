@@ -9,8 +9,12 @@ export const categories = [
   { slug: 'heater', parentId: null, icon: '🔥', featured: true, sort: 3 },
   { slug: 'lighting', parentId: null, icon: '💡', featured: true, sort: 4 },
   { slug: 'disinfection', parentId: null, icon: '🧪', featured: true, sort: 5 },
+  { slug: 'disinfection-uv', parentId: 'disinfection', icon: '☀️', sort: 1 },
+  { slug: 'disinfection-salt', parentId: 'disinfection', icon: '🧂', sort: 2 },
   { slug: 'accessories', parentId: null, icon: '🪜', featured: true, sort: 6 },
   { slug: 'piping', parentId: null, icon: '🔧', featured: true, sort: 7 },
+  { slug: 'piping-pipes', parentId: 'piping', icon: '🟦', sort: 1 },
+  { slug: 'piping-fittings', parentId: 'piping', icon: '🔩', sort: 2 },
 ]
 
 export default categories

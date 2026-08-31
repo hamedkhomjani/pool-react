@@ -142,6 +142,33 @@ export function createCatalog(lang) {
   const brandMap = new Map(brands.map(b => [b.slug, b]))
   const products = productsBase.map(p => ({ ...p, ...content[p.key] }))
 
+  // Ordered descendants of a category (itself excluded). Cheap BFS over the
+  // tree so a department browse surfaces every product in its subcategories.
+  const descendantsOf = slug => {
+    const out = []
+    const queue = categories
+      .filter(c => c.parentId === slug)
+      .sort((a, b) => a.sort - b.sort)
+    while (queue.length) {
+      const node = queue.shift()
+      out.push(node.slug)
+      queue.push(...categories.filter(c => c.parentId === node.slug))
+    }
+    return out
+  }
+
+  // Category → ancestors (self excluded, top-first) for breadcrumbs.
+  const ancestorsOf = slug => {
+    const out = []
+    let current = categoryMap.get(slug)
+    while (current && current.parentId) {
+      const parent = categoryMap.get(current.parentId)
+      if (parent) out.unshift(parent.slug)
+      current = parent
+    }
+    return out
+  }
+
   return {
     lang,
     categories,
@@ -151,8 +178,13 @@ export function createCatalog(lang) {
     category: slug => categoryMap.get(slug),
     categoryChildren: slug =>
       categories.filter(c => c.parentId === slug).sort((a, b) => a.sort - b.sort),
+    categoryAncestors: ancestorsOf,
+    categoryDescendants: descendantsOf,
     product: key => products.find(p => p.key === key),
-    categoryProducts: slug => products.filter(p => p.category === slug),
+    categoryProducts: slug => {
+      const slugs = new Set([slug, ...descendantsOf(slug)])
+      return products.filter(p => slugs.has(p.category))
+    },
     categoryFeatured: slug => products.find(p => p.category === slug),
     brand: slug => brandMap.get(slug),
     search: query => searchProducts(lang, products, brands, query),

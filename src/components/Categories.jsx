@@ -5,12 +5,13 @@ import Reveal from './Reveal'
 
 function Categories() {
   const { t } = useTranslation()
+  const topCategories = categories.filter(c => c.parentId === null)
   return (
     <section className="categories" id="categories">
       <div className="container">
         <Reveal>
           <div className="cat-grid">
-            {categories.map(cat => (
+            {topCategories.map(cat => (
               <Link to={`/category/${cat.slug}`} className="cat-card" key={cat.slug} style={{ textDecoration: 'none' }}>
                 <div className="cat-icon">{cat.icon}</div>
                 <h4>{t(`categories.${cat.slug}`)}</h4>

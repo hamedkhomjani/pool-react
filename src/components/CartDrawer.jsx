@@ -1,16 +1,15 @@
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useCart } from '../context/CartContext'
 import { useCatalog } from '../hooks/useCatalog'
 import { formatPrice } from '../utils/price'
-import { whatsappUrl } from '../config/contact'
-import { track } from '../utils/track'
 
 function CartDrawer({ open, onClose }) {
   const { t, i18n } = useTranslation()
   const cart = useCart()
   const catalog = useCatalog()
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!open) return
@@ -41,21 +40,15 @@ function CartDrawer({ open, onClose }) {
         ...item,
         product,
         lineTotal,
-        label: `${product.title} ×${item.qty} — ${formatPrice(lineTotal, i18n.language)} ${t('product.toman')}`,
       }
     })
     .filter(Boolean)
 
   const subtotal = lines.reduce((sum, l) => sum + l.lineTotal, 0)
 
-  function checkout() {
-    const body = lines.map(l => l.label).join('\n')
-    const message = t('cart.checkoutTemplate', {
-      lines: body,
-      subtotal: `${formatPrice(subtotal, i18n.language)} ${t('product.toman')}`,
-    })
-    track('cart_checkout', { count: cart.count, subtotal })
-    window.open(whatsappUrl(message), '_blank', 'noopener,noreferrer')
+  function goToCheckout() {
+    onClose()
+    navigate('/checkout')
   }
 
   return (
@@ -119,7 +112,7 @@ function CartDrawer({ open, onClose }) {
                 <span>{t('cart.subtotal')} ({cart.count})</span>
                 <strong>{formatPrice(subtotal, i18n.language)} {t('product.toman')}</strong>
               </div>
-              <button type="button" className="btn btn-primary cart-checkout" onClick={checkout}>
+              <button type="button" className="btn btn-primary cart-checkout" onClick={goToCheckout}>
                 {t('cart.checkout')}
               </button>
               <button type="button" className="cart-clear" onClick={cart.clear}>

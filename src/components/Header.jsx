@@ -155,18 +155,38 @@ function Header({ theme, onToggleTheme, onOpenCart }) {
             <div className="mega-col">
               <h4 className="mega-title">{t('megaMenu.explore')}</h4>
               <div className="mega-cat-grid">
-                {categories.map(cat => (
-                  <Link
-                    key={cat.slug}
-                    to={`/category/${cat.slug}`}
-                    className="mega-cat"
-                    onClick={closeMega}
-                    style={{ textDecoration: 'none' }}
-                  >
-                    <span className="mega-cat-icon" aria-hidden="true">{cat.icon}</span>
-                    <span>{t(`categories.${cat.slug}`)}</span>
-                  </Link>
-                ))}
+                {categories.map(cat => {
+                  const children = catalog?.categoryChildren(cat.slug) || []
+                  return (
+                    <div key={cat.slug} className="mega-cat-group">
+                      <Link
+                        to={`/category/${cat.slug}`}
+                        className="mega-cat"
+                        onClick={closeMega}
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <span className="mega-cat-icon" aria-hidden="true">{cat.icon}</span>
+                        <span>{t(`categories.${cat.slug}`)}</span>
+                      </Link>
+                      {children.length > 0 && (
+                        <div className="mega-subcats">
+                          {children.map(sub => (
+                            <Link
+                              key={sub.slug}
+                              to={`/category/${sub.slug}`}
+                              className="mega-subcat"
+                              onClick={closeMega}
+                              style={{ textDecoration: 'none' }}
+                            >
+                              <span aria-hidden="true">{sub.icon}</span>
+                              {t(`categories.${sub.slug}`)}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
               </div>
             </div>
 
@@ -233,14 +253,29 @@ function Header({ theme, onToggleTheme, onOpenCart }) {
               </svg>
             </button>
             <ul className={`mobile-cats-list ${mobileCatsOpen ? 'open' : ''}`}>
-              {categories.map(cat => (
-                <li key={cat.slug}>
-                  <Link to={`/category/${cat.slug}`} onClick={closeMenu}>
-                    <span aria-hidden="true">{cat.icon}</span>
-                    {t(`categories.${cat.slug}`)}
-                  </Link>
-                </li>
-              ))}
+              {categories.map(cat => {
+                const children = catalog?.categoryChildren(cat.slug) || []
+                return (
+                  <li key={cat.slug}>
+                    <Link to={`/category/${cat.slug}`} onClick={closeMenu}>
+                      <span aria-hidden="true">{cat.icon}</span>
+                      {t(`categories.${cat.slug}`)}
+                    </Link>
+                    {children.length > 0 && (
+                      <ul className="mobile-subcats-list">
+                        {children.map(sub => (
+                          <li key={sub.slug}>
+                            <Link to={`/category/${sub.slug}`} onClick={closeMenu}>
+                              <span aria-hidden="true">{sub.icon}</span>
+                              {t(`categories.${sub.slug}`)}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                )
+              })}
             </ul>
           </li>
           {SECTION_ITEMS.map(item => (
