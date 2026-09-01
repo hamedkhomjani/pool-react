@@ -131,7 +131,7 @@ function CheckoutPage() {
               <div className="form-group">
                 <label className="form-label">{t('checkout.phone')}</label>
                 <input type="tel" name="phone" required pattern="[0-9۰-۹\+()\s-]+" value={form.phone}
-                  onChange={handleChange} placeholder={t('checkout.phonePlaceholder')} />
+                  dir="ltr" onChange={handleChange} placeholder={t('checkout.phonePlaceholder')} />
               </div>
             </div>
             <div className="form-group">

@@ -107,7 +107,7 @@ function ContactPage() {
                   </div>
                   <div className="form-group">
                     <label>{t('contact.phoneLabel')}</label>
-                    <input type="tel" name="phone" required pattern="[0-9۰-۹\+()\s-]+" value={form.phone} onChange={handleChange} placeholder={t('contact.phonePlaceholder')} />
+                    <input type="tel" name="phone" required pattern="[0-9۰-۹\+()\s-]+" value={form.phone} dir="ltr" onChange={handleChange} placeholder={t('contact.phonePlaceholder')} />
                   </div>
                 </div>
                 <div className="form-row">
