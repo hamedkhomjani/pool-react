@@ -37,78 +37,100 @@ function GuidesPage() {
 
   return (
     <section className="guide-page">
-      <div className="container">
-        <Reveal>
-          <header className="guide-header">
-            <span className="guide-badge">{t('guides.badge')}</span>
-            <h1>{t('guides.title')}</h1>
-            <p className="guide-meta">{t('guides.subtitle')}</p>
-            <p className="guide-lead">{t('guides.meta')}</p>
-          </header>
-        </Reveal>
+      <div className="guide-page-hero">
+        <div className="container">
+          <Reveal>
+            <header className="guide-header">
+              <span className="guide-badge">{t('guides.badge')}</span>
+              <h1>{t('guides.title')}</h1>
+              <p className="guide-meta">{t('guides.subtitle')}</p>
+              <p className="guide-hero-lead">{t('guides.meta')}</p>
+              <div className="guide-hero-stats">
+                <div className="guide-hero-stat">
+                  <span className="guide-hero-stat-num">{items.length}</span>
+                  <span>{t('guides.statGuides')}</span>
+                </div>
+                <div className="guide-hero-stat-divider" />
+                <div className="guide-hero-stat">
+                  <span className="guide-hero-stat-num">100%</span>
+                  <span>{t('guides.statExpert')}</span>
+                </div>
+                <div className="guide-hero-stat-divider" />
+                <div className="guide-hero-stat">
+                  <span className="guide-hero-stat-num">{t('guides.statFreeValue')}</span>
+                  <span>{t('guides.statFree')}</span>
+                </div>
+              </div>
+            </header>
+          </Reveal>
+        </div>
+      </div>
 
-        <div className="guides-list">
-          {items.map(item => {
-            const isOpen = openIndex === item.index
-            return (
-              <Reveal key={item.slug}>
-                <article className={`guides-item ${isOpen ? 'open' : ''}`}>
-                  <button
-                    className="guides-head"
-                    onClick={() => setOpenIndex(isOpen ? null : item.index)}
-                    aria-expanded={isOpen}
-                  >
-                    <span className="guides-head-icon">{item.icon}</span>
-                    <span className="guides-head-text">
-                      <span className="guides-head-name">{item.name}</span>
-                      <span className="guides-head-summary">{item.summary}</span>
-                    </span>
-                    <span className="guides-head-arrow" aria-hidden="true">▾</span>
-                  </button>
+      <div className="guide-page-body">
+        <div className="container">
+          <div className="guides-list">
+            {items.map(item => {
+              const isOpen = openIndex === item.index
+              return (
+                <Reveal key={item.slug}>
+                  <article className={`guides-item ${isOpen ? 'open' : ''}`}>
+                    <button
+                      className="guides-head"
+                      onClick={() => setOpenIndex(isOpen ? null : item.index)}
+                      aria-expanded={isOpen}
+                    >
+                      <span className="guides-head-icon">{item.icon}</span>
+                      <span className="guides-head-text">
+                        <span className="guides-head-name">{item.name}</span>
+                        <span className="guides-head-summary">{item.summary}</span>
+                      </span>
+                      <span className="guides-head-arrow" aria-hidden="true">▾</span>
+                    </button>
 
-                  {isOpen && (
-                    <div className="guides-body">
-                      <p className="guide-p">{item.intro}</p>
+                    {isOpen && (
+                      <div className="guides-body">
+                        <p className="guide-p">{item.intro}</p>
 
-                      <h3>{t('guides.whatToCheck')}</h3>
-                      <ul className="guide-list">
-                        {item.points.map((point, i) => (
-                          <li key={i}>
-                            <Trans i18nKey={`guides.items.${item.slug}.points.${i}`} />
-                          </li>
-                        ))}
-                      </ul>
+                        <h3>{t('guides.whatToCheck')}</h3>
+                        <ul className="guide-list">
+                          {item.points.map((point, i) => (
+                            <li key={i}>
+                              <Trans i18nKey={`guides.items.${item.slug}.points.${i}`} />
+                            </li>
+                          ))}
+                        </ul>
 
-                      <div className="guide-protip">
-                        <span className="guide-protip-icon">🛠️</span>
-                        <div>
-                          <strong>{t('guides.quickTip')}:</strong> {item.tip}
-                        </div>
-                      </div>
-
-                      {item.featured && (
-                        <div className="guide-products">
-                          <h3>{t('guides.featuredTitle')}</h3>
-                          <div className="guide-product-grid">
-                            <GuideProductCard product={item.featured} />
+                        <div className="guide-protip">
+                          <span className="guide-protip-icon">🛠️</span>
+                          <div>
+                            <strong>{t('guides.quickTip')}:</strong> {item.tip}
                           </div>
                         </div>
-                      )}
 
-                      <div className="guides-actions">
-                        <Link to={`/category/${item.slug}`} className="btn btn-primary">
-                          {t('guides.viewProducts', { name: item.name })}
-                        </Link>
-                        <Link to={`/guide/${item.slug}`} className="btn btn-outline">
-                          {t('guides.readFull')}
-                        </Link>
+                        {item.featured && (
+                          <div className="guide-products">
+                            <h3>{t('guides.featuredTitle')}</h3>
+                            <div className="guide-product-grid">
+                              <GuideProductCard product={item.featured} />
+                            </div>
+                          </div>
+                        )}
+
+                        <div className="guides-actions">
+                          <Link to={`/category/${item.slug}`} className="btn btn-primary">
+                            {t('guides.viewProducts', { name: item.name })}
+                          </Link>
+                          <Link to={`/guide/${item.slug}`} className="btn btn-outline">
+                            {t('guides.readFull')}
+                          </Link>
+                        </div>
                       </div>
-                    </div>
-                  )}
-                </article>
-              </Reveal>
-            )
-          })}
+                    )}
+                  </article>
+                </Reveal>
+              )
+            })}
+          </div>
         </div>
       </div>
       <MobileCtaBar />

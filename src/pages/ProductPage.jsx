@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useCatalog } from '../hooks/useCatalog'
@@ -27,6 +27,17 @@ function ProductPage() {
   const cart = useCart()
   const navigate = useNavigate()
   const [qty, setQty] = useState(1)
+  const [added, setAdded] = useState(false)
+  const addedTimer = useRef(null)
+
+  useEffect(() => () => window.clearTimeout(addedTimer.current), [])
+
+  function addToCart() {
+    cart.add(product.key, qty)
+    setAdded(true)
+    window.clearTimeout(addedTimer.current)
+    addedTimer.current = window.setTimeout(() => setAdded(false), 1800)
+  }
 
   const product = catalog?.product(key)
   const category = product ? catalog.category(product.category) : null
@@ -119,8 +130,8 @@ function ProductPage() {
                     <span className="cart-qty-value">{qty}</span>
                     <button type="button" onClick={() => setQty(q => Math.max(1, q - 1))} aria-label={t('cart.dec')} disabled={qty <= 1}>−</button>
                   </div>
-                  <button type="button" className="btn btn-primary" onClick={() => cart.add(product.key, qty)}>
-                    {t('cart.addToCart')}
+                  <button type="button" className={`btn btn-primary ${added ? 'added' : ''}`} onClick={addToCart}>
+                    {added ? t('cart.added') : t('cart.addToCart')}
                   </button>
                   <a href={orderUrl} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
                     {t('productPage.orderNow')}
@@ -129,6 +140,11 @@ function ProductPage() {
                     {t('productPage.callConsult')}
                   </a>
                 </div>
+                <ul className="prod-trust">
+                  <li className="prod-trust-item">🛡️ <span>{t('productPage.trustOriginal')}</span></li>
+                  <li className="prod-trust-item">📜 <span>{t('productPage.trustWarranty')}</span></li>
+                  <li className="prod-trust-item">💬 <span>{t('productPage.trustSupport')}</span></li>
+                </ul>
                 <p className="prod-note">{t('productPage.authenticityNote')}</p>
               </div>
             </Reveal>
@@ -179,6 +195,20 @@ function ProductPage() {
           )}
         </div>
       </section>
+
+      <nav className="prod-mobile-cta" aria-label={t('productPage.mobileCtaLabel')}>
+        <div className="cart-qty" role="group" aria-label={t('cart.qty')}>
+          <button type="button" onClick={() => setQty(q => q + 1)} aria-label={t('cart.inc')}>+</button>
+          <span className="cart-qty-value">{qty}</span>
+          <button type="button" onClick={() => setQty(q => Math.max(1, q - 1))} aria-label={t('cart.dec')} disabled={qty <= 1}>−</button>
+        </div>
+        <button type="button" className={`btn btn-primary ${added ? 'added' : ''}`} onClick={addToCart}>
+          {added ? t('cart.added') : t('cart.addToCart')}
+        </button>
+        <a href={orderUrl} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
+          {t('productPage.orderNow')}
+        </a>
+      </nav>
     </>
   )
 }

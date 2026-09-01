@@ -119,6 +119,21 @@ function CheckoutPage() {
           <p>{t('checkout.subtitle')}</p>
         </div>
 
+        <nav className="checkout-steps" aria-label={t('checkout.stepsLabel')}>
+          <span className="checkout-step done">
+            <span className="checkout-step-num" aria-hidden="true">✓</span>
+            {t('checkout.stepCart')}
+          </span>
+          <span className="checkout-step active">
+            <span className="checkout-step-num" aria-hidden="true">2</span>
+            {t('checkout.stepDetails')}
+          </span>
+          <span className="checkout-step">
+            <span className="checkout-step-num" aria-hidden="true">3</span>
+            {t('checkout.stepDone')}
+          </span>
+        </nav>
+
         <div className="checkout-layout">
           <form className="checkout-form" onSubmit={handleSubmit}>
             <h3 className="checkout-section-title">{t('checkout.shipping')}</h3>

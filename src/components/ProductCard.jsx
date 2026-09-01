@@ -1,7 +1,7 @@
 // Reusable product listing card with integrated add-to-cart and compare
 // toggles. Used by the home grids, category page, and search page so the
 // purchase affordances stay consistent everywhere products are listed.
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useCatalog } from '../hooks/useCatalog'
@@ -17,13 +17,20 @@ function ProductCard({ product, onSelect }) {
   const compare = useCompare()
   const catalog = useCatalog()
   const [qty, setQty] = useState(1)
+  const [added, setAdded] = useState(false)
+  const addedTimer = useRef(null)
 
   const inCompare = compare.contains(product.key)
+
+  useEffect(() => () => window.clearTimeout(addedTimer.current), [])
 
   function addToCart(e) {
     e.stopPropagation()
     cart.add(product.key, qty)
     setQty(1)
+    setAdded(true)
+    window.clearTimeout(addedTimer.current)
+    addedTimer.current = window.setTimeout(() => setAdded(false), 1800)
   }
 
   function toggleCompare(e) {
@@ -67,7 +74,7 @@ function ProductCard({ product, onSelect }) {
         )}
       </div>
 
-      <div className="product-image">{product.icon}</div>
+      <div className="product-image"><span className="product-image-inner">{product.icon}</span></div>
       <h3 className="product-title">{product.title}</h3>
       <p className="product-desc">{product.desc}</p>
       <div className="product-specs">
@@ -82,8 +89,8 @@ function ProductCard({ product, onSelect }) {
           <span className="card-qty-value">{qty}</span>
           <button type="button" onClick={e => { e.stopPropagation(); setQty(q => Math.max(1, q - 1)) }} aria-label={t('cart.dec')} disabled={qty <= 1}>−</button>
         </div>
-        <button type="button" className="btn btn-primary card-add-btn" onClick={addToCart}>
-          {t('cart.addToCart')}
+        <button type="button" className={`btn btn-primary card-add-btn ${added ? 'added' : ''}`} onClick={addToCart}>
+          {added ? t('cart.added') : t('cart.addToCart')}
         </button>
       </div>
 

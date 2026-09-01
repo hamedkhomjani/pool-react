@@ -281,7 +281,11 @@
     "callConsult": "Call for Consultation",
     "authenticityNote": "All AquaPro products carry an authenticity guarantee and a valid warranty.",
     "relatedTitle": "Related Products",
-    "orderTemplate": "Hello, I would like to order the following product from the AquaPro website:\n\n🛒 Product: {{name}}\n🔢 Model: {{model}}\n💰 Price: {{price}} Toman"
+    "orderTemplate": "Hello, I would like to order the following product from the AquaPro website:\n\n🛒 Product: {{name}}\n🔢 Model: {{model}}\n💰 Price: {{price}} Toman",
+    "trustOriginal": "100% original",
+    "trustWarranty": "12-month warranty",
+    "trustSupport": "Expert consultation",
+    "mobileCtaLabel": "Buy actions"
   },
   "guide": {
     "badge": "Expert Buying Guide",
@@ -441,6 +445,10 @@
     "title": "Pool Equipment Buying Guides",
     "subtitle": "Short, practical guides for every category — what matters, what to check, and how to choose without overpaying.",
     "meta": "AquaPro Technical Team · Updated: Year 1405",
+    "statGuides": "Practical Guides",
+    "statExpert": "Expert-Reviewed",
+    "statFree": "Free to read",
+    "statFreeValue": "Free",
     "whatToCheck": "What to Check Before Buying",
     "featuredTitle": "Our Pick in This Category",
     "viewProducts": "View All {{name}}",
@@ -1513,7 +1521,8 @@
     "clearCart": "Clear cart",
     "empty": "Your cart is empty.",
     "browse": "Browse categories",
-    "checkoutTemplate": "New order request\n\n{{lines}}\n\nSubtotal: {{subtotal}}\nPlease confirm availability and delivery."
+    "checkoutTemplate": "New order request\n\n{{lines}}\n\nSubtotal: {{subtotal}}\nPlease confirm availability and delivery.",
+    "added": "Added ✓"
   },
   "compare": {
     "title": "Compare Products",
@@ -1563,6 +1572,10 @@
     "doneSubtitle": "Your order has been sent to our sales team for confirmation.",
     "doneNote": "Keep your order reference — you can share it with our team to track your order.",
     "backHome": "Back to home",
-    "orderTemplate": "New order from the website\n\n👤 Name: {{name}}\n📞 Phone: {{phone}}\n💳 Payment: {{payment}}\n\n🛒 Items:\n{{lines}}\n\n💰 Subtotal: {{subtotal}}\n\nReference: {{ref}}\nPlease confirm availability and delivery."
+    "orderTemplate": "New order from the website\n\n👤 Name: {{name}}\n📞 Phone: {{phone}}\n💳 Payment: {{payment}}\n\n🛒 Items:\n{{lines}}\n\n💰 Subtotal: {{subtotal}}\n\nReference: {{ref}}\nPlease confirm availability and delivery.",
+    "stepCart": "Cart",
+    "stepDetails": "Details",
+    "stepDone": "Confirmation",
+    "stepsLabel": "Checkout progress"
   }
 }

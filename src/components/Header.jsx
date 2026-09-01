@@ -75,22 +75,20 @@ function Header({ theme, onToggleTheme, onOpenCart }) {
         </Link>
 
         <ul className="nav-links">
-          <li>
+          <li onMouseEnter={megaOpen ? closeMega : undefined}>
             <Link to="/" onClick={closeMenu}>{t('nav.home')}</Link>
           </li>
           {SECTION_ITEMS.map(item => (
-            <li key={item.id}>
+            <li key={item.id} onMouseEnter={megaOpen ? closeMega : undefined}>
               <a href={`#${item.id}`} onClick={e => handleSectionClick(e, item.id)}>
                 {t(item.key)}
               </a>
             </li>
           ))}
-          <li
-            onMouseEnter={canHover ? () => setMegaOpen(true) : undefined}
-          >
+          <li>
             <button
               className={`mega-btn ${megaOpen ? 'open' : ''}`}
-              onClick={() => (canHover ? setMegaOpen(true) : setMegaOpen(o => !o))}
+              onClick={() => setMegaOpen(o => !o)}
               aria-expanded={megaOpen}
               aria-haspopup="true"
             >
@@ -100,13 +98,13 @@ function Header({ theme, onToggleTheme, onOpenCart }) {
               </svg>
             </button>
           </li>
-          <li>
+          <li onMouseEnter={megaOpen ? closeMega : undefined}>
             <Link to="/guides" onClick={closeMenu}>{t('nav.guides')}</Link>
           </li>
-          <li>
+          <li onMouseEnter={megaOpen ? closeMega : undefined}>
             <Link to="/about" onClick={closeMenu}>{t('nav.about')}</Link>
           </li>
-          <li>
+          <li onMouseEnter={megaOpen ? closeMega : undefined}>
             <Link to="/contact" onClick={closeMenu}>{t('nav.contact')}</Link>
           </li>
         </ul>
@@ -135,7 +133,7 @@ function Header({ theme, onToggleTheme, onOpenCart }) {
               <circle cx="17" cy="20" r="1.6" />
               <path d="M3 3h2l2.6 12.5a1.5 1.5 0 0 0 1.5 1.2h7.6a1.5 1.5 0 0 0 1.5-1.2L20 7H6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            {cart.count > 0 && <span className="cart-badge">{cart.count > 99 ? '99+' : cart.count}</span>}
+            {cart.count > 0 && <span key={cart.count} className="cart-badge">{cart.count > 99 ? '99+' : cart.count}</span>}
           </button>
           <LanguageSwitcher />
           <ThemeToggle theme={theme} onToggle={onToggleTheme} />
