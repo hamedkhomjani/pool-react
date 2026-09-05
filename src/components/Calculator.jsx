@@ -259,8 +259,8 @@ function Calculator() {
                 <p className="calc-note">{t('calculator.chemNote')}</p>
               </div>
 
-              <div style={{ textAlign: 'center', marginTop: '24px' }}>
-                <a href={CONTACT_CONFIG.phoneHref} className="btn btn-primary" style={{ fontSize: '16px', padding: '14px 36px' }}>
+              <div className="calc-cta-wrap">
+                <a href={CONTACT_CONFIG.phoneHref} className="btn btn-primary calc-cta-btn">
                   {t('calculator.ctaCall')}
                 </a>
               </div>

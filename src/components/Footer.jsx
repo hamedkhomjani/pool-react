@@ -14,7 +14,7 @@ function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div className="footer-about">
-            <div className="logo" style={{ color: '#F1F5F9' }}>
+            <div className="logo footer-logo">
               <div className="logo-icon">💧</div>
               <span>{t('brand')}</span>
             </div>

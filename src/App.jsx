@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import './App.css'
@@ -11,6 +11,7 @@ import CompareProvider from './context/CompareContext'
 import CartDrawer from './components/CartDrawer'
 import CompareTray from './components/CompareTray'
 import useTheme from './hooks/useTheme'
+import { UIProvider, useUI } from './context/UIContext'
 import { ROUTES, REDIRECTS } from './routes'
 import { langFromPath } from './config/site'
 import { track } from './utils/track'
@@ -94,28 +95,37 @@ function KeyedErrorBoundary({ children }) {
 
 export function AppShell({ resolvePage }) {
   const { theme, toggleTheme } = useTheme()
-  const [cartOpen, setCartOpen] = useState(false)
-
   return (
     <CartProvider>
       <CompareProvider>
-        <Header theme={theme} onToggleTheme={toggleTheme} onOpenCart={() => setCartOpen(true)} />
-        <ScrollToTop />
-        <LangSync />
-        <PageViewTrack />
-        <KeyedErrorBoundary>
-          <Suspense fallback={<PageLoading />}>
-            <Routes>{routeElements(resolvePage)}</Routes>
-          </Suspense>
-        </KeyedErrorBoundary>
-        <Suspense fallback={null}>
-          <ChatWidget />
-        </Suspense>
-        <Footer />
-        <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
-        <CompareTray />
+        <UIProvider>
+          <AppContent theme={theme} toggleTheme={toggleTheme} resolvePage={resolvePage} />
+        </UIProvider>
       </CompareProvider>
     </CartProvider>
+  )
+}
+
+function AppContent({ theme, toggleTheme, resolvePage }) {
+  const { cartOpen, closeCart } = useUI()
+  return (
+    <>
+      <Header theme={theme} onToggleTheme={toggleTheme} />
+      <ScrollToTop />
+      <LangSync />
+      <PageViewTrack />
+      <KeyedErrorBoundary>
+        <Suspense fallback={<PageLoading />}>
+          <Routes>{routeElements(resolvePage)}</Routes>
+        </Suspense>
+      </KeyedErrorBoundary>
+      <Suspense fallback={null}>
+        <ChatWidget />
+      </Suspense>
+      <Footer />
+      <CartDrawer open={cartOpen} onClose={closeCart} />
+      <CompareTray />
+    </>
   )
 }
 

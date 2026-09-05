@@ -1448,8 +1448,11 @@
     "cta": "View Current Price & Buy"
   },
   "mobileCta": {
-    "call": "Phone Consultation",
-    "calc": "Online Pump Size Calculator"
+    "call": "Call Us",
+    "search": "Search",
+    "cart": "Cart",
+    "calc": "Calculator",
+    "navLabel": "Main mobile navigation"
   },
   "chatbot": {
     "label": "AquaPro Assistant",

@@ -86,9 +86,9 @@ function ProductPage() {
   if (!product) {
     return (
       <section className="prod-page">
-        <div className="container" style={{ textAlign: 'center', padding: '100px 0' }}>
+        <div className="container page-state">
           <h2>{t('productPage.notFound')}</h2>
-          <Link to="/" className="btn btn-primary" style={{ marginTop: '20px' }}>{t('categoryPage.backHome')}</Link>
+          <Link to="/" className="btn btn-primary">{t('categoryPage.backHome')}</Link>
         </div>
       </section>
     )

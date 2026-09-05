@@ -124,7 +124,7 @@ function ContactPage() {
                   <label>{t('contact.messageLabel')}</label>
                   <textarea name="message" rows="5" required value={form.message} onChange={handleChange} placeholder={t('contact.messagePlaceholder')}></textarea>
                 </div>
-                <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '14px', fontSize: '16px' }}>
+                <button type="submit" className="btn btn-primary contact-submit">
                   {t('contact.submitBtn')}
                 </button>
                 <p className="contact-note">{t('contact.note')}</p>

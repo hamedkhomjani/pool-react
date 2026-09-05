@@ -8,6 +8,7 @@ import CalculatorLink from './CalculatorLink'
 import { useCatalog } from '../hooks/useCatalog'
 import { formatPrice } from '../utils/price'
 import { useCart } from '../context/CartContext'
+import { useUI } from '../context/UIContext'
 
 const SECTION_ITEMS = [
   { id: 'products', key: 'nav.products' },
@@ -18,14 +19,14 @@ function scrollToId(id) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 }
 
-function Header({ theme, onToggleTheme, onOpenCart }) {
+function Header({ theme, onToggleTheme }) {
   const { t, i18n } = useTranslation()
   const location = useLocation()
   const navigate = useNavigate()
   const catalog = useCatalog()
   const cart = useCart()
+  const { openCart, openSearch, searchOpen, closeSearch } = useUI()
   const [menuOpen, setMenuOpen] = useState(false)
-  const [searchOpen, setSearchOpen] = useState(false)
   const [megaOpen, setMegaOpen] = useState(false)
   const [mobileCatsOpen, setMobileCatsOpen] = useState(false)
   const [canHover] = useState(
@@ -34,7 +35,6 @@ function Header({ theme, onToggleTheme, onOpenCart }) {
 
   useEffect(() => {
     setMenuOpen(false)
-    setSearchOpen(false)
     setMegaOpen(false)
     setMobileCatsOpen(false)
   }, [location.pathname, location.hash, location.search])
@@ -113,7 +113,7 @@ function Header({ theme, onToggleTheme, onOpenCart }) {
           <Link to="/contact" className="btn btn-primary desktop-cta">{t('nav.cta')}</Link>
           <button
             className="search-toggle"
-            onClick={() => setSearchOpen(true)}
+            onClick={openSearch}
             aria-label={t('search.ariaLabel')}
             title={t('search.label')}
           >
@@ -124,7 +124,7 @@ function Header({ theme, onToggleTheme, onOpenCart }) {
           </button>
           <button
             className="cart-toggle"
-            onClick={onOpenCart}
+            onClick={openCart}
             aria-label={t('cart.openAria', { count: cart.count })}
             title={t('cart.title')}
           >
@@ -295,7 +295,7 @@ function Header({ theme, onToggleTheme, onOpenCart }) {
         </ul>
         <Link to="/contact" className="btn btn-primary mobile-cta">{t('nav.cta')}</Link>
       </nav>
-      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
+      <SearchOverlay open={searchOpen} onClose={closeSearch} />
     </header>
   )
 }
