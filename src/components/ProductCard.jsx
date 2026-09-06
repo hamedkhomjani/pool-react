@@ -10,6 +10,8 @@ import { useCompare } from '../context/CompareContext'
 import { formatPrice } from '../utils/price'
 import { translateChipLabel } from '../i18n/product'
 import { track } from '../utils/track'
+import { useReviews } from '../hooks/useReviews'
+import RatingStars from './RatingStars'
 
 function ProductCard({ product, onSelect }) {
   const { t, i18n } = useTranslation()
@@ -22,6 +24,7 @@ function ProductCard({ product, onSelect }) {
 
   const inCompare = compare.contains(product.key)
   const brand = catalog?.brand(product.brandId)
+  const { summary: rating } = useReviews(product)
 
   useEffect(() => () => window.clearTimeout(addedTimer.current), [])
 
@@ -82,6 +85,16 @@ function ProductCard({ product, onSelect }) {
         </Link>
       )}
       <h3 className="product-title">{product.title}</h3>
+      {rating && (
+        <div className="product-rating">
+          <RatingStars
+            value={rating.average}
+            size="sm"
+            ariaLabel={t('reviews.ariaAverage', { count: rating.average.toFixed(1) })}
+          />
+          <span className="product-rating-count">({rating.count})</span>
+        </div>
+      )}
       <p className="product-desc">{product.desc}</p>
       <div className="product-specs">
         {Object.entries(product.specs).map(([key, value]) => (

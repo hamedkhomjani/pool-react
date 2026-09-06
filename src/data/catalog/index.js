@@ -64,6 +64,18 @@ function validateContent(content, lang) {
     if (entry.badge !== undefined && entry.badge !== null && typeof entry.badge !== 'string') {
       problems.push(`${key} badge must be string|null`)
     }
+    if (entry.reviews !== undefined) {
+      if (!Array.isArray(entry.reviews)) {
+        problems.push(`${key} reviews must be an array`)
+      } else {
+        entry.reviews.forEach((r, i) => {
+          if (!r || typeof r.id !== 'number' || typeof r.author !== 'string' ||
+              !Number.isFinite(r.rating) || typeof r.text !== 'string') {
+            problems.push(`${key} reviews[${i}] must be { id:number, author:string, rating:number, text:string }`)
+          }
+        })
+      }
+    }
   }
 
   if (problems.length) {

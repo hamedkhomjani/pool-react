@@ -1630,5 +1630,23 @@
     "stepDetails": "مشخصات",
     "stepDone": "ثبت نهایی",
     "stepsLabel": "مراحل ثبت سفارش"
+  },
+  "reviews": {
+    "title": "نظرات مشتریان",
+    "subtitle": "نظرات مشتریان درباره این محصول",
+    "average": "میانگین",
+    "count": "{{count}} نظر",
+    "verified": "خریدار تأیید‌شده",
+    "noReviews": "هنوز نظری ثبت نشده است — اولین نظر را شما بگذارید!",
+    "writeTitle": "تجربه خود را به اشتراک بگذارید",
+    "nameLabel": "نام شما",
+    "namePlaceholder": "مثلاً علی رضایی",
+    "ratingLabel": "امتیاز شما",
+    "commentLabel": "نظر شما",
+    "commentPlaceholder": "محصول برای شما چگونه کار کرد؟",
+    "submit": "ثبت نظر",
+    "thanks": "متشکریم! نظر شما ثبت شد.",
+    "ariaStars": "{{count}} ستاره از ۵",
+    "ariaAverage": "امتیاز {{count}} از ۵"
   }
 }

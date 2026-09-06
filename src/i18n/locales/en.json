@@ -1631,5 +1631,23 @@
     "stepDetails": "Details",
     "stepDone": "Confirmation",
     "stepsLabel": "Checkout progress"
+  },
+  "reviews": {
+    "title": "Customer Reviews",
+    "subtitle": "What customers say about this product",
+    "average": "Average",
+    "count": "{{count}} review",
+    "verified": "Verified buyer",
+    "noReviews": "No reviews yet — be the first to write one!",
+    "writeTitle": "Share your experience",
+    "nameLabel": "Your name",
+    "namePlaceholder": "e.g. Ali Rezaei",
+    "ratingLabel": "Your rating",
+    "commentLabel": "Your review",
+    "commentPlaceholder": "How did the product work for you?",
+    "submit": "Submit review",
+    "thanks": "Thank you! Your review has been submitted.",
+    "ariaStars": "{{count}} out of 5 stars",
+    "ariaAverage": "Rated {{count}} out of 5"
   }
 }

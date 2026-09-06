@@ -35,6 +35,32 @@ export const productContent = {
       weight: '18 kg',
       warranty: '18 months',
     },
+    reviews: [
+      {
+        id: 1,
+        author: 'Amir H.',
+        rating: 5,
+        date: '2026-07-14',
+        verified: true,
+        text: 'Installed on a 50 m³ residential pool — it runs so quietly you can barely hear it from inside the house. Water stays perfectly clear.',
+      },
+      {
+        id: 2,
+        author: 'Sarah M.',
+        rating: 5,
+        date: '2026-08-02',
+        verified: true,
+        text: 'Bought it to replace a cheap pump that kept breaking. The stainless body and 18-month warranty made the decision easy. Very satisfied.',
+      },
+      {
+        id: 3,
+        author: 'Reza K.',
+        rating: 4,
+        date: '2026-06-20',
+        verified: false,
+        text: 'Strong and reliable pump. Only reason for 4 stars is that delivery took an extra day — the product itself is excellent.',
+      },
+    ],
   },
   mega650: {
     badge: 'Special Offer',
@@ -61,6 +87,24 @@ export const productContent = {
       weight: '25 kg',
       warranty: '24 months',
     },
+    reviews: [
+      {
+        id: 1,
+        author: 'Farid N.',
+        rating: 5,
+        date: '2026-07-28',
+        verified: true,
+        text: 'Solid fiberglass filter. Backwashing is effortless thanks to the 6-way valve and same-day water clarity is noticeable.',
+      },
+      {
+        id: 2,
+        author: 'Mina S.',
+        rating: 4,
+        date: '2026-05-19',
+        verified: true,
+        text: 'Filtration quality is great for our 40 m³ pool. Heavy to carry up the stairs, but the performance makes up for it.',
+      },
+    ],
   },
   uv85: {
     badge: null,
@@ -87,6 +131,16 @@ export const productContent = {
       weight: '4.5 kg',
       warranty: '12 months',
     },
+    reviews: [
+      {
+        id: 1,
+        author: 'Hossein T.',
+        rating: 5,
+        date: '2026-06-10',
+        verified: true,
+        text: 'Chlorine smell disappeared within a week. The lamp life of 9000 hours is a big plus over other models we compared.',
+      },
+    ],
   },
   ht36: {
     badge: 'Best Seller',
@@ -113,6 +167,24 @@ export const productContent = {
       weight: '12 kg',
       warranty: '36 months',
     },
+    reviews: [
+      {
+        id: 1,
+        author: 'Mahdi R.',
+        rating: 5,
+        date: '2026-08-15',
+        verified: true,
+        text: 'Heats our 45 m³ pool evenly and the titanium build feels premium. Thermostat holds the temperature rock steady.',
+      },
+      {
+        id: 2,
+        author: 'Elham S.',
+        rating: 4,
+        date: '2026-06-30',
+        verified: false,
+        text: 'Very efficient and quiet. Would be 5 stars but I needed help from support to wire the thermostat correctly — they responded fast though.',
+      },
+    ],
   },
   swg40: {
     badge: null,

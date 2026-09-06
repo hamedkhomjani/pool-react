@@ -12,6 +12,9 @@ import ProductCard from '../components/ProductCard'
 import OrderModal from '../components/OrderModal'
 import { useCart } from '../context/CartContext'
 import { track } from '../utils/track'
+import { useReviews } from '../hooks/useReviews'
+import RatingStars from '../components/RatingStars'
+import ProductReviews from '../components/Reviews'
 
 function ProductPage() {
   const { key } = useParams()
@@ -36,6 +39,7 @@ function ProductPage() {
   const product = catalog?.product(key)
   const category = product ? catalog.category(product.category) : null
   const categoryName = category ? t(`categories.${category.slug}`) : ''
+  const { summary: rating } = useReviews(product || {})
 
   const related = product
     ? catalog
@@ -107,6 +111,16 @@ function ProductPage() {
             <Reveal direction="left">
               <div className="prod-info">
                 <h1 className="prod-title">{product.title}</h1>
+                {rating && (
+                  <div className="prod-rating">
+                    <RatingStars
+                      value={rating.average}
+                      ariaLabel={t('reviews.ariaAverage', { count: rating.average.toFixed(1) })}
+                    />
+                    <span className="prod-rating-avg">{rating.average.toFixed(1)}</span>
+                    <span className="prod-rating-count">({rating.count})</span>
+                  </div>
+                )}
                 <div className="prod-price">{formatPrice(product.price, i18n.language)} <span>{t('product.toman')}</span></div>
                 <p className="prod-desc">{product.longDesc}</p>
                 <div className="prod-specs-chips">
@@ -168,6 +182,8 @@ function ProductPage() {
               </div>
             </Reveal>
           </div>
+
+          <ProductReviews product={product} />
 
           {related.length > 0 && (
             <Reveal>
