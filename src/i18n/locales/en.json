@@ -8,11 +8,11 @@
     "aboutTitle": "About Us | AquaPro",
     "aboutDescription": "AquaPro has been a leading supplier of modern pool and spa equipment since 2011 with authenticity guarantee and after-sales service.",
     "contactTitle": "Contact Us | AquaPro",
-    "contactDescription": "AquaPro experts are ready to answer your questions about pool equipment. Call: +98-21-88888888",
+    "contactDescription": "AquaPro experts are ready to answer your questions about pool equipment. Call: +46762573273",
     "guideTitle": "Pool Pump Buying Guide [1405]; HP Selection Chart by Pool Volume",
-    "guideDescription": "Complete pool pump buying guide: HP chart by volume, power consumption and brand comparison. Free consultation: +98-21-88888888",
+    "guideDescription": "Complete pool pump buying guide: HP chart by volume, power consumption and brand comparison. Free consultation: +46762573273",
     "guidesTitle": "Pool Equipment Buying Guides | AquaPro",
-    "guidesDescription": "Expert buying guides for pool pumps, sand filters, heat exchangers, LED lights, disinfection systems, accessories and pipes. Free consultation: +98-21-88888888",
+    "guidesDescription": "Expert buying guides for pool pumps, sand filters, heat exchangers, LED lights, disinfection systems, accessories and pipes. Free consultation: +46762573273",
     "categoryTitle": "{{name}} | AquaPro",
     "categoryDescription": "A complete collection of {{name}} with the best brands and prices at the AquaPro store. Product authenticity guarantee and valid warranty.",
     "productTitle": "{{name}} | AquaPro",
@@ -219,7 +219,7 @@
       "warranty": "Support & Warranty"
     },
     "contactTitle": "Contact Us",
-    "contactPhone": "+98-21-88888888",
+    "contactPhone": "+46762573273",
     "contactAddress": "Tehran, Niavaran Street",
     "shareTitle": "Share",
     "shareText": "AquaPro - Pool Equipment Specialists",
@@ -241,7 +241,7 @@
     "subjectLabel": "Subject",
     "messageLabel": "Message",
     "namePlaceholder": "e.g. John Smith",
-    "phonePlaceholder": "e.g. +989123456789",
+    "phonePlaceholder": "e.g. +46762573273",
     "emailPlaceholder": "e.g. info@example.com",
     "subjectPlaceholder": "e.g. Pump purchase consultation",
     "messagePlaceholder": "Write your message...",
@@ -257,7 +257,7 @@
       "hours": "Working Hours"
     },
     "infoValues": {
-      "phone": "+98-21-88888888",
+      "phone": "+46762573273",
       "mobile": "+98-912-345-6789",
       "email": "info@aquapro.ir",
       "address": "Tehran, Niavaran, Kamranieh South St., No. 38",
@@ -282,7 +282,15 @@
     "callConsult": "Call for Consultation",
     "authenticityNote": "All AquaPro products carry an authenticity guarantee and a valid warranty.",
     "relatedTitle": "Related Products",
-    "orderTemplate": "Hello, I would like to order the following product from the AquaPro website:\n\n🛒 Product: {{name}}\n🔢 Model: {{model}}\n💰 Price: {{price}} Toman",
+    "orderModalTitle": "Place your order",
+    "orderModalSubtitle": "Tell us how to reach you and we'll confirm the order on WhatsApp.",
+    "orderQty": "Quantity",
+    "orderName": "Full name",
+    "orderNamePlaceholder": "e.g. John Smith",
+    "orderPhone": "Mobile number",
+    "orderPhonePlaceholder": "e.g. +46762573273",
+    "orderSubmit": "Send order on WhatsApp",
+    "orderTemplateFull": "Hello, I would like to order the following product from the AquaPro website:\n\n🛒 Product: {{name}}\n🔢 Model: {{model}}\n📦 Quantity: {{qty}}\n💰 Unit price: {{price}} Toman\n\n👤 Name: {{customerName}}\n📞 Phone: {{customerPhone}}\n\nPlease confirm availability and delivery.",
     "trustOriginal": "100% original",
     "trustWarranty": "12-month warranty",
     "trustSupport": "Expert consultation",
@@ -437,7 +445,7 @@
       "ctaP": "Three numbers settle the pump choice: <strong>calculate your pool volume, pick the HP from the chart, and instead of focusing on the brand, check for a 304 stainless steel body and a written warranty.</strong> If you are still unsure or your pool has unusual dimensions, AquaPro experts will consult with you for free so you buy the best pump for the budget you intended to spend.",
       "ctaProducts": "View Pool Pumps",
       "ctaCalculator": "Calculate My Pool Equipment",
-      "ctaPhone": "📞 Free consultation & current price: +98-21-88888888",
+      "ctaPhone": "📞 Free consultation & current price: +46762573273",
       "ctaMobile": "📱 Mobile & WhatsApp: +98-912-345-6789"
     }
   },
@@ -687,7 +695,7 @@
         "ctaTitle": "Summary & Final Selection Guide",
         "ctaP": "Three numbers settle the filter choice: <strong>match the diameter to your pump flow, prefer a fiberglass body with a 6-way valve, and keep working pressure above 2.5 bar.</strong> If you are still unsure, AquaPro experts will consult with you for free.",
         "ctaProducts": "View Sand Filters",
-        "ctaPhone": "📞 Free consultation & current price: +98-21-88888888",
+        "ctaPhone": "📞 Free consultation & current price: +46762573273",
         "ctaMobile": "📱 Mobile & WhatsApp: +98-912-345-6789"
       }
     },
@@ -834,7 +842,7 @@
         "ctaTitle": "Summary & Final Selection Guide",
         "ctaP": "Three numbers settle the heater choice: <strong>size the kW from your pool volume, prefer a titanium body, and confirm your boiler or heat pump can supply the heat.</strong> For a free sizing consultation, call AquaPro.",
         "ctaProducts": "View Heat Exchangers",
-        "ctaPhone": "📞 Free consultation & current price: +98-21-88888888",
+        "ctaPhone": "📞 Free consultation & current price: +46762573273",
         "ctaMobile": "📱 Mobile & WhatsApp: +98-912-345-6789"
       }
     },
@@ -976,7 +984,7 @@
         "ctaTitle": "Summary & Final Selection Guide",
         "ctaP": "Three numbers settle the light choice: <strong>plan one light per 15–20 m², insist on IP68 and 12V, and pick a fixed-white or RGB by your taste.</strong> For layout advice, call AquaPro.",
         "ctaProducts": "View Pool Lights",
-        "ctaPhone": "📞 Free consultation & current price: +98-21-88888888",
+        "ctaPhone": "📞 Free consultation & current price: +46762573273",
         "ctaMobile": "📱 Mobile & WhatsApp: +98-912-345-6789"
       }
     },
@@ -1124,7 +1132,7 @@
         "ctaTitle": "Summary & Final Selection Guide",
         "ctaP": "Three numbers settle the disinfection choice: <strong>size the UV or salt cell to your pool volume, prefer a stainless steel body, and budget for annual lamp replacement.</strong> For a free consultation, call AquaPro.",
         "ctaProducts": "View Disinfection Systems",
-        "ctaPhone": "📞 Free consultation & current price: +98-21-88888888",
+        "ctaPhone": "📞 Free consultation & current price: +46762573273",
         "ctaMobile": "📱 Mobile & WhatsApp: +98-912-345-6789"
       }
     },
@@ -1264,7 +1272,7 @@
         "ctaTitle": "Summary & Final Selection Guide",
         "ctaP": "Three rules settle the accessory choice: <strong>buy 304 stainless, measure before you order, and protect your investment with a proper cover.</strong> For help choosing, call AquaPro.",
         "ctaProducts": "View Accessories",
-        "ctaPhone": "📞 Free consultation & current price: +98-21-88888888",
+        "ctaPhone": "📞 Free consultation & current price: +46762573273",
         "ctaMobile": "📱 Mobile & WhatsApp: +98-912-345-6789"
       }
     },
@@ -1407,7 +1415,7 @@
         "ctaTitle": "Summary & Final Selection Guide",
         "ctaP": "Three numbers settle the piping choice: <strong>match the diameter to your pump, keep the route short with fewer elbows, and use genuine solvent-weld PVC joints.</strong> For a free plumbing layout consultation, call AquaPro.",
         "ctaProducts": "View Pipes & Fittings",
-        "ctaPhone": "📞 Free consultation & current price: +98-21-88888888",
+        "ctaPhone": "📞 Free consultation & current price: +46762573273",
         "ctaMobile": "📱 Mobile & WhatsApp: +98-912-345-6789"
       }
     }
@@ -1461,7 +1469,7 @@
     "nameLabel": "Full Name",
     "namePlaceholder": "e.g., Alex Johnson",
     "phoneLabel": "Mobile Number",
-    "phonePlaceholder": "09123456789",
+    "phonePlaceholder": "+46762573273",
     "typeLabel": "Pool Project Type",
     "typeOptions": {
       "residential": "Residential / Private Pool",
@@ -1487,7 +1495,7 @@
     "open": "Open chat",
     "botError": "Sorry, the chat service is unavailable. Please try again shortly.",
     "human": "Talk to an expert",
-    "contactPhone": "+98-21-88888888",
+    "contactPhone": "+46762573273",
     "disclaimer": "Answers are based on our published guides and may not cover your exact setup. For precise advice, talk to an expert."
   },
   "search": {

@@ -4,21 +4,14 @@ import { useTranslation } from 'react-i18next'
 import { useCatalog } from '../hooks/useCatalog'
 import { formatPrice } from '../utils/price'
 import { translateChipLabel, translateSpecLabel } from '../i18n/product'
-import { whatsappUrl, CONTACT_CONFIG } from '../config/contact'
+import { CONTACT_CONFIG } from '../config/contact'
 import useSeo from '../hooks/useSeo'
 import Reveal from '../components/Reveal'
 import Breadcrumbs from '../components/Breadcrumbs'
 import ProductCard from '../components/ProductCard'
+import OrderModal from '../components/OrderModal'
 import { useCart } from '../context/CartContext'
 import { track } from '../utils/track'
-
-function buildOrderMessage(t, lang, product) {
-  return t('productPage.orderTemplate', {
-    name: product.title,
-    model: product.detailSpecs.model || '',
-    price: formatPrice(product.price, lang),
-  })
-}
 
 function ProductPage() {
   const { key } = useParams()
@@ -28,6 +21,7 @@ function ProductPage() {
   const navigate = useNavigate()
   const [qty, setQty] = useState(1)
   const [added, setAdded] = useState(false)
+  const [orderOpen, setOrderOpen] = useState(false)
   const addedTimer = useRef(null)
 
   useEffect(() => () => window.clearTimeout(addedTimer.current), [])
@@ -94,8 +88,6 @@ function ProductPage() {
     )
   }
 
-  const orderUrl = whatsappUrl(buildOrderMessage(t, i18n.language, product))
-
   return (
     <>
       <section className="prod-page">
@@ -133,9 +125,9 @@ function ProductPage() {
                   <button type="button" className={`btn btn-primary ${added ? 'added' : ''}`} onClick={addToCart}>
                     {added ? t('cart.added') : t('cart.addToCart')}
                   </button>
-                  <a href={orderUrl} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
+                  <button type="button" className="btn btn-outline" onClick={() => setOrderOpen(true)}>
                     {t('productPage.orderNow')}
-                  </a>
+                  </button>
                   <a href={CONTACT_CONFIG.phoneHref} className="btn btn-outline">
                     {t('productPage.callConsult')}
                   </a>
@@ -205,10 +197,17 @@ function ProductPage() {
         <button type="button" className={`btn btn-primary ${added ? 'added' : ''}`} onClick={addToCart}>
           {added ? t('cart.added') : t('cart.addToCart')}
         </button>
-        <a href={orderUrl} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
+        <button type="button" className="btn btn-outline" onClick={() => setOrderOpen(true)}>
           {t('productPage.orderNow')}
-        </a>
+        </button>
       </nav>
+
+      <OrderModal
+        product={product}
+        initialQty={qty}
+        open={orderOpen}
+        onClose={() => setOrderOpen(false)}
+      />
     </>
   )
 }

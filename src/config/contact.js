@@ -1,9 +1,9 @@
 export const CONTACT_CONFIG = {
-  whatsappNumber: '989123456789',
-  phone: '+982188888888',
-  phoneHref: 'tel:+982188888888',
-  mobile: '+989123456789',
-  mobileHref: 'tel:+989123456789',
+  whatsappNumber: '46762573273',
+  phone: '+46762573273',
+  phoneHref: 'tel:+46762573273',
+  mobile: '+46762573273',
+  mobileHref: 'tel:+46762573273',
   email: 'info@aquapro.ir',
 }
 

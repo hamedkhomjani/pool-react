@@ -104,7 +104,7 @@ function PoolPumpGuide() {
             '@type': 'Organization',
             name: t('brand'),
             url: siteUrl,
-            telephone: '+982188888888',
+            telephone: '+46762573273',
             sameAs: [
               'https://www.instagram.com/aquapro.ir',
               'https://t.me/aquapro.ir',
