@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Trans, useTranslation } from 'react-i18next'
 import { CONTACT_CONFIG } from '../config/contact'
 import { SITE_URL } from '../config/site'
+import { brands } from '../data/catalog/brands'
 import CalculatorLink from './CalculatorLink'
 
 function Footer() {
@@ -26,6 +27,14 @@ function Footer() {
               <li><Link to="/category/pump">{t('footer.equipment.pumps')}</Link></li>
               <li><Link to="/category/filter">{t('footer.equipment.filters')}</Link></li>
               <li><Link to="/category/heater">{t('footer.equipment.heaters')}</Link></li>
+            </ul>
+          </div>
+          <div className="footer-col">
+            <h4>{t('footer.brandsTitle')}</h4>
+            <ul>
+              {brands.map(brand => (
+                <li key={brand.slug}><Link to={`/brand/${brand.slug}`}>{brand.name}</Link></li>
+              ))}
             </ul>
           </div>
           <div className="footer-col">

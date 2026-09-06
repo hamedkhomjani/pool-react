@@ -15,6 +15,8 @@
     "guidesDescription": "Expert buying guides for pool pumps, sand filters, heat exchangers, LED lights, disinfection systems, accessories and pipes. Free consultation: +46762573273",
     "categoryTitle": "{{name}} | AquaPro",
     "categoryDescription": "A complete collection of {{name}} with the best brands and prices at the AquaPro store. Product authenticity guarantee and valid warranty.",
+    "brandTitle": "{{name}} Pool Equipment | AquaPro",
+    "brandDescription": "Browse the full {{name}} collection at AquaPro — pumps, filters, heaters and more with authenticity guarantee and valid warranty.",
     "productTitle": "{{name}} | AquaPro",
     "productDescription": "{{name}} with an authenticity guarantee and valid warranty at the best market price at the AquaPro store."
   },
@@ -218,6 +220,7 @@
       "consulting": "Consultation & On-Site Installation",
       "warranty": "Support & Warranty"
     },
+    "brandsTitle": "Brands",
     "contactTitle": "Contact Us",
     "contactPhone": "+46762573273",
     "contactAddress": "Tehran, Niavaran Street",
@@ -274,6 +277,22 @@
     "subtitle": "A complete collection of {{name}} with the best brands and prices",
     "empty": "No products available in this category yet.",
     "seeAll": "View Other Products"
+  },
+  "brandPage": {
+    "notFound": "Brand Not Found",
+    "subtitle": "All {{name}} products — {{count}} item(s) with authenticity guarantee",
+    "empty": "No products from {{name}} yet. Check back soon."
+  },
+  "brands": {
+    "hayward": {
+      "bio": "Hayward is a US pool-equipment brand with decades of industry experience. It is known for durable pumps, sand filters and automatic pool systems with dependable warranties."
+    },
+    "emaux": {
+      "bio": "Emaux is an Asia-Pacific pool brand offering reliable equipment at competitive prices — popular for fiberglass filters and energy-efficient pumps."
+    },
+    "aquapro": {
+      "bio": "The AquaPro line is selected and supported by our own technical team, combining authentic performance with the full store guarantee and after-sales service."
+    }
   },
   "productPage": {
     "notFound": "Product Not Found",

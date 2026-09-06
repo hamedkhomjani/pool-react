@@ -8,6 +8,7 @@ export const ROUTES = [
   { path: '/contact', load: () => import('./pages/ContactPage') },
   { path: '/category/:slug', load: () => import('./pages/CategoryPage') },
   { path: '/product/:key', load: () => import('./pages/ProductPage') },
+  { path: '/brand/:slug', load: () => import('./pages/BrandPage') },
   { path: '/compare', load: () => import('./pages/ComparePage') },
   { path: '/checkout', load: () => import('./pages/CheckoutPage') },
   { path: '/search', load: () => import('./pages/SearchPage') },

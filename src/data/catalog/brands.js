@@ -4,9 +4,9 @@
 // without one (null) is fine and renders without a brand link.
 
 export const brands = [
-  { slug: 'hayward', name: 'Hayward', featured: true, sort: 1 },
-  { slug: 'emaux', name: 'Emaux', featured: true, sort: 2 },
-  { slug: 'aquapro', name: 'AquaPro', featured: true, sort: 3 },
+  { slug: 'hayward', name: 'Hayward', icon: '🌊', featured: true, sort: 1 },
+  { slug: 'emaux', name: 'Emaux', icon: '🔷', featured: true, sort: 2 },
+  { slug: 'aquapro', name: 'AquaPro', icon: '💧', featured: true, sort: 3 },
 ]
 
 export default brands

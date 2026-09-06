@@ -6588,3 +6588,33 @@ html[dir='rtl'] .compare-table td {
   width: 100%;
   justify-content: space-between;
 }
+
+/* --- Brand pages & brand chips --- */
+.card-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: -16px 0 10px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.card-brand:hover {
+  background: color-mix(in srgb, var(--primary-soft) 70%, var(--primary) 30%);
+  transform: translateY(-1px);
+}
+
+.brand-bio {
+  max-width: 720px;
+  margin: -28px auto 48px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.7;
+}

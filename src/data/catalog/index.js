@@ -187,6 +187,7 @@ export function createCatalog(lang) {
     },
     categoryFeatured: slug => products.find(p => p.category === slug),
     brand: slug => brandMap.get(slug),
+    brandProducts: slug => products.filter(p => p.brandId === slug),
     search: query => searchProducts(lang, products, brands, query),
   }
 }

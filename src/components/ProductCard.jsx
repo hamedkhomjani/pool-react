@@ -21,6 +21,7 @@ function ProductCard({ product, onSelect }) {
   const addedTimer = useRef(null)
 
   const inCompare = compare.contains(product.key)
+  const brand = catalog?.brand(product.brandId)
 
   useEffect(() => () => window.clearTimeout(addedTimer.current), [])
 
@@ -75,6 +76,11 @@ function ProductCard({ product, onSelect }) {
       </div>
 
       <div className="product-image"><span className="product-image-inner">{product.icon}</span></div>
+      {brand && (
+        <Link to={`/brand/${brand.slug}`} className="card-brand" onClick={e => e.stopPropagation()}>
+          {brand.name}
+        </Link>
+      )}
       <h3 className="product-title">{product.title}</h3>
       <p className="product-desc">{product.desc}</p>
       <div className="product-specs">

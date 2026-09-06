@@ -10,6 +10,7 @@ import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 import products from '../src/data/catalog/products.base.js'
 import { categories } from '../src/data/catalog/categories.js'
+import { brands } from '../src/data/catalog/brands.js'
 import { SITE_URL } from '../src/config/site.js'
 
 const ROOT = path.resolve(import.meta.dirname, '..')
@@ -31,6 +32,7 @@ function allPaths(lang) {
     ...STATIC_PATHS.map(p => prefix + p),
     ...categories.map(c => `${prefix}/category/${c.slug}/`),
     ...products.map(p => `${prefix}/product/${p.key}/`),
+    ...brands.map(b => `${prefix}/brand/${b.slug}/`),
     ...GUIDE_SLUGS.map(c => `${prefix}/guide/${c}/`),
   ]
 }
