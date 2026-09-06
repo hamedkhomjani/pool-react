@@ -6,9 +6,9 @@ import LanguageSwitcher from './LanguageSwitcher'
 import SearchOverlay from './SearchOverlay'
 import CalculatorLink from './CalculatorLink'
 import { useCatalog } from '../hooks/useCatalog'
-import { formatPrice } from '../utils/price'
 import { useCart } from '../context/CartContext'
 import { useUI } from '../context/UIContext'
+import ProductPrice from './ProductPrice'
 
 const SECTION_ITEMS = [
   { id: 'products', key: 'nav.products' },
@@ -20,7 +20,7 @@ function scrollToId(id) {
 }
 
 function Header({ theme, onToggleTheme }) {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const location = useLocation()
   const navigate = useNavigate()
   const catalog = useCatalog()
@@ -222,9 +222,7 @@ function Header({ theme, onToggleTheme }) {
                     <div className="mega-featured-body">
                       <strong className="mega-featured-title">{featured.title}</strong>
                       <p className="mega-featured-desc">{featured.desc}</p>
-                      <div className="mega-featured-price">
-                        {formatPrice(featured.price, i18n.language)} <span>{t('product.toman')}</span>
-                      </div>
+                      <ProductPrice product={featured} className="mega-featured-price" />
                       <span className="btn btn-primary">{t('product.details')}</span>
                     </div>
                   </div>

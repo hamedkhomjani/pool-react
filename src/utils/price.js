@@ -11,4 +11,11 @@ export function formatPrice(price, lang) {
   return grouped.replace(/\d/g, d => PERSIAN_DIGITS[Number(d)])
 }
 
+// Returns the rounded discount percentage when compareAt is higher than the
+// current price, or null when there is no active promotion.
+export function discountPercent(price, compareAt) {
+  if (compareAt == null || !Number.isFinite(compareAt) || compareAt <= price) return null
+  return Math.round(((compareAt - price) / compareAt) * 100)
+}
+
 export default formatPrice

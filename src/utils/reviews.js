@@ -26,8 +26,6 @@ export function buildRatingSummary(reviews) {
   return { count: list.length, average, distribution }
 }
 
-// Merges seller-seeded reviews with the visitor's submitted one, newest
-// first, with the visitor review pinned on top. Both inputs are optional.
 // Merges seller-seeded reviews with the visitor's submitted one. Visitor
 // reviews stay pinned on top (newest-submitted first); seed reviews follow,
 // newest by date first. Both inputs are optional.

@@ -67,6 +67,7 @@
   },
   "product": {
     "toman": "تومان",
+    "savePercent": "{{percent}}٪ تخفیف",
     "details": "جزئیات بیشتر",
     "modalFeatures": "ویژگی‌های کلیدی",
     "modalSpecs": "مشخصات فنی",
@@ -1635,7 +1636,8 @@
     "title": "نظرات مشتریان",
     "subtitle": "نظرات مشتریان درباره این محصول",
     "average": "میانگین",
-    "count": "{{count}} نظر",
+    "count_one": "{{count}} نظر",
+    "count_other": "{{count}} نظر",
     "verified": "خریدار تأیید‌شده",
     "noReviews": "هنوز نظری ثبت نشده است — اولین نظر را شما بگذارید!",
     "writeTitle": "تجربه خود را به اشتراک بگذارید",

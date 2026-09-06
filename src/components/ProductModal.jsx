@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { translateSpecLabel } from '../i18n/product'
-import { formatPrice } from '../utils/price'
 import OrderModal from './OrderModal'
+import ProductPrice from './ProductPrice'
 import { useCart } from '../context/CartContext'
 
 function ProductModal({ product, onClose }) {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const cart = useCart()
   const [qty, setQty] = useState(1)
   const [orderOpen, setOrderOpen] = useState(false)
@@ -35,7 +35,7 @@ function ProductModal({ product, onClose }) {
             <div className="modal-icon">{product.icon}</div>
             <div>
               <h3 className="modal-title">{product.title}</h3>
-              <span className="modal-price">{formatPrice(product.price, i18n.language)} <span>{t('product.toman')}</span></span>
+              <ProductPrice product={product} className="modal-price" />
             </div>
           </div>
           <p className="modal-desc">{product.longDesc}</p>

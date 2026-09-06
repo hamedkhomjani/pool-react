@@ -9,6 +9,7 @@
 //   brandId    brand slug or null (see brands.js)
 //   model      manufacturer model code
 //   price      numeric toman price (display formatting is applied by UI)
+//   compareAt  optional higher "was" price; drives strikethrough + % off
 //   currency   ISO code, reserved for multi-currency later
 //   inStock    boolean; drives availability UI
 //   vendorId   reserved for future marketplace/vendors (null today)
@@ -24,6 +25,7 @@ export const products = [
     brandId: 'hayward',
     model: 'HW-1500',
     price: 12500000,
+    compareAt: 13500000,
     currency: 'IRR',
     inStock: true,
     vendorId: null,
@@ -39,6 +41,7 @@ export const products = [
     brandId: 'emaux',
     model: 'MEGA-650',
     price: 18200000,
+    compareAt: 21000000,
     currency: 'IRR',
     inStock: true,
     vendorId: null,
@@ -54,6 +57,7 @@ export const products = [
     brandId: null,
     model: 'UV-85P',
     price: 9800000,
+    compareAt: 11500000,
     currency: 'IRR',
     inStock: true,
     vendorId: null,
@@ -83,6 +87,7 @@ export const products = [
     brandId: 'aquapro',
     model: 'SWG-40',
     price: 15800000,
+    compareAt: 17800000,
     currency: 'IRR',
     inStock: true,
     vendorId: null,
@@ -97,6 +102,7 @@ export const products = [
     brandId: 'aquapro',
     model: 'LED-18RGB',
     price: 4800000,
+    compareAt: 5600000,
     currency: 'IRR',
     inStock: true,
     vendorId: null,

@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useCatalog } from '../hooks/useCatalog'
 import { useCompare } from '../context/CompareContext'
-import { formatPrice } from '../utils/price'
 import { translateSpecLabel } from '../i18n/product'
 import useSeo from '../hooks/useSeo'
+import ProductPrice from '../components/ProductPrice'
 
 function ComparePage() {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const catalog = useCatalog()
   const compare = useCompare()
 
@@ -76,7 +76,7 @@ function ComparePage() {
               <tr>
                 <th className="compare-label">{t('product.price')}</th>
                 {products.map(p => (
-                  <td key={p.key} className="compare-price">{formatPrice(p.price, i18n.language)} <span>{t('product.toman')}</span></td>
+                  <td key={p.key}><ProductPrice product={p} className="compare-price" /></td>
                 ))}
               </tr>
               {specKeys.map(key => (

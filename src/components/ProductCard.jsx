@@ -7,14 +7,14 @@ import { useTranslation } from 'react-i18next'
 import { useCatalog } from '../hooks/useCatalog'
 import { useCart } from '../context/CartContext'
 import { useCompare } from '../context/CompareContext'
-import { formatPrice } from '../utils/price'
 import { translateChipLabel } from '../i18n/product'
 import { track } from '../utils/track'
 import { useReviews } from '../hooks/useReviews'
 import RatingStars from './RatingStars'
+import ProductPrice from './ProductPrice'
 
 function ProductCard({ product, onSelect }) {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const cart = useCart()
   const compare = useCompare()
   const catalog = useCatalog()
@@ -114,7 +114,7 @@ function ProductCard({ product, onSelect }) {
       </div>
 
       <div className="product-footer">
-        <div className="product-price">{formatPrice(product.price, i18n.language)} <span>{t('product.toman')}</span></div>
+        <ProductPrice product={product} />
         <Link to={`/product/${product.key}`} className="btn btn-outline card-details-btn" onClick={e => e.stopPropagation()}>
           {t('product.details')}
         </Link>

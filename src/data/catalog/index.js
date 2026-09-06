@@ -16,6 +16,22 @@ import productsBase from './products.base.js'
 
 const cached = {}
 
+// Validates locale-independent product base facts at module init so a bad
+// compareAt or other structural issue fails the build loudly (mirrors the
+// content validation philosophy).
+function validateBase() {
+  for (const p of productsBase) {
+    if (p.compareAt != null) {
+      if (!Number.isFinite(p.compareAt) || p.compareAt <= p.price) {
+        throw new Error(
+          `[catalog:base] ${p.key} compareAt (${p.compareAt}) must be a number greater than price (${p.price})`,
+        )
+      }
+    }
+  }
+}
+validateBase()
+
 // Loads (once) and validates the localized content for a language. Resolves
 // to the content object. Failures are not cached, so a later retry works.
 export function loadCatalogContent(lang) {

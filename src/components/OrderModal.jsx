@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { formatPrice } from '../utils/price'
 import { whatsappUrl } from '../config/contact'
 import { track } from '../utils/track'
+import ProductPrice from './ProductPrice'
 
 function buildFullMessage(t, lang, product, qty, name, phone) {
   return t('productPage.orderTemplateFull', {
@@ -80,9 +81,7 @@ function OrderModal({ product, initialQty = 1, open, onClose }) {
           <div className="order-product-icon">{product.icon}</div>
           <div>
             <div className="order-product-title">{product.title}</div>
-            <div className="order-product-price">
-              {formatPrice(product.price, i18n.language)} <span>{t('product.toman')}</span>
-            </div>
+            <ProductPrice product={product} className="order-product-price" />
           </div>
         </div>
 

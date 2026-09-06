@@ -67,6 +67,7 @@
   },
   "product": {
     "toman": "Toman",
+    "savePercent": "Save {{percent}}%",
     "details": "More Details",
     "modalFeatures": "Key Features",
     "modalSpecs": "Technical Specifications",
@@ -1636,7 +1637,8 @@
     "title": "Customer Reviews",
     "subtitle": "What customers say about this product",
     "average": "Average",
-    "count": "{{count}} review",
+    "count_one": "{{count}} review",
+    "count_other": "{{count}} reviews",
     "verified": "Verified buyer",
     "noReviews": "No reviews yet — be the first to write one!",
     "writeTitle": "Share your experience",

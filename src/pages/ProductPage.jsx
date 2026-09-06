@@ -2,7 +2,6 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useCatalog } from '../hooks/useCatalog'
-import { formatPrice } from '../utils/price'
 import { translateChipLabel, translateSpecLabel } from '../i18n/product'
 import { CONTACT_CONFIG } from '../config/contact'
 import useSeo from '../hooks/useSeo'
@@ -15,10 +14,11 @@ import { track } from '../utils/track'
 import { useReviews } from '../hooks/useReviews'
 import RatingStars from '../components/RatingStars'
 import ProductReviews from '../components/Reviews'
+import ProductPrice from '../components/ProductPrice'
 
 function ProductPage() {
   const { key } = useParams()
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const catalog = useCatalog()
   const cart = useCart()
   const navigate = useNavigate()
@@ -121,7 +121,7 @@ function ProductPage() {
                     <span className="prod-rating-count">({rating.count})</span>
                   </div>
                 )}
-                <div className="prod-price">{formatPrice(product.price, i18n.language)} <span>{t('product.toman')}</span></div>
+                <ProductPrice product={product} className="prod-price" />
                 <p className="prod-desc">{product.longDesc}</p>
                 <div className="prod-specs-chips">
                   {Object.entries(product.specs).map(([specKey, value]) => (

@@ -19,7 +19,7 @@ function RatingStars({ value, onChange, size = 'md', ariaLabel }) {
   if (onChange) {
     const active = Math.max(1, Math.min(MAX_RATING, Math.round(value)))
     return (
-      <span className={`rating-stars rating-stars--${size}`} role="radiogroup" aria-label={ariaLabel}>
+      <span className={`rating-stars rating-stars--${size}`} role="group" aria-label={ariaLabel}>
         {Array.from({ length: MAX_RATING }, (_, i) => {
           const stars = i + 1
           const pressed = stars === active
