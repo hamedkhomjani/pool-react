@@ -15,7 +15,7 @@ function FeaturedProducts() {
 
   if (!catalog) return null
 
-  const featured = catalog.products.filter(p => p.featured)
+  const featured = catalog.products.filter(p => p.featured).slice(0, 3)
   if (featured.length === 0) return null
 
   const selected = selectedKey ? featured.find(p => p.key === selectedKey) : null

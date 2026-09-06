@@ -25,7 +25,7 @@ function Header({ theme, onToggleTheme }) {
   const navigate = useNavigate()
   const catalog = useCatalog()
   const cart = useCart()
-  const { openCart, openSearch, searchOpen, closeSearch } = useUI()
+  const { openCart, openSearch, searchOpen, closeSearch, openConsultation } = useUI()
   const [menuOpen, setMenuOpen] = useState(false)
   const [megaOpen, setMegaOpen] = useState(false)
   const [mobileCatsOpen, setMobileCatsOpen] = useState(false)
@@ -43,6 +43,26 @@ function Header({ theme, onToggleTheme }) {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
+
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (e.key === 'Escape') {
+        setMenuOpen(false)
+        setMegaOpen(false)
+      }
+    }
+    function handleResize() {
+      if (window.innerWidth > 768) {
+        setMenuOpen(false)
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   function closeMenu() {
     setMenuOpen(false)
@@ -110,7 +130,7 @@ function Header({ theme, onToggleTheme }) {
         </ul>
 
         <div className="nav-actions">
-          <Link to="/contact" className="btn btn-primary desktop-cta">{t('nav.cta')}</Link>
+          <button onClick={openConsultation} className="btn btn-primary desktop-cta">{t('nav.cta')}</button>
           <button
             className="search-toggle"
             onClick={openSearch}
@@ -228,16 +248,20 @@ function Header({ theme, onToggleTheme }) {
         </nav>
       )}
 
-      <div className={`mobile-overlay ${menuOpen ? 'open' : ''}`} onClick={closeMenu} />
-      <nav className={`mobile-nav ${menuOpen ? 'open' : ''}`}>
+      <div className={`mobile-overlay ${menuOpen ? 'open' : ''}`} onClick={closeMenu} aria-hidden="true" />
+      <nav className={`mobile-nav ${menuOpen ? 'open' : ''}`} aria-label={t('nav.menu')}>
         <div className="mobile-nav-top">
-          <button className="mobile-nav-close" onClick={closeMenu}>✕</button>
-          <LanguageSwitcher />
-          <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+          <button className="mobile-nav-close" onClick={closeMenu} aria-label="Close menu">✕</button>
+          <div className="mobile-nav-actions">
+            <LanguageSwitcher />
+            <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+          </div>
         </div>
         <ul className="mobile-nav-links">
           <li>
-            <Link to="/" onClick={closeMenu}>{t('nav.home')}</Link>
+            <Link to="/" onClick={closeMenu} className={location.pathname === '/' ? 'active' : ''}>
+              {t('nav.home')}
+            </Link>
           </li>
           <li className="mobile-cats">
             <button
@@ -253,22 +277,26 @@ function Header({ theme, onToggleTheme }) {
             <ul className={`mobile-cats-list ${mobileCatsOpen ? 'open' : ''}`}>
               {categories.map(cat => {
                 const children = catalog?.categoryChildren(cat.slug) || []
+                const catPath = `/category/${cat.slug}`
                 return (
                   <li key={cat.slug}>
-                    <Link to={`/category/${cat.slug}`} onClick={closeMenu}>
+                    <Link to={catPath} onClick={closeMenu} className={location.pathname === catPath ? 'active' : ''}>
                       <span aria-hidden="true">{cat.icon}</span>
                       {t(`categories.${cat.slug}`)}
                     </Link>
                     {children.length > 0 && (
                       <ul className="mobile-subcats-list">
-                        {children.map(sub => (
-                          <li key={sub.slug}>
-                            <Link to={`/category/${sub.slug}`} onClick={closeMenu}>
-                              <span aria-hidden="true">{sub.icon}</span>
-                              {t(`categories.${sub.slug}`)}
-                            </Link>
-                          </li>
-                        ))}
+                        {children.map(sub => {
+                          const subPath = `/category/${sub.slug}`
+                          return (
+                            <li key={sub.slug}>
+                              <Link to={subPath} onClick={closeMenu} className={location.pathname === subPath ? 'active' : ''}>
+                                <span aria-hidden="true">{sub.icon}</span>
+                                {t(`categories.${sub.slug}`)}
+                              </Link>
+                            </li>
+                          )
+                        })}
                       </ul>
                     )}
                   </li>
@@ -284,16 +312,22 @@ function Header({ theme, onToggleTheme }) {
             </li>
           ))}
           <li>
-            <Link to="/guides" onClick={closeMenu}>{t('nav.guides')}</Link>
+            <Link to="/guides" onClick={closeMenu} className={location.pathname.startsWith('/guides') ? 'active' : ''}>
+              {t('nav.guides')}
+            </Link>
           </li>
           <li>
-            <Link to="/about" onClick={closeMenu}>{t('nav.about')}</Link>
+            <Link to="/about" onClick={closeMenu} className={location.pathname === '/about' ? 'active' : ''}>
+              {t('nav.about')}
+            </Link>
           </li>
           <li>
-            <Link to="/contact" onClick={closeMenu}>{t('nav.contact')}</Link>
+            <Link to="/contact" onClick={closeMenu} className={location.pathname === '/contact' ? 'active' : ''}>
+              {t('nav.contact')}
+            </Link>
           </li>
         </ul>
-        <Link to="/contact" className="btn btn-primary mobile-cta">{t('nav.cta')}</Link>
+        <button onClick={() => { closeMenu(); openConsultation(); }} className="btn btn-primary mobile-cta">{t('nav.cta')}</button>
       </nav>
       <SearchOverlay open={searchOpen} onClose={closeSearch} />
     </header>

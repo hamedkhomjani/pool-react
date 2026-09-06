@@ -9,43 +9,43 @@
   --white: #FFFFFF;
   --border: #E2E8F0;
   --bg-page: #FFFFFF;
-  --header-bg: rgba(255, 255, 255, 0.8);
-  --header-border: rgba(226, 232, 240, 0.5);
-  --primary-soft: rgba(0, 102, 255, 0.06);
+  --header-bg: rgba(255, 255, 255, 0.85);
+  --header-border: rgba(226, 232, 240, 0.6);
+  --primary-soft: rgba(0, 102, 255, 0.07);
   --footer-bg: #0F172A;
-  --footer-border: #334155;
+  --footer-border: #1E293B;
   --badge-text: #004D48;
-  --danger: #ef4444;
+  --danger: #EF4444;
   --danger-soft: rgba(239, 68, 68, 0.1);
-  --success: #059669;
-  --success-soft: rgba(5, 150, 105, 0.1);
-  --warning: #B45309;
-  --warning-soft: rgba(245, 158, 11, 0.07);
+  --success: #10B981;
+  --success-soft: rgba(16, 185, 129, 0.1);
+  --warning: #F59E0B;
+  --warning-soft: rgba(245, 158, 11, 0.08);
   --text-on-accent: #FFFFFF;
   --focus-ring: rgba(0, 102, 255, 0.5);
-  --shadow-soft: 0 12px 40px -10px rgba(0, 102, 255, 0.08), 0 4px 12px -5px rgba(0, 0, 0, 0.02);
-  --shadow-hover: 0 30px 60px -15px rgba(0, 102, 255, 0.18), 0 10px 20px -10px rgba(0, 102, 255, 0.06);
+  --shadow-soft: 0 12px 32px -8px rgba(0, 102, 255, 0.07), 0 4px 12px -4px rgba(0, 0, 0, 0.03);
+  --shadow-hover: 0 24px 48px -12px rgba(0, 102, 255, 0.2), 0 8px 16px -6px rgba(0, 102, 255, 0.08);
   --radius-lg: 24px;
   --radius-md: 16px;
-  --transition-premium: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-premium: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 :root[data-theme='dark'] {
   color-scheme: dark;
   --primary: #3B82F6;
-  --primary-dark: #60A5FA;
+  --primary-dark: #2563EB;
   --secondary: #2DD4BF;
-  --bg-light: #1E293B;
-  --text-main: #F8FAFC;
-  --text-muted: #94A3B8;
-  --white: #0F172A;
-  --border: #1E293B;
+  --bg-light: #111827;
+  --text-main: #F9FAFB;
+  --text-muted: #9CA3AF;
+  --white: #0B1120;
+  --border: #1F2937;
   --bg-page: #030712;
-  --header-bg: rgba(3, 7, 18, 0.75);
-  --header-border: rgba(30, 41, 59, 0.5);
-  --primary-soft: rgba(59, 130, 246, 0.12);
+  --header-bg: rgba(3, 7, 18, 0.85);
+  --header-border: rgba(31, 41, 55, 0.6);
+  --primary-soft: rgba(59, 130, 246, 0.15);
   --footer-bg: #030712;
-  --footer-border: #1E293B;
+  --footer-border: #111827;
   --badge-text: #064E3B;
   --danger: #F87171;
   --danger-soft: rgba(248, 113, 113, 0.15);
@@ -54,8 +54,8 @@
   --warning: #FBBF24;
   --warning-soft: rgba(251, 191, 36, 0.12);
   --focus-ring: rgba(96, 165, 250, 0.6);
-  --shadow-soft: 0 12px 40px -10px rgba(0, 0, 0, 0.6), 0 4px 12px -5px rgba(0, 0, 0, 0.4);
-  --shadow-hover: 0 30px 60px -12px rgba(59, 130, 246, 0.15), 0 10px 20px -10px rgba(0, 0, 0, 0.6);
+  --shadow-soft: 0 12px 36px -10px rgba(0, 0, 0, 0.7), 0 4px 12px -5px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 24px 48px -10px rgba(59, 130, 246, 0.22), 0 8px 16px -6px rgba(0, 0, 0, 0.7);
 }
 
 ::-webkit-scrollbar {

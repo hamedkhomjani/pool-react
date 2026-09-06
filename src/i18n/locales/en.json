@@ -246,6 +246,7 @@
     "subjectPlaceholder": "e.g. Pump purchase consultation",
     "messagePlaceholder": "Write your message...",
     "submitBtn": "Send Message via WhatsApp",
+    "phoneRequired": "Please enter a valid mobile number.",
     "note": "Submitting the form opens a WhatsApp chat with your message.",
     "infoTitle": "Contact Information",
     "info": {
@@ -1453,6 +1454,29 @@
     "cart": "Cart",
     "calc": "Calculator",
     "navLabel": "Main mobile navigation"
+  },
+  "consultation": {
+    "title": "Request Free Expert Consultation",
+    "subtitle": "Enter your phone number and pool details to get a callback from AquaPro experts within 30 minutes.",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "e.g., Alex Johnson",
+    "phoneLabel": "Mobile Number",
+    "phonePlaceholder": "09123456789",
+    "typeLabel": "Pool Project Type",
+    "typeOptions": {
+      "residential": "Residential / Private Pool",
+      "public": "Public / Commercial Pool",
+      "jacuzzi": "Jacuzzi / Cold Plunge",
+      "industrial": "Industrial / Agricultural"
+    },
+    "notesLabel": "Notes or Dimensions (Optional)",
+    "notesPlaceholder": "e.g., 6x4m pool with 1.5m depth...",
+    "submitBtn": "Submit Free Consultation Request",
+    "successTitle": "Request Received Successfully!",
+    "successSubtitle": "AquaPro technical specialists will call you shortly to assist with your equipment sizing.",
+    "directCall": "Or call us directly right now:",
+    "whatsappBtn": "Message on WhatsApp",
+    "closeBtn": "Close"
   },
   "chatbot": {
     "label": "AquaPro Assistant",

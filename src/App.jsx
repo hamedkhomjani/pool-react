@@ -15,6 +15,7 @@ import { UIProvider, useUI } from './context/UIContext'
 import { ROUTES, REDIRECTS } from './routes'
 import { langFromPath } from './config/site'
 import { track } from './utils/track'
+import ConsultationModal from './components/ConsultationModal'
 
 const ChatWidget = lazy(() => import('./components/ChatWidget'))
 
@@ -107,7 +108,7 @@ export function AppShell({ resolvePage }) {
 }
 
 function AppContent({ theme, toggleTheme, resolvePage }) {
-  const { cartOpen, closeCart } = useUI()
+  const { cartOpen, closeCart, consultationOpen, closeConsultation } = useUI()
   return (
     <>
       <Header theme={theme} onToggleTheme={toggleTheme} />
@@ -124,6 +125,7 @@ function AppContent({ theme, toggleTheme, resolvePage }) {
       </Suspense>
       <Footer />
       <CartDrawer open={cartOpen} onClose={closeCart} />
+      <ConsultationModal open={consultationOpen} onClose={closeConsultation} />
       <CompareTray />
     </>
   )
