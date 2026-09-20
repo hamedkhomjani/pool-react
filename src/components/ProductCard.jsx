@@ -78,7 +78,13 @@ function ProductCard({ product, onSelect }) {
         )}
       </div>
 
-      <div className="product-image"><span className="product-image-inner">{product.icon}</span></div>
+      <div className="product-image">
+        {product.image || (product.images && product.images[0]) ? (
+          <img src={product.image || product.images[0]} alt={product.title} className="product-card-img" />
+        ) : (
+          <span className="product-image-inner">{product.icon}</span>
+        )}
+      </div>
       {brand && (
         <Link to={`/brand/${brand.slug}`} className="card-brand" onClick={e => e.stopPropagation()}>
           {brand.name}

@@ -162,13 +162,29 @@ function searchProducts(lang, products, brands, query) {
 // Builds a full catalog snapshot for a language, or null if its content has
 // not been loaded yet. Products are the base facts merged with localized
 // content, keeping the base-array order (stable, and matches category lists).
-export function createCatalog(lang) {
+export function createCatalog(lang, dynamicProducts = null) {
   const content = getCatalogContentSync(lang)
-  if (!content) return null
 
   const categoryMap = new Map(categories.map(c => [c.slug, c]))
   const brandMap = new Map(brands.map(b => [b.slug, b]))
-  const products = productsBase.map(p => ({ ...p, ...content[p.key] }))
+
+  let products = []
+  if (dynamicProducts && dynamicProducts.length > 0) {
+    products = dynamicProducts.map(p => {
+      const fallbackContent = content ? (content[p.key] || {}) : {}
+      return {
+        ...p,
+        desc: p.description || fallbackContent.desc || '',
+        longDesc: p.description || fallbackContent.longDesc || '',
+        detailSpecs: p.specs || fallbackContent.detailSpecs || {},
+        reviews: fallbackContent.reviews || [],
+      }
+    })
+  } else if (content) {
+    products = productsBase.map(p => ({ ...p, ...content[p.key] }))
+  } else {
+    return null
+  }
 
   // Ordered descendants of a category (itself excluded). Cheap BFS over the
   // tree so a department browse surfaces every product in its subcategories.

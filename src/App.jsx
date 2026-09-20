@@ -107,8 +107,28 @@ export function AppShell({ resolvePage }) {
   )
 }
 
+const AdminLayout = lazy(() => import('./pages/Admin/AdminLayout'))
+const AdminLogin = lazy(() => import('./pages/Admin/AdminLogin'))
+const AdminDashboard = lazy(() => import('./pages/Admin/AdminDashboard'))
+
 function AppContent({ theme, toggleTheme, resolvePage }) {
   const { cartOpen, closeCart, consultationOpen, closeConsultation } = useUI()
+  const location = useLocation()
+  const isAdmin = location.pathname.startsWith('/admin')
+
+  if (isAdmin) {
+    return (
+      <Suspense fallback={<PageLoading />}>
+        <Routes>
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminDashboard />} />
+          </Route>
+        </Routes>
+      </Suspense>
+    )
+  }
+
   return (
     <>
       <Header theme={theme} onToggleTheme={toggleTheme} />

@@ -104,7 +104,13 @@ function ProductPage() {
             <Reveal direction="right">
               <div className="prod-gallery">
                 {product.badge && <span className="badge-top">{product.badge}</span>}
-                <div className="prod-image">{product.icon}</div>
+                <div className="prod-image">
+                  {product.image || (product.images && product.images[0]) ? (
+                    <img src={product.image || product.images[0]} alt={product.title} className="prod-main-img" />
+                  ) : (
+                    product.icon
+                  )}
+                </div>
               </div>
             </Reveal>
 

@@ -32,7 +32,13 @@ function ProductModal({ product, onClose }) {
         <div className="modal-content" onClick={e => e.stopPropagation()} role="dialog" aria-modal="true" aria-label={product.title}>
           <button className="modal-close" onClick={onClose} aria-label={t('chatbot.close')} autoFocus>✕</button>
           <div className="modal-header">
-            <div className="modal-icon">{product.icon}</div>
+            <div className="modal-icon">
+              {product.image || (product.images && product.images[0]) ? (
+                <img src={product.image || product.images[0]} alt={product.title} className="modal-img" />
+              ) : (
+                product.icon
+              )}
+            </div>
             <div>
               <h3 className="modal-title">{product.title}</h3>
               <ProductPrice product={product} className="modal-price" />

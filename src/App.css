@@ -6969,3 +6969,18 @@ html[dir='rtl'] .compare-table td {
   font-size: 15px;
   line-height: 1.7;
 }
+
+/* Dynamic Product Image Styling */
+.product-card-img,
+.prod-main-img,
+.modal-img,
+.cart-item-img,
+.order-product-img,
+.guide-product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  display: block;
+}
+
