@@ -36,7 +36,7 @@ function CheckoutPage() {
   const [payment, setPayment] = useState('whatsapp')
   const [confirm, setConfirm] = useState(null)
 
-  useSeo({ title: t('checkout.title'), description: t('checkout.description'), path: '/checkout/' })
+  useSeo({ title: t('checkout.title'), description: t('checkout.description'), path: '/checkout/', noindex: true })
 
   const lines = cart.items
     .map(item => {

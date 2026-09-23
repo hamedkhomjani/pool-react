@@ -14,7 +14,7 @@ function ComparePage() {
   const catalog = useCatalog()
   const compare = useCompare()
 
-  useSeo({ title: t('compare.title'), description: t('compare.description'), path: '/compare/' })
+  useSeo({ title: t('compare.title'), description: t('compare.description'), path: '/compare/', noindex: true })
 
   const products = useMemo(
     () => (catalog ? compare.keys.map(k => catalog.product(k)).filter(Boolean) : []),

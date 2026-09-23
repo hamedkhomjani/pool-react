@@ -8,6 +8,7 @@ import ProductModal from '../components/ProductModal'
 import ProductCard from '../components/ProductCard'
 import Breadcrumbs from '../components/Breadcrumbs'
 import { track } from '../utils/track'
+import { SITE_URL } from '../config/site'
 
 // Attribute keys that drive the faceted filter UI. Values selected for these
 // are persisted in the URL; presence here sets a stable display order.
@@ -78,10 +79,43 @@ function CategoryPage() {
     [catalog, category, slug],
   )
 
+  const jsonLd = useMemo(() => {
+    if (!category) return null
+    const list = filtered.slice(0, 100)
+    return {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: t('nav.home'), item: `${SITE_URL}/` },
+            { '@type': 'ListItem', position: 2, name: categoryName, item: `${SITE_URL}/category/${slug}/` },
+          ],
+        },
+        {
+          '@type': 'CollectionPage',
+          name: categoryName,
+          url: `${SITE_URL}/category/${slug}/`,
+          description: t('meta.categoryDescription', { name: categoryName }),
+          mainEntity: {
+            '@type': 'ItemList',
+            itemListElement: list.map((p, idx) => ({
+              '@type': 'ListItem',
+              position: idx + 1,
+              name: p.title,
+              url: `${SITE_URL}/product/${p.key}/`,
+            })),
+          },
+        },
+      ],
+    }
+  }, [category, filtered, categoryName, slug, t])
+
   useSeo({
     title: t('meta.categoryTitle', { name: categoryName }),
     description: t('meta.categoryDescription', { name: categoryName }),
     path: `/category/${slug}/`,
+    jsonLd,
   })
 
   useEffect(() => {

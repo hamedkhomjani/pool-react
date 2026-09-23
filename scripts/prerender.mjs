@@ -124,15 +124,29 @@ function writePage(url, html) {
 }
 
 function sitemap() {
-  const urls = allPaths('fa')
+  const EXCLUDE = ['/compare/', '/checkout/']
+  const urls = allPaths('fa').filter(p => !EXCLUDE.includes(p))
+  const lastmod = new Date().toISOString().slice(0, 10)
   const esc = s => s.replace(/&/g, '&amp;')
+  const classify = faPath => {
+    if (faPath === '/') return ['daily', '1.0']
+    if (faPath.startsWith('/category/')) return ['weekly', '0.8']
+    if (faPath.startsWith('/product/')) return ['monthly', '0.6']
+    if (faPath.startsWith('/guide/') || faPath.startsWith('/pool-pump-guide/')) return ['monthly', '0.5']
+    if (faPath.startsWith('/brand/')) return ['monthly', '0.5']
+    return ['monthly', '0.5']
+  }
   const entry = faPath => {
     const enPath = `/en${faPath}`
+    const [changefreq, priority] = classify(faPath)
     const alt = (hreflang, href) =>
       `    <xhtml:link rel="alternate" hreflang="${hreflang}" href="${esc(SITE_URL + href)}" />`
     return [
       `  <url>`,
       `    <loc>${esc(SITE_URL + faPath)}</loc>`,
+      `    <lastmod>${lastmod}</lastmod>`,
+      `    <changefreq>${changefreq}</changefreq>`,
+      `    <priority>${priority}</priority>`,
       alt('fa', faPath),
       alt('en', enPath),
       alt('x-default', faPath),
@@ -168,7 +182,7 @@ async function main() {
   fs.writeFileSync(path.join(DIST, 'sitemap.xml'), sitemap())
   fs.writeFileSync(
     path.join(DIST, 'robots.txt'),
-    `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`,
+    `User-agent: *\nAllow: /\nDisallow: /compare/\nDisallow: /checkout/\n\nSitemap: ${SITE_URL}/sitemap.xml\n`,
   )
 
   process.stdout.write(`prerendered ${count} pages → dist/\n`)

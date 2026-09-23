@@ -2,6 +2,7 @@ import { useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import useSeo from '../hooks/useSeo'
 import { SITE_URL } from '../config/site'
+import { CONTACT_CONFIG } from '../config/contact'
 import Hero from '../components/Hero'
 import Categories from '../components/Categories'
 import FeaturedProducts from '../components/FeaturedProducts'
@@ -22,6 +23,12 @@ function Home() {
           name: 'AquaPro | آکوا پرو',
           url: SITE_URL,
           logo: `${SITE_URL}/favicon.svg`,
+          contactPoint: {
+            '@type': 'ContactPoint',
+            telephone: CONTACT_CONFIG.phone,
+            contactType: 'customer service',
+            availableLanguage: ['fa', 'en'],
+          },
           sameAs: [
             'https://www.instagram.com/aquapro.ir',
             'https://t.me/aquapro.ir',

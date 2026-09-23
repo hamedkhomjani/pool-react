@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useCatalog } from '../hooks/useCatalog'
 import { translateChipLabel, translateSpecLabel } from '../i18n/product'
 import { CONTACT_CONFIG } from '../config/contact'
+import { SITE_URL } from '../config/site'
 import useSeo from '../hooks/useSeo'
 import Reveal from '../components/Reveal'
 import Breadcrumbs from '../components/Breadcrumbs'
@@ -49,30 +50,60 @@ function ProductPage() {
 
   const canonical = `/product/${key}/`
 
-  const jsonLd = useMemo(
-    () =>
-      product
-        ? {
-            '@context': 'https://schema.org',
-            '@type': 'Product',
-            name: product.title,
-            description: product.desc,
-            category: categoryName,
-            offers: {
-              '@type': 'Offer',
-              priceCurrency: 'IRR',
-              price: product.price,
-              availability: 'https://schema.org/InStock',
-            },
-          }
-        : null,
-    [product, categoryName],
-  )
+  const productImage = product ? product.image || (product.images && product.images[0]) : null
+
+  const jsonLd = useMemo(() => {
+    if (!product) return null
+    const productUrl = `${SITE_URL}${canonical}`
+    const brand = product.brandId ? catalog.brand(product.brandId) : null
+    const priceValidUntil = new Date(Date.now() + 180 * 86400000).toISOString().slice(0, 10)
+    const graph = [
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: t('nav.home'), item: `${SITE_URL}/` },
+          { '@type': 'ListItem', position: 2, name: categoryName, item: `${SITE_URL}/category/${product.category}/` },
+          { '@type': 'ListItem', position: 3, name: product.title, item: productUrl },
+        ],
+      },
+      {
+        '@type': 'Product',
+        '@id': `${productUrl}#product`,
+        name: product.title,
+        description: product.desc,
+        category: categoryName,
+        image: productImage || `${SITE_URL}/image.png`,
+        sku: product.model || product.key,
+        ...(brand ? { brand: { '@type': 'Brand', name: brand.name } } : {}),
+        offers: {
+          '@type': 'Offer',
+          url: productUrl,
+          priceCurrency: product.currency || 'IRR',
+          price: product.price,
+          availability: product.inStock
+            ? 'https://schema.org/InStock'
+            : 'https://schema.org/OutOfStock',
+          itemCondition: 'https://schema.org/NewCondition',
+          priceValidUntil,
+          seller: { '@type': 'Organization', name: t('brand') },
+        },
+      },
+    ]
+    if (rating && rating.count > 0) {
+      graph[1].aggregateRating = {
+        '@type': 'AggregateRating',
+        ratingValue: rating.average.toFixed(1),
+        reviewCount: rating.count,
+      }
+    }
+    return { '@context': 'https://schema.org', '@graph': graph }
+  }, [product, categoryName, rating, catalog, canonical, productImage, t])
 
   useSeo({
     title: product ? `${product.title} | ${t('brand')}` : t('productPage.notFound'),
     description: product ? product.desc : t('meta.defaultDescription'),
     path: canonical,
+    image: productImage || undefined,
     jsonLd,
   })
 
