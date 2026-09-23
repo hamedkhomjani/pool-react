@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from 'react'
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import {
   getProductsFromSupabase,
   deleteProductFromSupabase,
@@ -9,6 +9,7 @@ import {
   seedStaticCatalogToSupabase,
   transformProductRow,
 } from '../../services/catalogService'
+import { importProductsFromFile, exportProducts } from '../../services/catalogFileTools'
 import categories from '../../data/catalog/categories'
 import ProductFormModal from './ProductFormModal'
 import './Admin.css'
@@ -25,6 +26,11 @@ export default function AdminDashboard() {
   const [seeding, setSeeding] = useState(false)
   const [message, setMessage] = useState('')
   const [togglingId, setTogglingId] = useState(null)
+  const fileInputRef = useRef(null)
+  const [exportFormat, setExportFormat] = useState('csv') // 'csv' | 'tsv' | 'xlsx'
+  const [importing, setImporting] = useState(false)
+  const [importResult, setImportResult] = useState(null)
+  const [importError, setImportError] = useState('')
 
   // Selection & Batch Actions
   const [selectedIds, setSelectedIds] = useState(new Set())
@@ -191,30 +197,30 @@ export default function AdminDashboard() {
     }
   }
 
-  // Export Catalog to CSV File
-  const handleExportCSV = () => {
+  // Export Catalog to CSV / TSV / Excel File
+  const handleExport = () => {
     if (products.length === 0) return
-    const headers = ['ID', 'Key', 'Title (FA)', 'Title (EN)', 'Category', 'Price (Toman)', 'Compare At', 'In Stock']
-    const rows = products.map((p) => [
-      p.id || '',
-      p.key || '',
-      `"${(p.title || '').replace(/"/g, '""')}"`,
-      `"${(p.raw?.title_en || '').replace(/"/g, '""')}"`,
-      p.category || '',
-      p.price || 0,
-      p.compareAt || '',
-      p.inStock ? 'Yes' : 'No',
-    ])
+    exportProducts(products, exportFormat)
+  }
 
-    const csvContent = '\uFEFF' + [headers.join(','), ...rows.map((r) => r.join(','))].join('\n')
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' })
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.setAttribute('download', `pool_products_export_${Date.now()}.csv`)
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+  // Import products from CSV / TSV / Excel file
+  const handleImportFile = async (e) => {
+    const file = e.target.files?.[0]
+    e.target.value = ''
+    if (!file) return
+
+    setImporting(true)
+    setImportError('')
+    setImportResult(null)
+    try {
+      const result = await importProductsFromFile(file)
+      setImportResult(result)
+      loadData()
+    } catch (err) {
+      setImportError(err.message || 'خطا در خواندن فایل')
+    } finally {
+      setImporting(false)
+    }
   }
 
   const formatPrice = (price) => {
@@ -297,9 +303,41 @@ export default function AdminDashboard() {
         </div>
 
         <div className="admin-actions">
-          <button className="admin-btn-secondary" onClick={handleExportCSV} title="دانلود گزارش فایل CSV/Excel">
-            📊 خروجی اکسل (CSV)
-          </button>
+          <div className="admin-file-tools">
+            <select
+              className="admin-select"
+              value={exportFormat}
+              onChange={(e) => setExportFormat(e.target.value)}
+              title="فرمت دانلود"
+            >
+              <option value="csv">CSV</option>
+              <option value="tsv">TSV</option>
+              <option value="xlsx">Excel</option>
+            </select>
+            <button
+              className="admin-btn-secondary"
+              onClick={handleExport}
+              disabled={products.length === 0}
+              title="دانلود محصولات در فرمت انتخابی"
+            >
+              ⬇ دانلود خروجی
+            </button>
+          </div>
+
+          <label
+            className="admin-btn-secondary"
+            style={{ cursor: importing ? 'wait' : 'pointer', background: 'rgba(34, 197, 94, 0.12)', color: '#4ade80', borderColor: 'rgba(34, 197, 94, 0.25)' }}
+          >
+            {importing ? 'در حال ورود...' : '📥 ورود از فایل'}
+            <input
+              type="file"
+              accept=".csv,.tsv,.xlsx,.xls"
+              onChange={handleImportFile}
+              disabled={importing}
+              ref={fileInputRef}
+              style={{ display: 'none' }}
+            />
+          </label>
 
           {products.length === 0 && (
             <button
@@ -330,6 +368,30 @@ export default function AdminDashboard() {
           style={{ background: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8', borderColor: 'rgba(56, 189, 248, 0.3)' }}
         >
           {message}
+        </div>
+      )}
+
+      {importError && (
+        <div className="admin-error-box">{importError}</div>
+      )}
+
+      {importResult && (
+        <div
+          className="admin-error-box"
+          style={{ background: 'rgba(34, 197, 94, 0.12)', color: '#4ade80', borderColor: 'rgba(34, 197, 94, 0.3)' }}
+        >
+          {importResult.total} سطر خوانده شد — {importResult.added} محصول جدید ایجاد و{' '}
+          {importResult.updated} محصول به‌روزرسانی شد.
+          {importResult.failed.length > 0 && (
+            <>
+              <br />
+              <span style={{ color: '#f87171' }}>
+                {importResult.failed.length} سطر ناموفق (ردیف‌های{' '}
+                {importResult.failed.map((f) => f.row).join('، ')}:{' '}
+                {importResult.failed.map((f) => f.reason).join('؛ ')})
+              </span>
+            </>
+          )}
         </div>
       )}
 
