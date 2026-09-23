@@ -19,6 +19,8 @@ export default function ProductFormModal({ product, onClose, onSaved }) {
     category_id: categories[0]?.slug || 'pump',
     brand_id: brands[0]?.slug || '',
     in_stock: true,
+    featured: false,
+    offer_expires_at: '',
     badge: '',
     image: '',
   })
@@ -64,6 +66,8 @@ export default function ProductFormModal({ product, onClose, onSaved }) {
         category_id: product.category || raw.category_id || categories[0]?.slug,
         brand_id: product.brandId || raw.brand_id || '',
         in_stock: product.inStock !== false,
+        featured: raw.featured !== undefined ? Boolean(raw.featured) : Boolean(product.featured),
+        offer_expires_at: raw.offer_expires_at ? raw.offer_expires_at.substring(0, 16) : (product.offerExpiresAt ? product.offerExpiresAt.substring(0, 16) : ''),
         badge: raw.badge || product.badge || '',
         image: product.image || (product.images && product.images[0]) || '',
       })
@@ -296,6 +300,79 @@ export default function ProductFormModal({ product, onClose, onSaved }) {
               />
             </div>
           </div>
+
+          {/* Featured Product Checkbox */}
+          <div
+            className="admin-form-group"
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: '0.75rem',
+              marginBottom: '1.25rem',
+              background: 'rgba(56, 189, 248, 0.08)',
+              padding: '0.75rem 1rem',
+              borderRadius: '0.6rem',
+              border: '1px solid rgba(56, 189, 248, 0.25)',
+            }}
+          >
+            <input
+              type="checkbox"
+              id="featured-checkbox"
+              className="admin-checkbox"
+              checked={Boolean(formData.featured)}
+              onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
+            />
+            <label htmlFor="featured-checkbox" style={{ margin: 0, cursor: 'pointer', fontWeight: 700, color: '#38bdf8' }}>
+              ⭐ نمایش در اسلایدر «پیشنهادهای ویژه» صفحه اصلی سایت (Featured Product)
+            </label>
+          </div>
+
+          {/* Offer Countdown Timer */}
+          {formData.featured && (
+            <div
+              className="admin-form-group"
+              style={{
+                background: 'rgba(251, 191, 36, 0.08)',
+                padding: '1rem',
+                borderRadius: '0.6rem',
+                border: '1px solid rgba(251, 191, 36, 0.25)',
+                marginBottom: '1.25rem',
+              }}
+            >
+              <label style={{ color: '#fbbf24', fontWeight: 700 }}>
+                ⏱️ زمان پایان فروش ویژه (تایمر شمارش معکوس):
+              </label>
+              <input
+                type="datetime-local"
+                className="admin-input"
+                value={formData.offer_expires_at}
+                onChange={(e) => setFormData({ ...formData, offer_expires_at: e.target.value })}
+                style={{ direction: 'ltr', textAlign: 'left' }}
+              />
+              <span style={{ fontSize: '0.8rem', color: '#94a3b8', marginTop: '0.25rem' }}>
+                اختیاری — اگر تاریخ تنظیم شود، تایمر شمارش معکوس روی کارت محصول در صفحه اصلی نمایش داده می‌شود.
+              </span>
+              {formData.offer_expires_at && (
+                <button
+                  type="button"
+                  onClick={() => setFormData({ ...formData, offer_expires_at: '' })}
+                  style={{
+                    marginTop: '0.5rem',
+                    background: 'rgba(239, 68, 68, 0.15)',
+                    color: '#f87171',
+                    border: '1px solid rgba(239, 68, 68, 0.3)',
+                    borderRadius: '0.4rem',
+                    padding: '0.3rem 0.8rem',
+                    fontSize: '0.8rem',
+                    cursor: 'pointer',
+                    alignSelf: 'flex-start',
+                  }}
+                >
+                  ❌ حذف تایمر
+                </button>
+              )}
+            </div>
+          )}
 
           {/* Key Features Section */}
           <div className="admin-form-group">

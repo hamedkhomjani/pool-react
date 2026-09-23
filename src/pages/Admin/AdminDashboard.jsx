@@ -481,7 +481,41 @@ export default function AdminDashboard() {
                       )}
                     </td>
                     <td>
-                      <div className="admin-product-title">{p.title}</div>
+                      <div className="admin-product-title" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
+                        <span>{p.title}</span>
+                        {p.featured && (
+                          <span
+                            style={{
+                              fontSize: '0.7rem',
+                              background: 'rgba(56, 189, 248, 0.15)',
+                              color: '#38bdf8',
+                              padding: '0.1rem 0.4rem',
+                              borderRadius: '0.3rem',
+                              border: '1px solid rgba(56, 189, 248, 0.3)',
+                              fontWeight: 700,
+                            }}
+                            title="محصول ویژه صفحه اصلی"
+                          >
+                            ⭐ ویژه
+                          </span>
+                        )}
+                        {p.offerExpiresAt && new Date(p.offerExpiresAt) > new Date() && (
+                          <span
+                            style={{
+                              fontSize: '0.7rem',
+                              background: 'rgba(251, 191, 36, 0.15)',
+                              color: '#fbbf24',
+                              padding: '0.1rem 0.4rem',
+                              borderRadius: '0.3rem',
+                              border: '1px solid rgba(251, 191, 36, 0.3)',
+                              fontWeight: 700,
+                            }}
+                            title={`تایمر فروش ویژه تا: ${new Date(p.offerExpiresAt).toLocaleDateString('fa-IR')}`}
+                          >
+                            ⏱️ تایمر
+                          </span>
+                        )}
+                      </div>
                       <div className="admin-product-key">کد: {p.key}</div>
                     </td>
                     <td>{catObj ? catObj.slug : p.category}</td>

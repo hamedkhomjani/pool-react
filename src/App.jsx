@@ -110,6 +110,7 @@ export function AppShell({ resolvePage }) {
 const AdminLayout = lazy(() => import('./pages/Admin/AdminLayout'))
 const AdminLogin = lazy(() => import('./pages/Admin/AdminLogin'))
 const AdminDashboard = lazy(() => import('./pages/Admin/AdminDashboard'))
+const AdminTeam = lazy(() => import('./pages/Admin/AdminTeam'))
 
 function AppContent({ theme, toggleTheme, resolvePage }) {
   const { cartOpen, closeCart, consultationOpen, closeConsultation } = useUI()
@@ -123,6 +124,7 @@ function AppContent({ theme, toggleTheme, resolvePage }) {
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />
+            <Route path="team" element={<AdminTeam />} />
           </Route>
         </Routes>
       </Suspense>

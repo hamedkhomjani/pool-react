@@ -12,6 +12,7 @@ import { track } from '../utils/track'
 import { useReviews } from '../hooks/useReviews'
 import RatingStars from './RatingStars'
 import ProductPrice from './ProductPrice'
+import CountdownTimer from './CountdownTimer'
 
 function ProductCard({ product, onSelect }) {
   const { t } = useTranslation()
@@ -100,6 +101,9 @@ function ProductCard({ product, onSelect }) {
           />
           <span className="product-rating-count">({rating.count})</span>
         </div>
+      )}
+      {product.offerExpiresAt && new Date(product.offerExpiresAt) > new Date() && (
+        <CountdownTimer targetDate={product.offerExpiresAt} />
       )}
       <p className="product-desc">{product.desc}</p>
       <div className="product-specs">

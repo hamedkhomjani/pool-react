@@ -56,6 +56,34 @@
   gap: 1.25rem;
 }
 
+.admin-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.admin-nav-link {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.6rem;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.admin-nav-link:hover {
+  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.admin-nav-link.active {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
 .admin-email {
   font-size: 0.875rem;
   color: #94a3b8;
